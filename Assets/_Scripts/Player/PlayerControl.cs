@@ -11,6 +11,7 @@ public enum eWeapon
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Health))]
+[RequireComponent(typeof(PlayerAnimator))]
 public class PlayerControl : Character
 {
 
@@ -21,18 +22,24 @@ public class PlayerControl : Character
 	[SerializeField] float _meleeCooldown;
 	[SerializeField] float _projectileCooldown;
 	[SerializeField] int _maxDice;
+	[SerializeField] float _runThreshold;
+	[SerializeField] float _projectileSpeed;
+	[SerializeField] float _projectileTTL;
+
+	[Header("References")]
+	[SerializeField] UIBuffs _uiBuff;
 
 	[Header("Buffable Statics")]
 	[SerializeField] float _moveSpeed;
-  [SerializeField] float _moveSpeedScaling;
+	[SerializeField] float _moveSpeedScaling;
 	[SerializeField] float _meleeDamage;
-  [SerializeField] float _meleeDamageScaling;
+	[SerializeField] float _meleeDamageScaling;
 	[SerializeField] float _projectileDamage;
-  [SerializeField] float _projectileDamageScaling;
+	[SerializeField] float _projectileDamageScaling;
 	[SerializeField] float _defense;
-  [SerializeField] float _defenseScaling;
+	[SerializeField] float _defenseScaling;
 	[SerializeField] float _healthRegen;
-  [SerializeField] float _healthRegenScaling;
+	[SerializeField] float _healthRegenScaling;
 
 	[Header("Player Elements")]
 	[SerializeField] GameObject _camera;
@@ -42,13 +49,14 @@ public class PlayerControl : Character
 	Queue<Dice> _dice;
 	Queue<int> _ammo;
 
-  Queue<Dice> _buffs; // Used by HandleBuffs
+	Queue<Dice> _buffs; // Used by HandleBuffs
 
 	eWeapon _activeWeapon = eWeapon.Sword;
 	float _lastAttackTime;
 	Health _health;
 
 	Rigidbody _rb;
+	PlayerAnimator _anim;
 
 	// Camera stuff
 	float _pitch;
@@ -69,11 +77,12 @@ public class PlayerControl : Character
 		_shootAction = InputSystem.actions.FindAction("Shoot", true);
 		_pauseAction = InputSystem.actions.FindAction("Pause", true);
 
-    _dice = new Queue<Dice>();
-    _ammo = new Queue<int>();
-    _buffs = new Queue<Dice>();
+		_dice = new Queue<Dice>();
+		_ammo = new Queue<int>();
+		_buffs = new Queue<Dice>();
 
 		_rb = GetComponent<Rigidbody>();
+		_anim = GetComponent<PlayerAnimator>();
 		_health = GetComponent<Health>();
 		WaveAuthority.SetPlayerRef(this);
 
@@ -102,61 +111,61 @@ public class PlayerControl : Character
 		}
 	}
 
-  // Handle Current Buffs
-  void AddBuff(Dice dice)
-  {
-    switch (dice.buffType)
-    {
-      case eBuffType.Health:
-        _healthRegen += dice.sideNum * _healthRegenScaling;
-        break;
-      case eBuffType.Damage:
-        _meleeDamage *= 1 + dice.sideNum * _meleeDamageScaling;
-        break;
-      case eBuffType.Speed:
-        _moveSpeed *= 1 + dice.sideNum * _moveSpeedScaling;
-        break;
-      case eBuffType.Defense:
-        _defense *= 1 + dice.sideNum * _defenseScaling;
-        break;
-      case eBuffType.Ammo:
-        int[] diceTypes = {4, 6, 8, 12, 20};
-        for (int i = 0; i < dice.sideNum; i++)
-        {
-          _ammo.Enqueue(diceTypes[(int)Random.Range(0f, diceTypes.Length)]);
-        }
-        break;
-    }
-  }
-  void RemoveBuff(Dice dice)
-  {
-    switch (dice.buffType)
-    {
-      case eBuffType.Health:
-        _healthRegen -= dice.sideNum * _healthRegenScaling;
-        break;
-      case eBuffType.Damage:
-        _meleeDamage /= 1 + dice.sideNum * _meleeDamageScaling;
-        break;
-      case eBuffType.Speed:
-        _moveSpeed /= 1 + dice.sideNum * _moveSpeedScaling;
-        break;
-      case eBuffType.Defense:
-        _defense /= 1 + dice.sideNum * _defenseScaling;
-        break;
-      case eBuffType.Ammo:
-        // Do nothing
-        break;
-    }
-  }
-  void HandleBuffs(Dice newDice, Dice oldDice)
-  {
-    if (oldDice != null)
-    {
-      RemoveBuff(oldDice);
-    }
-    AddBuff(newDice);
-  }
+	// Handle Current Buffs
+	void AddBuff(Dice dice)
+	{
+		switch (dice.GetBuffType())
+		{
+			case eBuffType.Health:
+				_healthRegen += dice.sideNum * _healthRegenScaling;
+				break;
+			case eBuffType.Damage:
+				_meleeDamage *= 1 + dice.sideNum * _meleeDamageScaling;
+				break;
+			case eBuffType.Speed:
+				_moveSpeed *= 1 + dice.sideNum * _moveSpeedScaling;
+				break;
+			case eBuffType.Defense:
+				_defense *= 1 + dice.sideNum * _defenseScaling;
+				break;
+			case eBuffType.Ammo:
+				int[] diceTypes = { 4, 6, 8, 12, 20 };
+				for (int i = 0; i < dice.sideNum; i++)
+				{
+					_ammo.Enqueue(diceTypes[(int)Random.Range(0f, diceTypes.Length)]);
+				}
+				break;
+		}
+	}
+	void RemoveBuff(Dice dice)
+	{
+		switch (dice.GetBuffType())
+		{
+			case eBuffType.Health:
+				_healthRegen -= dice.sideNum * _healthRegenScaling;
+				break;
+			case eBuffType.Damage:
+				_meleeDamage /= 1 + dice.sideNum * _meleeDamageScaling;
+				break;
+			case eBuffType.Speed:
+				_moveSpeed /= 1 + dice.sideNum * _moveSpeedScaling;
+				break;
+			case eBuffType.Defense:
+				_defense /= 1 + dice.sideNum * _defenseScaling;
+				break;
+			case eBuffType.Ammo:
+				// Do nothing
+				break;
+		}
+	}
+	void HandleBuffs(Dice newDice, Dice oldDice)
+	{
+		if (oldDice != null)
+		{
+			RemoveBuff(oldDice);
+		}
+		AddBuff(newDice);
+	}
 
 	// Movement stuff
 
@@ -194,15 +203,28 @@ public class PlayerControl : Character
 		currVel.x = Mathf.Clamp(currVel.x, -_maxSpeed, _maxSpeed);
 		currVel.z = Mathf.Clamp(currVel.z, -_maxSpeed, _maxSpeed);
 		_rb.linearVelocity = currVel;
+
+		if (Mathf.Abs(currVel.magnitude) >= _runThreshold)
+		{
+			_anim.UpdateWalkState(eWalkState.Running);
+		}
+		else if (Mathf.Abs(currVel.magnitude) > 0.0001f)
+		{
+			_anim.UpdateWalkState(eWalkState.Walking);
+		}
+		else
+		{
+			_anim.UpdateWalkState(eWalkState.Idle);
+		}
 	}
 
-	Vector3 RightTransform()
+	public Vector3 RightTransform()
 	{
 		float yawRadian = Mathf.PI * (-_yaw - 270f) / 180f;
 		return new Vector3(Mathf.Cos(yawRadian), 0f, Mathf.Sin(yawRadian));
 	}
 
-	Vector3 ForwardTransform()
+	public Vector3 ForwardTransform()
 	{
 		float yawRadian = Mathf.PI * -_yaw / 180f;
 		return new Vector3(Mathf.Cos(yawRadian), 0f, Mathf.Sin(yawRadian));
@@ -226,12 +248,10 @@ public class PlayerControl : Character
 		{
 			// Set the sword to active
 			_activeWeapon = eWeapon.Sword;
-			_sword.SetActive(true);
-			_hand.SetActive(false);
 		}
 
 		// Attack
-		_sword.GetComponent<Sword>().Animate();
+		_anim.Slash();
 
 		_lastAttackTime = Time.time;
 	}
@@ -248,20 +268,24 @@ public class PlayerControl : Character
 		{
 			// Set the projectile to active
 			_activeWeapon = eWeapon.Projectile;
-			_sword.SetActive(false);
-			_hand.SetActive(true);
 		}
+
+		// If there isnt available ammo, don't shoot
+		// if (GetAmmo() <= 0)
+		// {
+		// 	return;
+		// }
 
 		// Attack
 		_hand.GetComponent<Hand>().Throw();
-
+		_anim.Throw();
 		_lastAttackTime = Time.time;
 	}
 
 	public void AddDice(Dice dice)
 	{
 		_dice.Enqueue(dice);
-    Dice oldDice = null;
+		Dice oldDice = null;
 		if (!(_dice.Count >= _maxDice))
 		{
 			oldDice = (Dice)_dice.Dequeue();
@@ -269,12 +293,15 @@ public class PlayerControl : Character
 			// Add oldDice to Dice Bag
 			AddAmmo(oldDice);
 		}
-    HandleBuffs(dice, oldDice);
+		HandleBuffs(dice, oldDice);
+		_uiBuff.AddBuff(dice);
+
+		_anim.ChangeDie();
 	}
 
 	public void AddAmmo(Dice dice)
 	{
-		int oldDice = (int)dice.buffType;
+		int oldDice = (int)dice.GetBuffType();
 		_ammo.Enqueue(oldDice);
 	}
 
@@ -289,6 +316,10 @@ public class PlayerControl : Character
 		}
 
 		return _ammo.Dequeue();
+	}
+	public int GetAmmoCount()
+	{
+		return _ammo.Count;
 	}
 
 	public float GetMeleeDamage()
@@ -339,5 +370,13 @@ public class PlayerControl : Character
 	{
 		_healthRegen = healthRegen;
 	}
+
+	public int GetMaxDice() { return _maxDice; }
+
+	public float GetProjectileSpeed() { return _projectileSpeed; }
+
+	public float GetProjectileTTL() { return _projectileTTL; }
+
+	public float GetPitch() { return _pitch; }
 
 }

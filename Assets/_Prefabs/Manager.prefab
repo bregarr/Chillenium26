@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3155814735142670870
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 27903298438225622}
+  - component: {fileID: 1829404852944315613}
+  - component: {fileID: 8352581272522828460}
+  - component: {fileID: 6448434017235078828}
+  m_Layer: 0
+  m_Name: Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &27903298438225622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3155814735142670870}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1829404852944315613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3155814735142670870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c4ac26487737242b09442cdd54424a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CursorLock
+--- !u!114 &8352581272522828460
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3155814735142670870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92d43f55d85ae6341a5426968b8c7e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DiceAuthority
+  _diceList:
+  - {fileID: 1877804080180693680, guid: 16364335d7cba294eb047c71c5cc8805, type: 3}
+  - {fileID: 5665476885044256012, guid: 47f8dcdda57674044adf6309b9ee4a7f, type: 3}
+  - {fileID: 5282806349577885805, guid: ce5a5c095f67f8d46b04abf9eb148c6e, type: 3}
+  - {fileID: 2337477406921995599, guid: fcb471aac2171ae47bf8f5f898abca7e, type: 3}
+  - {fileID: 2619606999737387121, guid: 29eead55ddb631643b1ed9221d62e970, type: 3}
+--- !u!114 &6448434017235078828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3155814735142670870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30f42378826cf3d4bb559b8de1186b3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WaveAuthority
+  _waves: []
+  _timeBetweenWaves: 1
+  _initialWaveDelay: 2

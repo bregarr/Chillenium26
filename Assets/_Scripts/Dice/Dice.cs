@@ -8,17 +8,33 @@ public enum eBuffType
 public class Dice : MonoBehaviour
 {
 
+	[Header("(Optional)")]
+	[SerializeField] int _sideCount;
+	[SerializeField] eBuffType _buffType;
+
 	public int sideNum { get; private set; }
-	public eBuffType buffType { get; private set; }
 
 	public Dice(eBuffType type)
 	{
 		InitializeDice(type);
 	}
 
+	void OnEnable()
+	{
+		if (_buffType == eBuffType.None)
+		{
+			_buffType = (eBuffType)_sideCount;
+		}
+	}
+
 	public Dice InitializeDice(eBuffType buffType)
 	{
-		this.buffType = buffType;
+		_buffType = buffType;
+		if (_buffType == eBuffType.None)
+		{
+			buffType = (eBuffType)_sideCount;
+			Debug.Log(_sideCount);
+		}
 
 		GameObject newDice = DiceAuthority.Ref.GetDiceByBuff(buffType);
 		GetComponent<MeshFilter>().mesh = newDice.GetComponent<MeshFilter>().mesh;
@@ -36,7 +52,17 @@ public class Dice : MonoBehaviour
 
 	public void RollDice()
 	{
-		sideNum = (int)Mathf.Round(Random.Range(1, (int)buffType));
+		sideNum = (int)Mathf.Round(Random.Range(1, (int)_buffType));
+	}
+
+	public int GetSideCount()
+	{
+		return (int)_buffType;
+	}
+
+	public eBuffType GetBuffType()
+	{
+		return _buffType;
 	}
 
 }
