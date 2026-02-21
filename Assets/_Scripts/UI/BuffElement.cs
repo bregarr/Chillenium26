@@ -78,6 +78,7 @@ public class BuffElement : MonoBehaviour
 
   void Start()
   {
+    transform.position = new Vector3(0, 0, 0);
     _travellingTime = 0;
     _startPosition = transform.position;
     _startScale = transform.localScale.x;
