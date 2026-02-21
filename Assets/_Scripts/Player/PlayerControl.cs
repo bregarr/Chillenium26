@@ -16,16 +16,18 @@ public class PlayerControl : Character
 
 	[Header("Player Statics")]
 	[SerializeField] float _sensitivity;
+	[SerializeField] float _maxSpeed;
 	[SerializeField] float _maxLookHeight;
 	[SerializeField] float _meleeCooldown;
-  [SerializeField] float _projectileCooldown;
+	[SerializeField] float _projectileCooldown;
+	[SerializeField] int _maxDice;
 
-  [Header("Buffable Statics")]
-  [SerializeField] float _moveSpeed;
+	[Header("Buffable Statics")]
+	[SerializeField] float _moveSpeed;
 	[SerializeField] float _meleeDamage;
 	[SerializeField] float _projectileDamage;
-  [SerializeField] float _defense;
-  [SerializeField] float _healthRegen;
+	[SerializeField] float _defense;
+	[SerializeField] float _healthRegen;
 
 	[Header("Player Elements")]
 	[SerializeField] GameObject _camera;
@@ -33,7 +35,7 @@ public class PlayerControl : Character
 	[SerializeField] GameObject _hand;
 
 	Queue<Dice> _dice;
-  Queue<int> _ammo;
+	Queue<int> _ammo;
 
 
 	eWeapon _activeWeapon = eWeapon.Sword;
@@ -111,10 +113,17 @@ public class PlayerControl : Character
 	{
 		Vector2 inputPos = _moveAction.ReadValue<Vector2>();
 		Vector3 newForce = Vector3.zero;
+
 		newForce += _moveSpeed * inputPos.y * RightTransform();
 		newForce += _moveSpeed * inputPos.x * ForwardTransform();
 
 		_rb.AddForce(newForce);
+
+		// Clamp the velocity
+		Vector3 currVel = _rb.linearVelocity;
+		currVel.x = Mathf.Clamp(currVel.x, -_maxSpeed, _maxSpeed);
+		currVel.z = Mathf.Clamp(currVel.z, -_maxSpeed, _maxSpeed);
+		_rb.linearVelocity = currVel;
 	}
 
 	Vector3 RightTransform()
@@ -174,7 +183,7 @@ public class PlayerControl : Character
 		}
 
 		// Attack
-    _hand.GetComponent<Hand>().Throw();
+		_hand.GetComponent<Hand>().Throw();
 
 		_lastAttackTime = Time.time;
 	}
@@ -182,78 +191,81 @@ public class PlayerControl : Character
 	public void AddDice(Dice dice)
 	{
 		_dice.Enqueue(dice);
-		Dice oldDice = (Dice)_dice.Dequeue();
+		if (!(_dice.Count >= _maxDice))
+		{
+			Dice oldDice = (Dice)_dice.Dequeue();
 
-		// Add oldDice to Dice Bag
-    AddAmmo(oldDice);
+			// Add oldDice to Dice Bag
+			AddAmmo(oldDice);
+		}
 	}
 
-  public void AddAmmo(Dice dice)
-  {
-    int oldDice = (int)dice.buffType;
-    _ammo.Enqueue(oldDice);
-  }
-
-  public int GetAmmo()
+	public void AddAmmo(Dice dice)
 	{
-    // Make sure we have ammo
-    if (_ammo.Count == 0)
-    {
-      // For testing
-      _ammo.Enqueue(6);
-      //return 0;
-    }
+		int oldDice = (int)dice.buffType;
+		_ammo.Enqueue(oldDice);
+	}
+
+	public int GetAmmo()
+	{
+		// Make sure we have ammo
+		if (_ammo.Count == 0)
+		{
+			// For testing
+			_ammo.Enqueue(6);
+			//return 0;
+		}
 
 		return _ammo.Dequeue();
 	}
-  
+
 	public float GetMeleeDamage()
 	{
 		return _meleeDamage;
 	}
 
-  public void SetMeleeDamage(float damage)
-  {
-    _meleeDamage = damage;
-  }
+	public void SetMeleeDamage(float damage)
+	{
+		_meleeDamage = damage;
+	}
 
-  public float GetProjectileDamage()
+	public float GetProjectileDamage()
 	{
 		return _projectileDamage;
 	}
 
-  public void SetProjectileDamage(float damage)
-  {
-    _projectileDamage = damage;
-  }
+	public void SetProjectileDamage(float damage)
+	{
+		_projectileDamage = damage;
+	}
 
-  public float GetMoveSpeed()
+	public float GetMoveSpeed()
 	{
 		return _moveSpeed;
 	}
 
-  public void SetMoveSpeed(float speed)
-  {
-    _moveSpeed = speed;
-  }
+	public void SetMoveSpeed(float speed)
+	{
+		_moveSpeed = speed;
+	}
 
-  public float GetDefense()
+	public float GetDefense()
 	{
 		return _defense;
 	}
 
-  public void SetDefense(float defense)
-  {
-    _defense = defense;
-  }
-  public float GetHealthRegen()
+	public void SetDefense(float defense)
+	{
+		_defense = defense;
+	}
+	public float GetHealthRegen()
 	{
 		return _healthRegen;
 	}
 
-  public void SetHealthRegen(float healthRegen)
-  {
-    _healthRegen = healthRegen;
-  }
+	public void SetHealthRegen(float healthRegen)
+	{
+		_healthRegen = healthRegen;
+	}
 
 }

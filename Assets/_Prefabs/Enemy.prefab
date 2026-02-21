@@ -133,6 +133,9 @@ MonoBehaviour:
   _damageAmount: 3
   _attackSpeed: 3
   _attackDistance: 2
+  _dropType: 0
+  _canDropDice: 1
+  _diceDropChance: 0.5
 --- !u!114 &6805410955398776358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,6 +149,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
   _maxHealth: 3
+  _hitMat: {fileID: 2100000, guid: 5a12755d7474720478f59a4a14d31722, type: 2}
+  _hitFlashTime: 0.25
 --- !u!195 &5337066922652552618
 NavMeshAgent:
   m_ObjectHideFlags: 0
