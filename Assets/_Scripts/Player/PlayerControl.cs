@@ -78,6 +78,13 @@ public class PlayerControl : Character
 		WaveAuthority.SetPlayerRef(this);
 
 		_lastAttackTime = Time.time;
+
+		if (!PlayerPrefs.HasKey("sensitivity"))
+		{
+			PlayerPrefs.SetFloat("sensitivity", 55f);
+		}
+
+		_sensitivity = PlayerPrefs.GetFloat("sensitivity");
 	}
 
 	void Update()
