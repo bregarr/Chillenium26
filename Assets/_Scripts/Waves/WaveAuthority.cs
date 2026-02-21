@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ public class WaveAuthority : MonoBehaviour
 	public static PlayerControl PlayerRef { get; private set; }
 
 	[Header("Wave Data")]
-	[SerializeField] List<List<GameObject>> _waves;
+	[SerializeField] List<WaveSO> _waves;
 	[SerializeField] float _timeBetweenWaves;
 	[SerializeField] float _initialWaveDelay;
 
@@ -23,7 +24,7 @@ public class WaveAuthority : MonoBehaviour
 		}
 		Ref = this;
 
-		// Invoke(nameof(SpawnWave), _initialWaveDelay);
+		Invoke(nameof(SpawnWave), _initialWaveDelay);
 	}
 
 	public static void SetPlayerRef(PlayerControl newRef)
@@ -33,10 +34,7 @@ public class WaveAuthority : MonoBehaviour
 
 	void SpawnWave()
 	{
-		foreach (GameObject spawner in _waves[_waveIndex])
-		{
-			Instantiate(spawner);
-		}
+		_waves[_waveIndex].SpawnWave();
 
 		_waveIndex++;
 
@@ -50,4 +48,17 @@ public class WaveAuthority : MonoBehaviour
 
 	}
 
+	public void PassSpawnEnemies(List<Vector3> locations, List<GameObject> enemies, float cooldown)
+	{
+		StartCoroutine(SpawnEnemies(locations, enemies, cooldown));
+	}
+
+	IEnumerator SpawnEnemies(List<Vector3> locations, List<GameObject> enemies, float cooldown)
+	{
+		for (int i = 0; i < locations.Count; i++)
+		{
+			Instantiate(enemies[i], locations[i], transform.rotation);
+			yield return new WaitForSeconds(cooldown);
+		}
+	}
 }
