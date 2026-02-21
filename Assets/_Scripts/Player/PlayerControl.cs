@@ -26,6 +26,9 @@ public class PlayerControl : Character
 	[SerializeField] float _projectileSpeed;
 	[SerializeField] float _projectileTTL;
 
+	[Header("References")]
+	[SerializeField] UIBuffs _uiBuff;
+
 	[Header("Buffable Statics")]
 	[SerializeField] float _moveSpeed;
 	[SerializeField] float _moveSpeedScaling;
@@ -291,6 +294,7 @@ public class PlayerControl : Character
 			AddAmmo(oldDice);
 		}
 		HandleBuffs(dice, oldDice);
+		_uiBuff.AddBuff(dice);
 
 		_anim.ChangeDie();
 	}
@@ -313,7 +317,7 @@ public class PlayerControl : Character
 
 		return _ammo.Dequeue();
 	}
-  public int GetAmmoCount()
+	public int GetAmmoCount()
 	{
 		return _ammo.Count;
 	}

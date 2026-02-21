@@ -56,8 +56,6 @@ public class DiceProjectile : MonoBehaviour
 			forceDirection.z *= 1.6f;
 		}
 
-		Debug.Log(-player.GetComponent<PlayerControl>().GetPitch());
-
 		Vector3 force = forceDirection * speed;
 		transform.SetParent(null, true);
 		rb.AddForce(force, ForceMode.Impulse);
