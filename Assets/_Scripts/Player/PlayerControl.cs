@@ -11,6 +11,7 @@ public enum eWeapon
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Health))]
+[RequireComponent(typeof(PlayerAnimator))]
 public class PlayerControl : Character
 {
 
@@ -21,6 +22,7 @@ public class PlayerControl : Character
 	[SerializeField] float _meleeCooldown;
 	[SerializeField] float _projectileCooldown;
 	[SerializeField] int _maxDice;
+	[SerializeField] float _runThreshold;
 
 	[Header("Buffable Statics")]
 	[SerializeField] float _moveSpeed;
@@ -49,6 +51,7 @@ public class PlayerControl : Character
 	Health _health;
 
 	Rigidbody _rb;
+	PlayerAnimator _anim;
 
 	// Camera stuff
 	float _pitch;
@@ -74,6 +77,7 @@ public class PlayerControl : Character
 		_buffs = new Queue<Dice>();
 
 		_rb = GetComponent<Rigidbody>();
+		_anim = GetComponent<PlayerAnimator>();
 		_health = GetComponent<Health>();
 		WaveAuthority.SetPlayerRef(this);
 
@@ -194,6 +198,15 @@ public class PlayerControl : Character
 		currVel.x = Mathf.Clamp(currVel.x, -_maxSpeed, _maxSpeed);
 		currVel.z = Mathf.Clamp(currVel.z, -_maxSpeed, _maxSpeed);
 		_rb.linearVelocity = currVel;
+
+		if (currVel.magnitude >= _runThreshold)
+		{
+			_anim.UpdateWalkState(eWalkState.Running);
+		}
+		else if (currVel.magnitude > 0)
+		{
+			_anim.UpdateWalkState(eWalkState.Walking);
+		}
 	}
 
 	Vector3 RightTransform()
@@ -231,7 +244,7 @@ public class PlayerControl : Character
 		}
 
 		// Attack
-		_sword.GetComponent<Sword>().Animate();
+		_anim.Slash();
 
 		_lastAttackTime = Time.time;
 	}
@@ -338,6 +351,11 @@ public class PlayerControl : Character
 	public void SetHealthRegen(float healthRegen)
 	{
 		_healthRegen = healthRegen;
+	}
+
+	public int GetMaxDice()
+	{
+		return _maxDice;
 	}
 
 }
