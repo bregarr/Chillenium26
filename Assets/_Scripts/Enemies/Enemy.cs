@@ -11,11 +11,14 @@ public class Enemy : Character
 	[SerializeField] float _damageAmount;
 	[SerializeField] float _attackSpeed;
 	[SerializeField] float _attackDistance;
+	[SerializeField] bool _isSwimmer = false;
 
 	[Header("Enemy Options")]
 	[SerializeField] eBuffType _dropType = eBuffType.None;
 	[SerializeField] bool _canDropDice = true;
 	[SerializeField] float _diceDropChance = .5f;
+
+	EnemyAnimator _anim;
 
 	NavMeshAgent _agent;
 	float _lastAttackTime;
@@ -33,11 +36,26 @@ public class Enemy : Character
 		{
 			_canDropDice = false;
 		}
+		_anim = GetComponent<EnemyAnimator>();
+
+		if (_isSwimmer)
+		{
+			_anim.SetSwimming(true);
+		}
 	}
 
 	void FixedUpdate()
 	{
 		_agent.destination = WaveAuthority.PlayerRef.gameObject.transform.position;
+
+		if (_agent.velocity.magnitude > 0.0001f)
+		{
+			_anim.SetMoving(true);
+		}
+		else
+		{
+			_anim.SetMoving(false);
+		}
 
 		CheckForAttack();
 	}
@@ -51,7 +69,9 @@ public class Enemy : Character
 			if (_lastAttackTime + _attackSpeed <= Time.time)
 			{
 				// Can attack
+				_anim.Hit();
 
+				_lastAttackTime = Time.time + _attackSpeed;
 				return;
 			}
 			// This is where the enemy is within range but is on cooldown
