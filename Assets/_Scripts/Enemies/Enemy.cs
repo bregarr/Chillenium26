@@ -63,8 +63,8 @@ public class Enemy : Character
 		// Kill the enemy
 		if (_canDropDice && Random.Range(0, 1) <= _diceDropChance)
 		{
-			GameObject dropDiceGO = new GameObject();
-			dropDiceGO.AddComponent<Dice>().InitializeDice(_dropType);
+			GameObject dropDiceGO = DiceAuthority.Ref.GetDiceByBuff(_dropType);
+			dropDiceGO.AddComponent<Dice>().InitializeDice();
 			dropDiceGO.transform.position = transform.position;
 			dropDiceGO.GetComponent<Collider>().isTrigger = true;
 		}

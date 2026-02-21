@@ -19,8 +19,19 @@ public class Dice : MonoBehaviour
 	public Dice InitializeDice(eBuffType buffType)
 	{
 		this.buffType = buffType;
+
+		GameObject newDice = DiceAuthority.Ref.GetDiceByBuff(buffType);
+		GetComponent<MeshFilter>().mesh = newDice.GetComponent<MeshFilter>().mesh;
+		GetComponent<MeshRenderer>().material = newDice.GetComponent<MeshRenderer>().material;
+
 		RollDice();
-    return this;
+		return this;
+	}
+
+	public Dice InitializeDice()
+	{
+		RollDice();
+		return this;
 	}
 
 	public void RollDice()

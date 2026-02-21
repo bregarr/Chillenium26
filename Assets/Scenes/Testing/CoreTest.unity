@@ -274,6 +274,7 @@ GameObject:
   m_Component:
   - component: {fileID: 597711200}
   - component: {fileID: 597711199}
+  - component: {fileID: 597711201}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -308,6 +309,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &597711201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597711198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92d43f55d85ae6341a5426968b8c7e91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DiceAuthority
+  _diceList: []
 --- !u!1 &972352492
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,14 +452,6 @@ PrefabInstance:
     - target: {fileID: 1939516991946230979, guid: bb70a4c50ee541f4b9937be3af972ba7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6805410955398776358, guid: bb70a4c50ee541f4b9937be3af972ba7, type: 3}
-      propertyPath: _hitMat
-      value: 
-      objectReference: {fileID: 2100000, guid: 5a12755d7474720478f59a4a14d31722, type: 2}
-    - target: {fileID: 6805410955398776358, guid: bb70a4c50ee541f4b9937be3af972ba7, type: 3}
-      propertyPath: _hitFlashTime
-      value: 0.25
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -687,14 +693,6 @@ PrefabInstance:
     - target: {fileID: 6240480184452523529, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445972967362992916, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
-      propertyPath: _drag
-      value: 0.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445972967362992916, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
-      propertyPath: _maxSpeed
-      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7889743191184120527, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
       propertyPath: m_LocalPosition.x
