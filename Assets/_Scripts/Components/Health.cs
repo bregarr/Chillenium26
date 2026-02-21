@@ -36,7 +36,14 @@ public class Health : MonoBehaviour
 
 	public void TakeDamage(float amount)
 	{
-		_currHealth -= amount;
+    if (_owner.gameObject.GetComponent<PlayerControl>())
+    {
+      _currHealth -= amount / _owner.gameObject.GetComponent<PlayerControl>().GetDefense();
+    }
+    else
+    {
+      _currHealth -= amount;
+    }
 
 		if (_renderer)
 		{
