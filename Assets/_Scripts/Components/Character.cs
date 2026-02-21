@@ -3,9 +3,9 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
 
-    public virtual void DeathEvent()
-    {
+	public virtual void DeathEvent()
+	{
 
-    }
+	}
 
 }
