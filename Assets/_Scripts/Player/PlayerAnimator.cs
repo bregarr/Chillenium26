@@ -11,6 +11,7 @@ public class PlayerAnimator : MonoBehaviour
     [Header("Components")]
     [SerializeField] Animator _bodyAnim;
     [SerializeField] Animator _swordAnim;
+    [SerializeField] eWalkState _currentWalkState;
 
     public void Slash()
     {
@@ -34,6 +35,7 @@ public class PlayerAnimator : MonoBehaviour
 
     public void UpdateWalkState(eWalkState state)
     {
+        _currentWalkState = state;
         switch (state)
         {
             case eWalkState.Idle:
@@ -55,6 +57,24 @@ public class PlayerAnimator : MonoBehaviour
                 _swordAnim.SetBool("isRunning", true);
                 break;
         }
+    }
+
+    public void Throw()
+    {
+        _bodyAnim.SetTrigger("throw");
+        _swordAnim.SetTrigger("throw");
+    }
+
+    public void Roll()
+    {
+        _bodyAnim.SetTrigger("roll");
+        _swordAnim.SetTrigger("roll");
+    }
+
+    public void ChangeDie()
+    {
+        _bodyAnim.SetTrigger("changeDie");
+        _swordAnim.SetTrigger("changeDie");
     }
 
 }

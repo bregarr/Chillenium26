@@ -23,6 +23,8 @@ public class PlayerControl : Character
 	[SerializeField] float _projectileCooldown;
 	[SerializeField] int _maxDice;
 	[SerializeField] float _runThreshold;
+	[SerializeField] float _projectileSpeed;
+	[SerializeField] float _projectileTTL;
 
 	[Header("Buffable Statics")]
 	[SerializeField] float _moveSpeed;
@@ -199,23 +201,27 @@ public class PlayerControl : Character
 		currVel.z = Mathf.Clamp(currVel.z, -_maxSpeed, _maxSpeed);
 		_rb.linearVelocity = currVel;
 
-		if (currVel.magnitude >= _runThreshold)
+		if (Mathf.Abs(currVel.magnitude) >= _runThreshold)
 		{
 			_anim.UpdateWalkState(eWalkState.Running);
 		}
-		else if (currVel.magnitude > 0)
+		else if (Mathf.Abs(currVel.magnitude) > 0.0001f)
 		{
 			_anim.UpdateWalkState(eWalkState.Walking);
 		}
+		else
+		{
+			_anim.UpdateWalkState(eWalkState.Idle);
+		}
 	}
 
-	Vector3 RightTransform()
+	public Vector3 RightTransform()
 	{
 		float yawRadian = Mathf.PI * (-_yaw - 270f) / 180f;
 		return new Vector3(Mathf.Cos(yawRadian), 0f, Mathf.Sin(yawRadian));
 	}
 
-	Vector3 ForwardTransform()
+	public Vector3 ForwardTransform()
 	{
 		float yawRadian = Mathf.PI * -_yaw / 180f;
 		return new Vector3(Mathf.Cos(yawRadian), 0f, Mathf.Sin(yawRadian));
@@ -239,8 +245,6 @@ public class PlayerControl : Character
 		{
 			// Set the sword to active
 			_activeWeapon = eWeapon.Sword;
-			_sword.SetActive(true);
-			_hand.SetActive(false);
 		}
 
 		// Attack
@@ -261,13 +265,17 @@ public class PlayerControl : Character
 		{
 			// Set the projectile to active
 			_activeWeapon = eWeapon.Projectile;
-			_sword.SetActive(false);
-			_hand.SetActive(true);
 		}
+
+		// If there isnt available ammo, don't shoot
+		// if (GetAmmo() <= 0)
+		// {
+		// 	return;
+		// }
 
 		// Attack
 		_hand.GetComponent<Hand>().Throw();
-
+		_anim.Throw();
 		_lastAttackTime = Time.time;
 	}
 
@@ -283,6 +291,8 @@ public class PlayerControl : Character
 			AddAmmo(oldDice);
 		}
 		HandleBuffs(dice, oldDice);
+
+		_anim.ChangeDie();
 	}
 
 	public void AddAmmo(Dice dice)
@@ -357,9 +367,12 @@ public class PlayerControl : Character
 		_healthRegen = healthRegen;
 	}
 
-	public int GetMaxDice()
-	{
-		return _maxDice;
-	}
+	public int GetMaxDice() { return _maxDice; }
+
+	public float GetProjectileSpeed() { return _projectileSpeed; }
+
+	public float GetProjectileTTL() { return _projectileTTL; }
+
+	public float GetPitch() { return _pitch; }
 
 }
