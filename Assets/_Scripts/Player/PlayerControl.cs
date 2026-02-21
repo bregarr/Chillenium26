@@ -1,6 +1,12 @@
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+
+public enum eWeapon
+{
+	Sword, Projectile
+}
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Health))]
@@ -11,9 +17,18 @@ public class PlayerControl : Character
 	[SerializeField] float _moveSpeed;
 	[SerializeField] float _sensitivity;
 	[SerializeField] float _maxLookHeight;
+	[SerializeField] float _meleeCooldown;
+	[SerializeField] float _meleeDamage;
+	[SerializeField] float _projectileCooldown;
+	[SerializeField] float _projectileDamage;
 
 	[Header("Player Elements")]
 	[SerializeField] GameObject _camera;
+	[SerializeField] GameObject _sword;
+	[SerializeField] GameObject _hand;
+
+	eWeapon _activeWeapon = eWeapon.Sword;
+	float _lastAttackTime;
 
 	Rigidbody _rb;
 
@@ -38,12 +53,23 @@ public class PlayerControl : Character
 
 		_rb = GetComponent<Rigidbody>();
 		WaveAuthority.SetPlayerRef(this);
+
+		_lastAttackTime = Time.time;
 	}
 
 	void Update()
 	{
 		Look();
 		Move();
+
+		if (_hitAction.WasCompletedThisFrame())
+		{
+			Melee();
+		}
+		else if (_shootAction.WasCompletedThisFrame())
+		{
+			Throw();
+		}
 	}
 
 	// Movement stuff
@@ -93,6 +119,48 @@ public class PlayerControl : Character
 	{
 		// Kill this guy
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
+
+	void Melee()
+	{
+		if (_lastAttackTime + _meleeCooldown > Time.time)
+		{
+			// Melee is still on cooldown
+			return;
+		}
+
+		if (_activeWeapon != eWeapon.Sword)
+		{
+			// Set the sword to active
+			_activeWeapon = eWeapon.Sword;
+			_sword.SetActive(true);
+			_hand.SetActive(false);
+		}
+
+		// Attack
+
+		_lastAttackTime = Time.time;
+	}
+
+	void Throw()
+	{
+		if (_lastAttackTime + _projectileCooldown > Time.time)
+		{
+			// Projectile is still on cooldown
+			return;
+		}
+
+		if (_activeWeapon != eWeapon.Projectile)
+		{
+			// Set the projectile to active
+			_activeWeapon = eWeapon.Projectile;
+			_sword.SetActive(false);
+			_hand.SetActive(true);
+		}
+
+		// Attack
+
+		_lastAttackTime = Time.time;
 	}
 
 }
