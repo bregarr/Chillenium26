@@ -16,10 +16,11 @@ public class Dice : MonoBehaviour
 		InitializeDice(type);
 	}
 
-	public void InitializeDice(eBuffType buffType)
+	public Dice InitializeDice(eBuffType buffType)
 	{
 		this.buffType = buffType;
 		RollDice();
+    return this;
 	}
 
 	public void RollDice()

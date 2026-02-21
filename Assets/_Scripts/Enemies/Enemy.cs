@@ -86,7 +86,7 @@ public class Enemy : Character
 		}
 
 		// Damage the enemy
-		float takeDamage = WaveAuthority.PlayerRef.CalculateMeleeDamage();
+		float takeDamage = WaveAuthority.PlayerRef.GetMeleeDamage();
 		_health.TakeDamage(takeDamage);
 
 	}

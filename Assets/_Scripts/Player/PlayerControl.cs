@@ -15,13 +15,17 @@ public class PlayerControl : Character
 {
 
 	[Header("Player Statics")]
-	[SerializeField] float _moveSpeed;
 	[SerializeField] float _sensitivity;
 	[SerializeField] float _maxLookHeight;
 	[SerializeField] float _meleeCooldown;
+  [SerializeField] float _projectileCooldown;
+
+  [Header("Buffable Statics")]
+  [SerializeField] float _moveSpeed;
 	[SerializeField] float _meleeDamage;
-	[SerializeField] float _projectileCooldown;
 	[SerializeField] float _projectileDamage;
+  [SerializeField] float _defense;
+  [SerializeField] float _healthRegen;
 
 	[Header("Player Elements")]
 	[SerializeField] GameObject _camera;
@@ -29,6 +33,7 @@ public class PlayerControl : Character
 	[SerializeField] GameObject _hand;
 
 	Queue _dice;
+  Queue _ammo;
 
 	eWeapon _activeWeapon = eWeapon.Sword;
 	float _lastAttackTime;
@@ -165,6 +170,7 @@ public class PlayerControl : Character
 		}
 
 		// Attack
+    _hand.GetComponent<Hand>().Throw();
 
 		_lastAttackTime = Time.time;
 	}
@@ -175,11 +181,72 @@ public class PlayerControl : Character
 		Dice oldDice = (Dice)_dice.Dequeue();
 
 		// Add oldDice to Dice Bag
+    AddAmmo(oldDice);
 	}
 
-	public float CalculateMeleeDamage()
+  public void AddAmmo(Dice dice)
+  {
+    _ammo.Enqueue(dice);
+  }
+
+  public Dice GetAmmo()
+	{
+    // Make sure we have ammo
+    if (_ammo.Count == 0)
+    {
+      return null;
+    }
+
+		return (Dice)_dice.Dequeue();
+	}
+  
+	public float GetMeleeDamage()
 	{
 		return _meleeDamage;
 	}
+
+  public void SetMeleeDamage(float damage)
+  {
+    _meleeDamage = damage;
+  }
+
+  public float GetProjectileDamage()
+	{
+		return _projectileDamage;
+	}
+
+  public void SetProjectileDamage(float damage)
+  {
+    _projectileDamage = damage;
+  }
+
+  public float GetMoveSpeed()
+	{
+		return _moveSpeed;
+	}
+
+  public void SetMoveSpeed(float speed)
+  {
+    _moveSpeed = speed;
+  }
+
+  public float GetDefense()
+	{
+		return _defense;
+	}
+
+  public void SetDefense(float defense)
+  {
+    _defense = defense;
+  }
+  public float GetHealthRegen()
+	{
+		return _healthRegen;
+	}
+
+  public void SetHealthRegen(float healthRegen)
+  {
+    _healthRegen = healthRegen;
+  }
 
 }
