@@ -12,6 +12,11 @@ public class Enemy : Character
 	[SerializeField] float _attackSpeed;
 	[SerializeField] float _attackDistance;
 
+	[Header("Enemy Options")]
+	[SerializeField] eBuffType _dropType = eBuffType.None;
+	[SerializeField] bool _canDropDice = true;
+	[SerializeField] float _diceDropChance = .5f;
+
 	NavMeshAgent _agent;
 	float _lastAttackTime;
 	Health _health;
@@ -23,6 +28,11 @@ public class Enemy : Character
 		_agent.stoppingDistance = _attackDistance;
 		_lastAttackTime = Time.time;
 		_health = GetComponent<Health>();
+
+		if (_dropType == eBuffType.None)
+		{
+			_canDropDice = false;
+		}
 	}
 
 	void FixedUpdate()
@@ -51,6 +61,13 @@ public class Enemy : Character
 	public override void DeathEvent()
 	{
 		// Kill the enemy
+		if (_canDropDice && Random.Range(0, 1) <= _diceDropChance)
+		{
+			GameObject dropDiceGO = new GameObject();
+			dropDiceGO.AddComponent<Dice>().InitializeDice(_dropType);
+			dropDiceGO.transform.position = transform.position;
+			dropDiceGO.GetComponent<Collider>().isTrigger = true;
+		}
 		Destroy(this.gameObject);
 	}
 
