@@ -24,10 +24,15 @@ public class PlayerControl : Character
 
 	[Header("Buffable Statics")]
 	[SerializeField] float _moveSpeed;
+  [SerializeField] float _moveSpeedScaling;
 	[SerializeField] float _meleeDamage;
+  [SerializeField] float _meleeDamageScaling;
 	[SerializeField] float _projectileDamage;
+  [SerializeField] float _projectileDamageScaling;
 	[SerializeField] float _defense;
+  [SerializeField] float _defenseScaling;
 	[SerializeField] float _healthRegen;
+  [SerializeField] float _healthRegenScaling;
 
 	[Header("Player Elements")]
 	[SerializeField] GameObject _camera;
@@ -37,6 +42,7 @@ public class PlayerControl : Character
 	Queue<Dice> _dice;
 	Queue<int> _ammo;
 
+  Queue<Dice> _buffs; // Used by HandleBuffs
 
 	eWeapon _activeWeapon = eWeapon.Sword;
 	float _lastAttackTime;
@@ -65,6 +71,7 @@ public class PlayerControl : Character
 
     _dice = new Queue<Dice>();
     _ammo = new Queue<int>();
+    _buffs = new Queue<Dice>();
 
 		_rb = GetComponent<Rigidbody>();
 		_health = GetComponent<Health>();
@@ -87,6 +94,62 @@ public class PlayerControl : Character
 			Throw();
 		}
 	}
+
+  // Handle Current Buffs
+  void AddBuff(Dice dice)
+  {
+    switch (dice.buffType)
+    {
+      case eBuffType.Health:
+        _healthRegen += dice.sideNum * _healthRegenScaling;
+        break;
+      case eBuffType.Damage:
+        _meleeDamage *= 1 + dice.sideNum * _meleeDamageScaling;
+        break;
+      case eBuffType.Speed:
+        _moveSpeed *= 1 + dice.sideNum * _moveSpeedScaling;
+        break;
+      case eBuffType.Defense:
+        _defense *= 1 + dice.sideNum * _defenseScaling;
+        break;
+      case eBuffType.Ammo:
+        int[] diceTypes = {4, 6, 8, 12, 20};
+        for (int i = 0; i < dice.sideNum; i++)
+        {
+          _ammo.Enqueue(diceTypes[(int)Random.Range(0f, diceTypes.Length)]);
+        }
+        break;
+    }
+  }
+  void RemoveBuff(Dice dice)
+  {
+    switch (dice.buffType)
+    {
+      case eBuffType.Health:
+        _healthRegen -= dice.sideNum * _healthRegenScaling;
+        break;
+      case eBuffType.Damage:
+        _meleeDamage /= 1 + dice.sideNum * _meleeDamageScaling;
+        break;
+      case eBuffType.Speed:
+        _moveSpeed /= 1 + dice.sideNum * _moveSpeedScaling;
+        break;
+      case eBuffType.Defense:
+        _defense /= 1 + dice.sideNum * _defenseScaling;
+        break;
+      case eBuffType.Ammo:
+        // Do nothing
+        break;
+    }
+  }
+  void HandleBuffs(Dice newDice, Dice oldDice)
+  {
+    if (oldDice != null)
+    {
+      RemoveBuff(oldDice);
+    }
+    AddBuff(newDice);
+  }
 
 	// Movement stuff
 
@@ -191,13 +254,15 @@ public class PlayerControl : Character
 	public void AddDice(Dice dice)
 	{
 		_dice.Enqueue(dice);
+    Dice oldDice = null;
 		if (!(_dice.Count >= _maxDice))
 		{
-			Dice oldDice = (Dice)_dice.Dequeue();
+			oldDice = (Dice)_dice.Dequeue();
 
 			// Add oldDice to Dice Bag
 			AddAmmo(oldDice);
 		}
+    HandleBuffs(dice, oldDice);
 	}
 
 	public void AddAmmo(Dice dice)

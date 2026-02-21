@@ -404,11 +404,17 @@ MonoBehaviour:
   _maxLookHeight: 75
   _meleeCooldown: 0.5
   _projectileCooldown: 0.2
-  _moveSpeed: 6
+  _maxDice: 0
+  _moveSpeed: 3
+  _moveSpeedScaling: 0.25
   _meleeDamage: 1
-  _projectileDamage: 5
-  _defense: 0
+  _meleeDamageScaling: 0.5
+  _projectileDamage: 2
+  _projectileDamageScaling: 0.5
+  _defense: 1
+  _defenseScaling: 0.5
   _healthRegen: 0
+  _healthRegenScaling: 1
   _camera: {fileID: 6588035297082658569}
   _sword: {fileID: 8934345738105384494}
   _hand: {fileID: 8993596660467329343}
@@ -754,6 +760,10 @@ PrefabInstance:
     - target: {fileID: 739327722642087405, guid: 065f0857bdb915644b688d2c34178c36, type: 3}
       propertyPath: m_Name
       value: Fist
+      objectReference: {fileID: 0}
+    - target: {fileID: 739327722642087405, guid: 065f0857bdb915644b688d2c34178c36, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
