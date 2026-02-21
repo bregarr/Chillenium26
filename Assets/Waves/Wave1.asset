@@ -15,6 +15,6 @@ MonoBehaviour:
   _spawnLocations:
   - {x: 7, y: 2, z: 0}
   _spawnableEnemies:
-  - {fileID: 1703682908240932125, guid: bb70a4c50ee541f4b9937be3af972ba7, type: 3}
+  - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
   _numEnemies: 2
   _timeBetweenSpawns: 1
