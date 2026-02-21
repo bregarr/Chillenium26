@@ -290,6 +290,10 @@ public class PlayerControl : Character
 
 		return _ammo.Dequeue();
 	}
+  public int GetAmmoCount()
+	{
+		return _ammo.Count;
+	}
 
 	public float GetMeleeDamage()
 	{
