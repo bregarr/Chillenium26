@@ -23,7 +23,7 @@ public class DiceAuthority : MonoBehaviour
     {
         foreach (GameObject dice in _diceList)
         {
-            if (dice.GetComponent<Dice>().sideNum == sides)
+            if (dice.GetComponent<Dice>().GetSideCount() == sides)
             {
                 return dice;
             }
@@ -35,7 +35,7 @@ public class DiceAuthority : MonoBehaviour
     {
         foreach (GameObject dice in _diceList)
         {
-            if (dice.GetComponent<Dice>().buffType == type)
+            if (dice.GetComponent<Dice>().GetBuffType() == type)
             {
                 return dice;
             }

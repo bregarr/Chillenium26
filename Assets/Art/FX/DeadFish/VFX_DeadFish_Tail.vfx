@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d4c867f6b72b714dbb5fd1780afe208, type: 3}
-  m_Name: VFX_DeadFish
+  m_Name: VFX_DeadFish_Tail
   m_EditorClassIdentifier: 
   m_UIIgnoredErrors: []
   m_Parent: {fileID: 0}
@@ -75,7 +75,7 @@ VisualEffectResource:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: VFX_DeadFish
+  m_Name: VFX_DeadFish_Tail
   m_Graph: {fileID: 114350483966674976}
   m_Infos:
     m_RendererSettings:
@@ -3319,7 +3319,7 @@ MonoBehaviour:
       m_Type:
         m_SerializableType: UnityEngine.Mesh, UnityEngine.CoreModule, Version=0.0.0.0,
           Culture=neutral, PublicKeyToken=null
-      m_SerializableObject: '{"obj":{"fileID":5505062790766035661,"guid":"36d3e6940b87b80468982d933a0427a6","type":3}}'
+      m_SerializableObject: '{"obj":{"fileID":1317188879253088005,"guid":"546129886e78e2548b3bdb4d4269af45","type":3}}'
     m_Space: -1
   m_Property:
     name: mesh
