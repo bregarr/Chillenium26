@@ -3737,6 +3737,10 @@ PrefabInstance:
       propertyPath: _sword
       value: 
       objectReference: {fileID: 308169999}
+    - target: {fileID: 6445972967362992916, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
+      propertyPath: _moveSpeed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7889743191184120527, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
