@@ -116,8 +116,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 2, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.2, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &586737453511063465
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -166,6 +166,7 @@ MonoBehaviour:
   _runThreshold: 5
   _projectileSpeed: 15
   _projectileTTL: 5
+  _uiBuff: {fileID: 0}
   _moveSpeed: 4
   _moveSpeedScaling: 0.25
   _meleeDamage: 1
@@ -229,6 +230,7 @@ MonoBehaviour:
   _bodyAnim: {fileID: 5394933872442376886}
   _swordAnim: {fileID: 679755288326847188}
   _currentWalkState: 0
+  _swordCollider: {fileID: 7028573613907847177}
 --- !u!1 &6588035297082658569
 GameObject:
   m_ObjectHideFlags: 0

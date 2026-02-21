@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1498264004728966653}
   - component: {fileID: 7459813144373861396}
   - component: {fileID: 3603432315366810881}
+  - component: {fileID: 7942099116637070222}
   m_Layer: 0
   m_Name: BassEnemy
   m_TagString: Untagged
@@ -75,6 +76,7 @@ MonoBehaviour:
   _damageAmount: 3
   _attackSpeed: 3
   _attackDistance: 2
+  _isSwimmer: 0
   _dropType: 0
   _canDropDice: 1
   _diceDropChance: 0.5
@@ -115,6 +117,19 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &7942099116637070222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95695004340714281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f311c55c22a407944aa1dc2f98fe0de4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimator
+  _anim: {fileID: 8090504164521576662}
 --- !u!1001 &756769276851935578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -170,8 +185,38 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2bc08657522cd6a4d8b7034dc89ae0d4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8090504164521576662}
   m_SourcePrefab: {fileID: 100100000, guid: 2bc08657522cd6a4d8b7034dc89ae0d4, type: 3}
+--- !u!1 &450919013795324939 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 2bc08657522cd6a4d8b7034dc89ae0d4, type: 3}
+  m_PrefabInstance: {fileID: 756769276851935578}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8090504164521576662
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 450919013795324939}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e9795384f5b472545a79275ac78bb898, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &939612781388054193 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 2bc08657522cd6a4d8b7034dc89ae0d4, type: 3}
