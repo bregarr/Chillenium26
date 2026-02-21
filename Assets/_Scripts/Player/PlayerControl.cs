@@ -61,6 +61,9 @@ public class PlayerControl : Character
 		_shootAction = InputSystem.actions.FindAction("Shoot", true);
 		_pauseAction = InputSystem.actions.FindAction("Pause", true);
 
+    _dice = new Queue<Dice>();
+    _ammo = new Queue<int>();
+
 		_rb = GetComponent<Rigidbody>();
 		_health = GetComponent<Health>();
 		WaveAuthority.SetPlayerRef(this);
