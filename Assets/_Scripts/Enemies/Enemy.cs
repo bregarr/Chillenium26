@@ -14,6 +14,7 @@ public class Enemy : Character
 
 	NavMeshAgent _agent;
 	float _lastAttackTime;
+	Health _health;
 
 	void Start()
 	{
@@ -21,6 +22,7 @@ public class Enemy : Character
 		_agent.speed = _moveSpeed;
 		_agent.stoppingDistance = _attackDistance;
 		_lastAttackTime = Time.time;
+		_health = GetComponent<Health>();
 	}
 
 	void FixedUpdate()
@@ -55,6 +57,21 @@ public class Enemy : Character
 	bool AgentInRange()
 	{
 		return (_agent.destination - transform.position).magnitude <= _attackDistance;
+	}
+
+	void OnTriggerEnter(Collider col)
+	{
+		col.gameObject.TryGetComponent<Sword>(out var colSword);
+		if (!colSword)
+		{
+			// If the enemy didn't collide with a sword
+			return;
+		}
+
+		// Damage the enemy
+		float takeDamage = WaveAuthority.PlayerRef.CalculateMeleeDamage();
+		_health.TakeDamage(takeDamage);
+
 	}
 
 }

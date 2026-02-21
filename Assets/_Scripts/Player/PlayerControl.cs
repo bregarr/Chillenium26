@@ -2,6 +2,7 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public enum eWeapon
 {
@@ -27,8 +28,11 @@ public class PlayerControl : Character
 	[SerializeField] GameObject _sword;
 	[SerializeField] GameObject _hand;
 
+	Queue _dice;
+
 	eWeapon _activeWeapon = eWeapon.Sword;
 	float _lastAttackTime;
+	Health _health;
 
 	Rigidbody _rb;
 
@@ -52,6 +56,7 @@ public class PlayerControl : Character
 		_pauseAction = InputSystem.actions.FindAction("Pause", true);
 
 		_rb = GetComponent<Rigidbody>();
+		_health = GetComponent<Health>();
 		WaveAuthority.SetPlayerRef(this);
 
 		_lastAttackTime = Time.time;
@@ -138,6 +143,7 @@ public class PlayerControl : Character
 		}
 
 		// Attack
+		_sword.GetComponent<Sword>().Animate();
 
 		_lastAttackTime = Time.time;
 	}
@@ -161,6 +167,19 @@ public class PlayerControl : Character
 		// Attack
 
 		_lastAttackTime = Time.time;
+	}
+
+	public void AddDice(Dice dice)
+	{
+		_dice.Enqueue(dice);
+		Dice oldDice = (Dice)_dice.Dequeue();
+
+		// Add oldDice to Dice Bag
+	}
+
+	public float CalculateMeleeDamage()
+	{
+		return _meleeDamage;
 	}
 
 }
