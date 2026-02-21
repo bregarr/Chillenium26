@@ -20,6 +20,7 @@ public class PlayerControl : Character
 	[SerializeField] float _maxLookHeight;
 	[SerializeField] float _meleeCooldown;
 	[SerializeField] float _projectileCooldown;
+	[SerializeField] int _maxDice;
 
 	[Header("Buffable Statics")]
 	[SerializeField] float _moveSpeed;
@@ -187,10 +188,13 @@ public class PlayerControl : Character
 	public void AddDice(Dice dice)
 	{
 		_dice.Enqueue(dice);
-		Dice oldDice = (Dice)_dice.Dequeue();
+		if (!(_dice.Count >= _maxDice))
+		{
+			Dice oldDice = (Dice)_dice.Dequeue();
 
-		// Add oldDice to Dice Bag
-		AddAmmo(oldDice);
+			// Add oldDice to Dice Bag
+			AddAmmo(oldDice);
+		}
 	}
 
 	public void AddAmmo(Dice dice)
