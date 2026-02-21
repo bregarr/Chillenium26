@@ -1,16 +1,19 @@
 using UnityEngine;
+using TMPro;
 
 public class UIAmmoCount : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+  [Header("UI Components")]
+  [SerializeField] TextMeshProUGUI _tmp;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+  void Start()
+  {
+    
+  }
+
+  // Update is called once per frame
+  void Update()
+  {
+    _tmp.text = WaveAuthority.PlayerRef.GetAmmoCount().ToString();
+  }
 }
