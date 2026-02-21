@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerControl : MonoBehaviour
+[RequireComponent(typeof(Health))]
+public class PlayerControl : Character
 {
 
 	[Header("Player Statics")]
@@ -35,6 +37,7 @@ public class PlayerControl : MonoBehaviour
 		_pauseAction = InputSystem.actions.FindAction("Pause", true);
 
 		_rb = GetComponent<Rigidbody>();
+		WaveAuthority.SetPlayerRef(this);
 	}
 
 	void Update()
@@ -84,6 +87,12 @@ public class PlayerControl : MonoBehaviour
 	{
 		float yawRadian = Mathf.PI * -_yaw / 180f;
 		return new Vector3(Mathf.Cos(yawRadian), 0f, Mathf.Sin(yawRadian));
+	}
+
+	public override void DeathEvent()
+	{
+		// Kill this guy
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
 }
