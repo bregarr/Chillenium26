@@ -30,9 +30,12 @@ public class Hand : MonoBehaviour
 
   public void Throw()
   {
-    // Commented out for testing
-    //int diceSides = (int)WaveAuthority.PlayerRef.GetAmmo().buffType;
-    int diceSides = 6;
+    int diceSides = WaveAuthority.PlayerRef.GetAmmo();
+    if (diceSides == 0)
+    {
+      // If there was no dice in bag, do nothing
+      return;
+    }
     Animate();
 
     switch (diceSides)

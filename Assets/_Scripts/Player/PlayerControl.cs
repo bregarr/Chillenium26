@@ -2,7 +2,7 @@ using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
-using System.Collections;
+using System.Collections.Generic;
 
 public enum eWeapon
 {
@@ -32,8 +32,9 @@ public class PlayerControl : Character
 	[SerializeField] GameObject _sword;
 	[SerializeField] GameObject _hand;
 
-	Queue _dice;
-  Queue _ammo;
+	Queue<Dice> _dice;
+  Queue<int> _ammo;
+
 
 	eWeapon _activeWeapon = eWeapon.Sword;
 	float _lastAttackTime;
@@ -186,18 +187,21 @@ public class PlayerControl : Character
 
   public void AddAmmo(Dice dice)
   {
-    _ammo.Enqueue(dice);
+    int oldDice = (int)dice.buffType;
+    _ammo.Enqueue(oldDice);
   }
 
-  public Dice GetAmmo()
+  public int GetAmmo()
 	{
     // Make sure we have ammo
     if (_ammo.Count == 0)
     {
-      return null;
+      // For testing
+      _ammo.Enqueue(6);
+      //return 0;
     }
 
-		return (Dice)_dice.Dequeue();
+		return _ammo.Dequeue();
 	}
   
 	public float GetMeleeDamage()
