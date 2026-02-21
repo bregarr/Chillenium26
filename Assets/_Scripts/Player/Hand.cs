@@ -20,7 +20,7 @@ public class Hand : MonoBehaviour
 
   void Update()
   {
-    //if(_waitingToShoot && Animator.GetCurrentAnimatorStateInfo(0).normalizedTime>1 && !Animator.IsInTransition(0) )
+    //if(_dieToShoot != null && Animator.GetCurrentAnimatorStateInfo(0).normalizedTime>1 && !Animator.IsInTransition(0) )
     if (_dieToShoot != null)
     {
       _dieToShoot.GetComponent<DiceProjectile>().Shoot();
