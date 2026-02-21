@@ -439,6 +439,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6805410955398776358, guid: bb70a4c50ee541f4b9937be3af972ba7, type: 3}
+      propertyPath: _hitMat
+      value: 
+      objectReference: {fileID: 2100000, guid: 5a12755d7474720478f59a4a14d31722, type: 2}
+    - target: {fileID: 6805410955398776358, guid: bb70a4c50ee541f4b9937be3af972ba7, type: 3}
+      propertyPath: _hitFlashTime
+      value: 0.25
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -679,6 +687,14 @@ PrefabInstance:
     - target: {fileID: 6240480184452523529, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445972967362992916, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
+      propertyPath: _drag
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445972967362992916, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
+      propertyPath: _maxSpeed
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7889743191184120527, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
       propertyPath: m_LocalPosition.x
