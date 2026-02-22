@@ -142,7 +142,6 @@ public class Enemy : Character
 	{
 		GameObject projectilePrefab = Instantiate<GameObject>(EnemyAuthority.Ref.GetRandomProjectile(), transform.position, transform.rotation);
 		EnemyProjectile projectile = projectilePrefab.GetComponent<EnemyProjectile>();
-		Debug.Log(projectile);
 		projectile.InitializeProjectile(_shootSpeed, _projectileTTL, gameObject);
 		projectile.Shoot();
 	}

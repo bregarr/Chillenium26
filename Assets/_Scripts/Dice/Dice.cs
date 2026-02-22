@@ -13,7 +13,7 @@ public class Dice : MonoBehaviour
 	[SerializeField] bool _floating;
 	float _lifespan;
 	public int sideNum { get; private set; }
-  Vector3 middle;
+	Vector3 middle;
 
 	public Dice(eBuffType type)
 	{
@@ -26,10 +26,7 @@ public class Dice : MonoBehaviour
 		{
 			_buffType = (eBuffType)_sideCount;
 		}
-    RollDice();
-    Debug.Log(_sideCount);
-    Debug.Log(_buffType);
-    Debug.Log(sideNum);
+		RollDice();
 	}
 
 	public Dice InitializeDice(eBuffType buffType)
@@ -53,9 +50,9 @@ public class Dice : MonoBehaviour
 		{
 			_lifespan = 10f;
 			_floating = floating;
-      middle = transform.position - new Vector3(0f, 0.4f, 0f);
+			middle = transform.position - new Vector3(0f, 0.4f, 0f);
 		}
-		
+
 		return this;
 	}
 

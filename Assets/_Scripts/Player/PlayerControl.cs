@@ -26,6 +26,7 @@ public class PlayerControl : Character
 	[SerializeField] float _runThreshold;
 	[SerializeField] float _projectileSpeed;
 	[SerializeField] float _projectileTTL;
+	[SerializeField] float _startingYaw = 0f;
 
 	[Header("References")]
 	[SerializeField] UIBuffs _uiBuff;
@@ -114,6 +115,9 @@ public class PlayerControl : Character
 			PlayerPrefs.SetFloat("yInvert", 1f);
 		}
 		_invertY = PlayerPrefs.GetFloat("yInvert");
+
+		// _yaw += _startingYaw;
+		Debug.Log(_yaw);
 	}
 
 	void Update()

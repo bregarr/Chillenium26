@@ -7,6 +7,11 @@ public class EnemyProjectile : Projectile
 	{
 		base.InitializeProjectile(speed, lifeSpan);
 		_parentEnemy = parent;
+
+		foreach (Transform child in GetComponentsInChildren<Transform>())
+		{
+			child.gameObject.layer = LayerMask.NameToLayer("EnemyProjectile");
+		}
 		gameObject.layer = LayerMask.NameToLayer("EnemyProjectile");
 	}
 
