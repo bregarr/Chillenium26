@@ -17,6 +17,11 @@ public class DiceProjectile : Projectile
 
 	public override void Shoot()
 	{
+		Vector3 randomRot = Vector3.one;
+		randomRot.x = UnityEngine.Random.Range(0f, 360f);
+		randomRot.y = UnityEngine.Random.Range(0f, 360f);
+		randomRot.z = UnityEngine.Random.Range(0f, 360f);
+		transform.localEulerAngles = randomRot;
 		Rigidbody rb = GetComponent<Rigidbody>();
 		Vector3 forceDirection = WaveAuthority.PlayerRef.RightTransform();
 		Transform player = WaveAuthority.PlayerRef.transform;
