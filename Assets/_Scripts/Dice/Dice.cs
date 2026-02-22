@@ -65,7 +65,7 @@ public class Dice : MonoBehaviour
 	{
 		if (!_floating)
 		{
-			AudioManager.Ref.playSFX("DieRoll", 1f, Random.Range(0.8f, 1.2f));
+			AudioManager.Ref.playSFX("DieRoll", 0.9f, Random.Range(0.65f, 1.0f));
 		}
 		sideNum = (int)Mathf.Round(Random.Range(1, (int)_buffType));
 	}

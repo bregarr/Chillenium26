@@ -116,7 +116,7 @@ public class PlayerControl : Character
 		_invertY = PlayerPrefs.GetFloat("yInvert");
 
 		// _yaw += _startingYaw;
-		Debug.Log(_yaw);
+		//Debug.Log(_yaw);
 	}
 
 	void Update()

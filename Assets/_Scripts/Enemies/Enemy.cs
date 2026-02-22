@@ -126,6 +126,14 @@ public class Enemy : Character
 			dropDiceGO.GetComponent<Dice>().InitializeDice(true);
 			dropDiceGO.transform.position = transform.position;
 		}
+		// If swimmer, have an extra double chance to drop an ammo die
+		else if (_canDropDice && _isSwimmer && (Random.Range(0, 1) <= _diceDropChance || Random.Range(0, 1) <= _diceDropChance))
+		{
+			GameObject dropDicePrefab = DiceAuthority.Ref.GetDiceByBuff(eBuffType.Ammo);
+			GameObject dropDiceGO = Instantiate<GameObject>(dropDicePrefab, transform.position, transform.rotation);
+			dropDiceGO.GetComponent<Dice>().InitializeDice(true);
+			dropDiceGO.transform.position = transform.position;
+		}
 
 		_rigTrans = GetComponentInChildren<Animator>().gameObject.transform;
 		_startScale = _rigTrans.localScale;

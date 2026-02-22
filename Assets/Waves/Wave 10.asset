@@ -10,16 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67c0567b35f1e1b49983121531c4e4fc, type: 3}
-  m_Name: Wave2
+  m_Name: Wave 10
   m_EditorClassIdentifier: Assembly-CSharp::WaveSO
-  _spawnLocations: []
+  _spawnLocations:
+  - {x: -17, y: 1, z: -5}
+  - {x: -19, y: 1, z: -17}
+  - {x: 19, y: 1, z: -17}
+  - {x: 17, y: 1, z: -5}
+  - {x: 0, y: 1, z: 20}
   _spawnableEnemies:
   - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
-  - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
-  - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
-  - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
+  - {fileID: 70868134282671613, guid: 196986faed0946f4daa700508331b307, type: 3}
+  - {fileID: 9119326683205267042, guid: 6568c330d721513459dbc9197dd7d2ed, type: 3}
   - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
   - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
   - {fileID: 70868134282671613, guid: 196986faed0946f4daa700508331b307, type: 3}
-  _numEnemies: 5
-  _timeBetweenSpawns: 0.25
+  - {fileID: 1169750438803409227, guid: 13179b808c2bfc24a8e3b3c4f27afaaa, type: 3}
+  - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
+  - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
+  - {fileID: 70868134282671613, guid: 196986faed0946f4daa700508331b307, type: 3}
+  - {fileID: 1169750438803409227, guid: 13179b808c2bfc24a8e3b3c4f27afaaa, type: 3}
+  - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
+  - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
+  _timeBetweenSpawns: 3
