@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 public class Boss : Enemy
 {
 
@@ -7,8 +8,9 @@ public class Boss : Enemy
 	[Tooltip("The percentage health that the boss will spawn a wave of minions")]
 	[SerializeField] int _waveIntervals;
 	[SerializeField] GameObject _tunaCan;
+    [SerializeField] protected VisualEffect _BubbleEffect;
 
-	BossAnimator _bossAnim;
+    BossAnimator _bossAnim;
 
 	bool _isDefeated = false;
 	int _phase;
@@ -19,7 +21,9 @@ public class Boss : Enemy
 		_bossAnim = GetComponent<BossAnimator>();
 		_phase = 1;
 		_wavesLeft = 100 / _waveIntervals;
-	}
+		_BubbleEffect.enabled = false;
+
+    }
 
 	protected override void FixedUpdate()
 	{
@@ -48,7 +52,9 @@ public class Boss : Enemy
 			// Initiate Phase 2
 			_phase = 2;
 			SetSwimming();
-		}
+			_BubbleEffect.enabled = true;
+
+        }
 
 		if (Mathf.Ceil(healthPercent / _waveIntervals) == _wavesLeft)
 		{
