@@ -10,13 +10,13 @@ public class UIHealth : MonoBehaviour
   // Start is called once before the first execution of Update after the MonoBehaviour is created
   void Start()
   {
-    
+
   }
 
   // Update is called once per frame
   void Update()
   {
     health = WaveAuthority.PlayerRef.GetComponent<Health>();
-    _bar.fillAmount = health.GetHealth() / health.GetMaxHealth();
+    _bar.material.SetFloat("_HealthValue", health.GetHealth() / health.GetMaxHealth());
   }
 }

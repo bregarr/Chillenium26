@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 8554292509787789365}
   - component: {fileID: 9031572032409839073}
-  - component: {fileID: 4777850235824247605}
+  - component: {fileID: 3987962981512910435}
   - component: {fileID: 8789401430333260795}
   - component: {fileID: 7711975063153352091}
+  - component: {fileID: 6708475394118075037}
   m_Layer: 9
   m_Name: DolphinEnemy
   m_TagString: Untagged
@@ -59,7 +60,7 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4777850235824247605
+--- !u!114 &3987962981512910435
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -68,11 +69,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6927210279525462018}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c393c2797004bed43b48fc2b8db174e2, type: 3}
+  m_Script: {fileID: 11500000, guid: 98932477e0596534296ce4b16299aac0, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemy
+  m_EditorClassIdentifier: Assembly-CSharp::Boss
   _moveSpeed: 3
-  _damageAmount: 3
+  _damageAmount: 2.5
   _attackSpeed: 3
   _attackDistance: 2
   _isSwimmer: 0
@@ -120,6 +121,19 @@ NavMeshAgent:
   m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!114 &6708475394118075037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6927210279525462018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7427dadfd52622e43ab5bb037dafc211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BossAnimator
+  _anim: {fileID: 382017046180324286}
 --- !u!1001 &7147820624859767021
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -855,10 +869,40 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 15c9efead0203f94c9c06d8bf4089c78, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 382017046180324286}
   m_SourcePrefab: {fileID: 100100000, guid: 15c9efead0203f94c9c06d8bf4089c78, type: 3}
 --- !u!4 &7257710785701824262 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15c9efead0203f94c9c06d8bf4089c78, type: 3}
   m_PrefabInstance: {fileID: 7147820624859767021}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8066863019800862140 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 15c9efead0203f94c9c06d8bf4089c78, type: 3}
+  m_PrefabInstance: {fileID: 7147820624859767021}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &382017046180324286
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8066863019800862140}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9c2d64db8b5f6e74b8f2587e52c1cceb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

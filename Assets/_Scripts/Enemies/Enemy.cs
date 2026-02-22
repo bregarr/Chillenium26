@@ -149,7 +149,6 @@ public class Enemy : Character
 
 	void MeleeAttack()
 	{
-		Debug.Log("Attacking!");
 		WaveAuthority.PlayerRef.TakeDamage(_damageAmount);
 	}
 

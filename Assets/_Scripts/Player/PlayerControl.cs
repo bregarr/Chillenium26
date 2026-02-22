@@ -271,6 +271,8 @@ public class PlayerControl : Character
 		currVel.z = Mathf.Clamp(currVel.z, -_maxSpeed, _maxSpeed);
 		_rb.linearVelocity = currVel;
 
+		Debug.Log(currVel);
+
 		if (Mathf.Abs(currVel.magnitude) >= _runThreshold)
 		{
 			_anim.UpdateWalkState(eWalkState.Running);
@@ -287,14 +289,14 @@ public class PlayerControl : Character
 
 	public Vector3 RightTransform()
 	{
-		float yawRadian = Mathf.PI * (-_yaw - 270f) / 180f;
-		return new Vector3(Mathf.Cos(yawRadian), 0f, Mathf.Sin(yawRadian));
+		float yawRadian = Mathf.PI * (-_yaw - 270.0f) / 180.0f;
+		return new Vector3(Mathf.Cos(yawRadian), 0.0f, Mathf.Sin(yawRadian));
 	}
 
 	public Vector3 ForwardTransform()
 	{
-		float yawRadian = Mathf.PI * -_yaw / 180f;
-		return new Vector3(Mathf.Cos(yawRadian), 0f, Mathf.Sin(yawRadian));
+		float yawRadian = Mathf.PI * -_yaw / 180.0f;
+		return new Vector3(Mathf.Cos(yawRadian), 0.0f, Mathf.Sin(yawRadian));
 	}
 
 	public override void DeathEvent()

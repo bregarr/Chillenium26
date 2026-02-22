@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _moveSpeed: 3
-  _damageAmount: 3
+  _damageAmount: 1
   _attackSpeed: 2
   _attackDistance: 2
   _isSwimmer: 0

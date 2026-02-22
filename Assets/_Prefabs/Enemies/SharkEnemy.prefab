@@ -73,12 +73,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _moveSpeed: 3
-  _damageAmount: 3
+  _damageAmount: 2
   _attackSpeed: 3
   _attackDistance: 2
   _isSwimmer: 0
   _shootSpeed: 0
   _projectileTTL: 0
+  _projectileSpread: 0
+  _projectileDamage: 0
   _dropType: 0
   _canDropDice: 1
   _diceDropChance: 0.5
@@ -94,7 +96,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189fa3765f91b1243b77b1d4026a0178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  _maxHealth: 3
+  _maxHealth: 8
   _hitMat: {fileID: 2100000, guid: 5a12755d7474720478f59a4a14d31722, type: 2}
   _hitFlashTime: 0.25
 --- !u!195 &4053254272352710822
