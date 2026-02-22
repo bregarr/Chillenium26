@@ -38,7 +38,7 @@ public class PauseUI : MonoBehaviour
 
 	void Update()
 	{
-		if (_pauseAction.WasPerformedThisFrame() && _nextCanPause <= Time.time)
+		if (!WaveAuthority.Ref.IsInCutscene() && _pauseAction.WasPerformedThisFrame() && _nextCanPause <= Time.time)
 		{
 			_nextCanPause = Time.time + _pauseCooldown;
 			switch (_isPaused)
