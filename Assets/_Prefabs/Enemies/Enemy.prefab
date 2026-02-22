@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8801281160475928337}
   - component: {fileID: 6805410955398776358}
   - component: {fileID: 5337066922652552618}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -133,6 +133,9 @@ MonoBehaviour:
   _damageAmount: 3
   _attackSpeed: 3
   _attackDistance: 2
+  _isSwimmer: 0
+  _shootSpeed: 0
+  _projectileTTL: 0
   _dropType: 0
   _canDropDice: 1
   _diceDropChance: 0.5

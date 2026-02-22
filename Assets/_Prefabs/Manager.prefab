@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1829404852944315613}
   - component: {fileID: 8352581272522828460}
   - component: {fileID: 6448434017235078828}
+  - component: {fileID: 7479472030699831732}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -79,3 +80,18 @@ MonoBehaviour:
   _waves: []
   _timeBetweenWaves: 1
   _initialWaveDelay: 2
+--- !u!114 &7479472030699831732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3155814735142670870}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fcec1b5e41852d45bf33f36346b897a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAuthority
+  _validProjectiles:
+  - {fileID: 520464777898331994, guid: 6d9b98d5d5d7deb4c91b1ebae1ef51c3, type: 3}
+  _heightVariance: 0.25
