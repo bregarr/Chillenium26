@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PauseUI : MonoBehaviour
 {
@@ -111,6 +112,11 @@ public class PauseUI : MonoBehaviour
 	public void CloseControls()
 	{
 		_controlsMenu.TryRaiseBackground();
+	}
+
+	public void EnterMainMenu()
+	{
+		SceneManager.LoadScene("Scenes/MainMenu");
 	}
 
 	public bool GetIsPaused() { return _isPaused; }

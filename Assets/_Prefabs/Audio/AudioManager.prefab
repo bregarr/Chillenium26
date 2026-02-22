@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ee1712415ed9349a3a42e76b83df9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  MainCam: {fileID: 0}
   musicHandler: {fileID: 2468067224815647664}
   audioPrefab: {fileID: 8016784040097081031, guid: d45c6d561663d6b4abda563516f83562, type: 3}
   audioClips:
@@ -52,6 +53,19 @@ MonoBehaviour:
   - {fileID: 8300000, guid: c7bd67432fee84d4a913be471be9a628, type: 3}
   - {fileID: 8300000, guid: 833b03279c49c714fbfefce0d3272f73, type: 3}
   - {fileID: 8300000, guid: e23100e6ac22361499892e8cfcd4aaf2, type: 3}
+  - {fileID: 8300000, guid: 412e88ae1297e1a45b106e4caf71306f, type: 3}
+  - {fileID: 8300000, guid: ec628fe8bc6b75b4f942b65bdba3bb55, type: 3}
+  - {fileID: 8300000, guid: 6739b90d3afdd6947a320e5d23f923a1, type: 3}
+  - {fileID: 8300000, guid: 2f2b2780df0badd4fafa146441e59575, type: 3}
+  - {fileID: 8300000, guid: 82dd7b2a8fb944849b91284600f5d41a, type: 3}
+  - {fileID: 8300000, guid: d2a0b88d6776bcf48ba8306d7b0645ca, type: 3}
+  - {fileID: 8300000, guid: aa2b3890f4d4a9d4892cc7db2d951f8b, type: 3}
+  - {fileID: 8300000, guid: 6845f9fa6cffc9443b55623bf3f24eb0, type: 3}
+  - {fileID: 8300000, guid: cc9892561d617d04794c6f20939966ab, type: 3}
+  - {fileID: 8300000, guid: 86dbdd4fab0bc304084a418060d625c7, type: 3}
+  - {fileID: 8300000, guid: 77f9bad8c042af04599a29e55f6cb7bc, type: 3}
+  - {fileID: 8300000, guid: edba0cefab2adaf41acf22c8362a172b, type: 3}
+  - {fileID: 8300000, guid: 430ad24107da94240a4a73a11a421d92, type: 3}
 --- !u!1001 &4385335849883871248
 PrefabInstance:
   m_ObjectHideFlags: 0

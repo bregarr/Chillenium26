@@ -199,6 +199,7 @@ public class PlayerControl : Character
 	// Handle Current Buffs
 	void AddBuff(Dice dice)
 	{
+    AudioManager.Ref.playSFX("PowerUP", 0.75f);
 		switch (dice.GetBuffType())
 		{
 			case eBuffType.Health:
@@ -258,8 +259,8 @@ public class PlayerControl : Character
 				if (Mathf.Abs(_maxSpeed - _baseMoveSpeed) < 0.05)
 				{
 					_maxSpeed = _baseMoveSpeed;
-					AudioManager.MusicRef.speedMusic(false);
 				}
+        AudioManager.MusicRef.speedMusic(false);
 				break;
 			case eBuffType.Defense:
 				_defense /= 1 + dice.sideNum * _defenseScaling;
@@ -385,6 +386,7 @@ public class PlayerControl : Character
 		}
 
 		// Attack
+    AudioManager.Ref.playSFX("slash");
 		_anim.Slash();
 
 		_lastAttackTime = Time.time;

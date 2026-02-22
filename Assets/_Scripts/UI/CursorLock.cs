@@ -5,9 +5,12 @@ public class CursorLock : MonoBehaviour
 
 	public static CursorLock Ref { get; private set; }
 
+	public bool _lockCursorOnStart = true;
+
 	void Start()
 	{
-		LockCursor();
+		if (_lockCursorOnStart) LockCursor();
+		else UnlockCursor();
 		if (Ref)
 		{
 			Debug.LogWarning("Two cursor lockers in the scene!");
