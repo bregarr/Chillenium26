@@ -3,7 +3,12 @@ guid: 15c9efead0203f94c9c06d8bf4089c78
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Dolphin
+    second: {fileID: 2100000, guid: 2c10bed82da9b2344884974afd866659, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
