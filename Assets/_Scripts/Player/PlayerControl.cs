@@ -250,6 +250,10 @@ public class PlayerControl : Character
 
 	void Look()
 	{
+		if (Cursor.lockState != CursorLockMode.Locked)
+		{
+			return;
+		}
 		Vector2 mousePos = _lookAction.ReadValue<Vector2>();
 		_pitch += _invertY * -mousePos.y * _sensitivity * Time.deltaTime;
 		_yaw += _invertX * mousePos.x * _sensitivity * Time.deltaTime;
