@@ -156,7 +156,6 @@ public class WaveAuthority : MonoBehaviour
 	{
 		if (_waveIndex == 0)
 		{
-			_waveIndex = 10;
 			Debug.Log("Spawning first wave!");
 			SpawnWave();
 		}

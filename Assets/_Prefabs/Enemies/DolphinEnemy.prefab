@@ -329,6 +329,7 @@ MonoBehaviour:
   _canDropDice: 0
   _diceDropChance: 0.5
   _waveIntervals: 25
+  _tunaCan: {fileID: 2212716218473225934, guid: 4ab81f20de5e5714ead14f35ba8704b0, type: 3}
 --- !u!114 &8789401430333260795
 MonoBehaviour:
   m_ObjectHideFlags: 0

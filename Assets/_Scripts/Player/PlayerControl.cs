@@ -53,6 +53,7 @@ public class PlayerControl : Character
 	[SerializeField] GameObject _sword;
 	[SerializeField] GameObject _hand;
 	[SerializeField] Camera _deadCamera;
+	[SerializeField] GameObject _winDecal;
 
 	Queue<Dice> _dice;
 	Queue<int> _ammo;
@@ -494,5 +495,20 @@ public class PlayerControl : Character
 	}
 
 	public Camera GetCamera() { return _camera.GetComponent<Camera>(); }
+
+	public void DelayChickenDinner()
+	{
+		Invoke(nameof(ChickenDinner), 2.5f);
+	}
+
+	public void ChickenDinner()
+	{
+		HudUI.Ref.HideCanvas();
+		_winDecal.SetActive(true);
+		Debug.Log(_camera.GetComponent<Camera>());
+		_camera.GetComponent<Camera>().enabled = false;
+		_deadCamera.enabled = true;
+		Invoke(nameof(GoToMenu), 2.5f);
+	}
 
 }

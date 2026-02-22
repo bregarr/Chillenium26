@@ -57,9 +57,9 @@ public class Boss : Enemy
 		}
 	}
 
-	float _u = 0.0f;
-	Vector3 _startScale = Vector3.zero;
-	Transform _rigTrans;
+	float _bu = 0.0f;
+	Vector3 _bstartScale = Vector3.zero;
+	Transform _brigTrans;
 
 	public override void DeathEvent()
 	{
@@ -70,31 +70,40 @@ public class Boss : Enemy
 		_isDefeated = true;
 		_agent.destination = transform.position;
 
-
-
+		_bu = 0f;
+		_brigTrans = GetComponentInChildren<Animator>().gameObject.transform;
+		_bstartScale = _brigTrans.localScale;
+		PlayDeathEffects();
 		//Destroy(this.gameObject);
 	}
 
 	void PlayDeathEffects()
 	{
 		Destroy(GetComponent<Collider>());
-		Vector3 newScale = Vector3.Lerp(_startScale, Vector3.zero, _u * _u);
-		_rigTrans.localScale = newScale;
+		Vector3 newScale = Vector3.Lerp(_bstartScale, Vector3.zero, _bu);
+		_brigTrans.localScale = newScale;
 
-		_u += 0.1f;
-		if (_u * _u >= 1f)
+		_bu += 0.05f;
+		if (_bu >= 1f)
 		{
-			Destroy(_rigTrans.gameObject);
+			Destroy(_brigTrans.gameObject);
 			GameObject tuna = Instantiate(_tunaCan, transform.position, Quaternion.Euler(Vector3.up));
 			Destroy(gameObject, 1f);
 			_smokeEffect.Play();
 			_deadFishEffect1.Play();
 			_deadFishEffect2.Play();
+			CallChickenDinner();
 		}
 		else
 		{
 			Invoke(nameof(PlayDeathEffects), 0.01f);
 		}
+	}
+
+	void CallChickenDinner()
+	{
+		Debug.Log("Calling dinner");
+		WaveAuthority.PlayerRef.DelayChickenDinner();
 	}
 
 }

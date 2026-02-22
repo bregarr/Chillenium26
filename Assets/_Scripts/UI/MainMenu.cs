@@ -8,6 +8,11 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject _mainMenu;
     [SerializeField] SettingsMenu _settingsMenu;
 
+    void Start()
+    {
+        CursorLock.Ref.UnlockCursor();
+    }
+
     // Starts the game into the main scene
     public void StartGame()
     {
