@@ -117,6 +117,10 @@ public class Enemy : Character
 
 	public override void DeathEvent()
 	{
+		if (_isDead)
+		{
+			return;
+		}
 		_isDead = true;
 		// Kill the enemy
 		if (_canDropDice && Random.Range(0, 1) <= _diceDropChance)
