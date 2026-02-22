@@ -1,3 +1,4 @@
+using System.Collections;
 using Microsoft.Unity.VisualStudio.Editor;
 using TMPro;
 using UnityEngine;
@@ -53,7 +54,6 @@ public class SettingsMenu : MonoBehaviour
 
 	public void EnableMenu()
 	{
-		_isActive = true;
 
 		_isIncrementing = true;
 		_isDecrementing = false;
@@ -64,7 +64,7 @@ public class SettingsMenu : MonoBehaviour
 		_background.SetActive(true);
 
 		IncrementOpacity();
-		LowerBackground();
+		TryLowerBackground();
 		_buttons.SetActive(true);
 
 	}
@@ -75,14 +75,13 @@ public class SettingsMenu : MonoBehaviour
 		{
 			return;
 		}
-		_isActive = false;
 
 		_isDecrementing = true;
 		_isIncrementing = false;
 		_isLowering = false;
 		_isRaising = true;
 		DecrementOpacity();
-		RaiseBackground();
+		TryRaiseBackground();
 		_buttons.SetActive(false);
 
 	}
@@ -137,33 +136,44 @@ public class SettingsMenu : MonoBehaviour
 		_opacity.SetActive(false);
 	}
 
-	void LowerBackground()
+	public void TryLowerBackground()
 	{
+		StartCoroutine(nameof(LowerBackground));
+	}
+
+	public void TryRaiseBackground()
+	{
+		StartCoroutine(nameof(RaiseBackground));
+	}
+
+	IEnumerator LowerBackground()
+	{
+		_isActive = true;
+		_background.SetActive(true);
 		Vector3 currPos = _background.transform.position;
 
-		if (currPos.y > _backgroundHoldY / 2f && !_isRaising)
+		while (currPos.y > _backgroundHoldY / 2f && !_isRaising)
 		{
 			currPos.y -= _backgroundStepSize;
 			_background.transform.position = currPos;
-			Invoke(nameof(LowerBackground), _backgroundStepTime);
-			return;
+			yield return new WaitForSecondsRealtime(_backgroundStepTime);
 		}
 		_isLowering = false;
 	}
 
-	void RaiseBackground()
+	IEnumerator RaiseBackground()
 	{
 		Vector3 currPos = _background.transform.position;
 
-		if (currPos.y < _backgroundHoldY && !_isLowering)
+		while (currPos.y < _backgroundHoldY * 1.5f && !_isLowering)
 		{
 			currPos.y += _backgroundStepSize;
 			_background.transform.position = currPos;
-			Invoke(nameof(RaiseBackground), _backgroundStepTime);
-			return;
+			yield return new WaitForSecondsRealtime(_backgroundStepTime);
 		}
 		_isRaising = false;
 		_background.SetActive(false);
+		_isActive = false;
 	}
 
 	public void SetInvertX()
@@ -196,5 +206,12 @@ public class SettingsMenu : MonoBehaviour
 		_sensitivityLabel.text = newSens.ToString("00");
 		PlayerPrefs.SetFloat("sensitivity", newSens);
 	}
+
+	public void SetHold(float newY)
+	{
+		_backgroundHoldY = newY;
+	}
+
+	public bool GetIsActive() { return _isActive; }
 
 }
