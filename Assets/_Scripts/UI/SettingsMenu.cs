@@ -78,7 +78,7 @@ public class SettingsMenu : MonoBehaviour
 
 		if (!PlayerPrefs.HasKey("diceCheat"))
 		{
-			PlayerPrefs.SetInt("diceCheat", 1);
+			PlayerPrefs.SetInt("diceCheat", 0);
 		}
 		_diceToggle.isOn = PlayerPrefs.GetInt("diceCheat") == 1;
 
