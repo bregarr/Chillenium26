@@ -5443,13 +5443,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: -3100201263174183189, guid: 2fb51bccaec9bf24c83571c773d411f1, type: 3}
-      propertyPath: audioClips.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: -3100201263174183189, guid: 2fb51bccaec9bf24c83571c773d411f1, type: 3}
-      propertyPath: 'audioClips.Array.data[4]'
+      propertyPath: MainCam
       value: 
-      objectReference: {fileID: 8300000, guid: ec628fe8bc6b75b4f942b65bdba3bb55, type: 3}
+      objectReference: {fileID: 1347472914}
     - target: {fileID: 4190784240422710064, guid: 2fb51bccaec9bf24c83571c773d411f1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.97577
@@ -5647,6 +5643,14 @@ PrefabInstance:
       propertyPath: _deadCamera
       value: 
       objectReference: {fileID: 279916311}
+    - target: {fileID: 6445972967362992916, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
+      propertyPath: _baseMoveSpeed
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6445972967362992916, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
+      propertyPath: _moveSpeedScaling
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 6828195505883092693, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.1409998
@@ -5727,6 +5731,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1397536220}
   m_SourcePrefab: {fileID: 100100000, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
+--- !u!1 &1347472914 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6588035297082658569, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
+  m_PrefabInstance: {fileID: 1347472913}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1397536218 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6202486651106602735, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}

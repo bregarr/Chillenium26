@@ -50,10 +50,12 @@ public class Health : MonoBehaviour
 		}
 		if (_owner.gameObject.GetComponent<PlayerControl>())
 		{
+      AudioManager.Ref.playSFX("impact");
 			_currHealth -= amount / _owner.gameObject.GetComponent<PlayerControl>().GetDefense();
 		}
 		else
 		{
+      AudioManager.Ref.playSFX("impact");
 			_currHealth -= amount;
 			_owner.GetComponent<Enemy>().GetHit();
 		}
