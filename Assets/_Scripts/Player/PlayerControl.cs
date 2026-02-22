@@ -75,6 +75,8 @@ public class PlayerControl : Character
 	float _pitch;
 	float _yaw;
 
+	bool _isDead = false;
+
 	// Inputs
 	InputAction _moveAction;
 	InputAction _lookAction;
@@ -83,6 +85,7 @@ public class PlayerControl : Character
 
 	void Start()
 	{
+		_isDead = false;
 		_moveAction = InputSystem.actions.FindAction("Move", true);
 		_lookAction = InputSystem.actions.FindAction("Look", true);
 		_hitAction = InputSystem.actions.FindAction("Melee", true);
@@ -90,7 +93,7 @@ public class PlayerControl : Character
 
 		_dice = new Queue<Dice>();
 		_ammo = new Queue<int>();
-		_buffs = new Queue<Dice>();
+		// _buffs = new Queue<Dice>();
 
 		_rb = GetComponent<Rigidbody>();
 		_anim = GetComponent<PlayerAnimator>();
@@ -335,11 +338,18 @@ public class PlayerControl : Character
 
 	public override void DeathEvent()
 	{
+		if (_isDead)
+		{
+			return;
+		}
+		_isDead = true;
 		// Kill this guy
 		_deadCamera.enabled = true;
 		HudUI.Ref.HideCanvas();
 		_camera.GetComponent<Camera>().enabled = false;
-		Invoke(nameof(GoToMenu), 1f);
+		AudioManager.MusicRef.stopMusic();
+		AudioManager.Ref.playSFX("guppy_Death");
+		Invoke(nameof(GoToMenu), 3.5f);
 	}
 
 	void GoToMenu()
@@ -382,15 +392,19 @@ public class PlayerControl : Character
 		}
 
 		// If there isnt available ammo, don't shoot
-		// if (GetAmmo() <= 0)
-		// {
-		// 	return;
-		// }
+		if (GetAmmoCount() <= 0)
+		{
+			return;
+		}
+		else
+		{
 
-		// Attack
-		_hand.GetComponent<Hand>().Throw();
-		_anim.Throw();
-		_lastAttackTime = Time.time;
+			// Attack
+			_hand.GetComponent<Hand>().Throw();
+			_anim.Throw();
+			_lastAttackTime = Time.time;
+		}
+
 	}
 
 	public void AddDice(Dice dice)
@@ -424,12 +438,12 @@ public class PlayerControl : Character
 	public int GetAmmo()
 	{
 		// Make sure we have ammo
-		if (_ammo.Count == 0)
-		{
-			// For testing
-			_ammo.Enqueue(6);
-			//return 0;
-		}
+		// if (_ammo.Count == 0)
+		// {
+		// 	// For testing
+		// 	_ammo.Enqueue(6);
+		// 	//return 0;
+		// }
 
 		return _ammo.Dequeue();
 	}

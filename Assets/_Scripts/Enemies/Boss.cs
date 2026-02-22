@@ -73,7 +73,7 @@ public class Boss : Enemy
 		_bu = 0f;
 		_brigTrans = GetComponentInChildren<Animator>().gameObject.transform;
 		_bstartScale = _brigTrans.localScale;
-		PlayDeathEffects();
+		Invoke(nameof(PlayDeathEffects), .8f);
 		//Destroy(this.gameObject);
 	}
 

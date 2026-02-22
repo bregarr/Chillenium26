@@ -62,21 +62,11 @@ public class PlayerAnimator : MonoBehaviour
         switch (state)
         {
             case eWalkState.Idle:
-                _bodyAnim.SetBool("isWalking", false);
                 _bodyAnim.SetBool("isRunning", false);
-                _swordAnim.SetBool("isWalking", false);
-                _swordAnim.SetBool("isRunning", false);
-                break;
-            case eWalkState.Walking:
-                _bodyAnim.SetBool("isWalking", true);
-                _bodyAnim.SetBool("isRunning", false);
-                _swordAnim.SetBool("isWalking", true);
                 _swordAnim.SetBool("isRunning", false);
                 break;
             case eWalkState.Running:
-                _bodyAnim.SetBool("isWalking", false);
                 _bodyAnim.SetBool("isRunning", true);
-                _swordAnim.SetBool("isWalking", false);
                 _swordAnim.SetBool("isRunning", true);
                 break;
         }

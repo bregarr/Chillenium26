@@ -723,7 +723,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIBuffs
   _buffElementPrefab: {fileID: 2162266794636998674, guid: 133af597ede846d4b8ad789e08cbf045, type: 3}
-  _spacing: 80
+  _spacing: 40
   _shiftTime: 1
 --- !u!1 &4189869015851022329
 GameObject:
