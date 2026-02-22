@@ -12,6 +12,7 @@ public class BuffElement : MonoBehaviour
   [SerializeField] float _endScale;
   float _travellingTime;
   Vector3 _startPosition;
+  Vector3 _startRotation;
   Vector3 _endPosition;
   float _startScale;
 
@@ -118,9 +119,11 @@ public class BuffElement : MonoBehaviour
 
   void Start()
   {
-    transform.position = new Vector3((Screen.width / 4) - GetComponent<RectTransform>().rect.width * 2.6f / 2, (Screen.height / 2) - GetComponent<RectTransform>().rect.height * 2.6f / 2, 0f);
+    transform.position = new Vector3((Screen.width / 4) + Random.Range(-100f, 100f) - GetComponent<RectTransform>().rect.width * 2.6f / 2, (Screen.height / 2) + Random.Range(-100f, 100f) - GetComponent<RectTransform>().rect.height * 2.6f / 2, 0f);
+    transform.eulerAngles = new Vector3(0f, 0f, Random.Range(-60f, 60f));
     _travellingTime = 0;
     _startPosition = transform.position;
+    _startRotation = transform.eulerAngles;
     _startScale = transform.localScale.x;
   }
 
@@ -132,7 +135,7 @@ public class BuffElement : MonoBehaviour
       _travellingTime += Time.deltaTime;
       float t = _travellingTime / _travelTime;
       transform.position = Vector3.Lerp(_startPosition, _endPosition, t);
-
+      transform.eulerAngles = Vector3.Lerp(_startRotation, Vector3.zero, t);
       float newScale = Mathf.Lerp(_startScale, _endScale, t);
       transform.localScale = new Vector3(newScale, newScale, 1f);
     }
