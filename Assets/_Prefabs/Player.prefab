@@ -104,7 +104,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6240480184452523529}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: c8ff14370a04d9a40a47d837f21daef0, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -159,6 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
   _sensitivity: 50
   _maxSpeed: 6
+  _drag: 0.5
   _maxLookHeight: 75
   _meleeCooldown: 0.5
   _projectileCooldown: 0.2
@@ -167,8 +168,8 @@ MonoBehaviour:
   _projectileSpeed: 15
   _projectileTTL: 5
   _uiBuff: {fileID: 0}
-  _baseMoveSpeed: 8
-  _moveSpeed: 8
+  _baseMoveSpeed: 16
+  _moveSpeed: 16
   _moveSpeedScaling: 0.25
   _baseMeleeDamage: 1
   _meleeDamage: 1

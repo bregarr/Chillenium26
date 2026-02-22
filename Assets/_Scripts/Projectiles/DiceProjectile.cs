@@ -2,38 +2,16 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class DiceProjectile : MonoBehaviour
+public class DiceProjectile : Projectile
 {
-	[Header("Ammo Statics")]
-	[SerializeField] float speed;
-	[SerializeField] float lifeSpan;
-	bool alreadyHit;
-
 	// Start is called once before the first execution of Update after the MonoBehaviour is created
-	void Start()
+	protected override void Start()
 	{
-		alreadyHit = false;
-		GetComponent<Collider>().isTrigger = false;
+		base.Start();
 		gameObject.layer = LayerMask.NameToLayer("Projectile");
 	}
 
-	// Update is called once per frame
-	void Update()
-	{
-		lifeSpan -= Time.deltaTime;
-		if (lifeSpan <= 0)
-		{
-			Destroy(gameObject);
-		}
-	}
-
-	public void InitializeProjectile(float speed, float lifeSpan)
-	{
-		this.speed = speed;
-		this.lifeSpan = lifeSpan;
-	}
-
-	public void Shoot()
+	public override void Shoot()
 	{
 		Rigidbody rb = GetComponent<Rigidbody>();
 		Vector3 forceDirection = WaveAuthority.PlayerRef.RightTransform();
@@ -63,7 +41,7 @@ public class DiceProjectile : MonoBehaviour
 		rb.AddForce(force, ForceMode.Impulse);
 	}
 
-	void OnCollisionEnter(Collision other)
+	protected override void OnCollisionEnter(Collision other)
 	{
 		GameObject enemy = other.gameObject;
 

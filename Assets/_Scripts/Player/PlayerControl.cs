@@ -18,6 +18,7 @@ public class PlayerControl : Character
 	[Header("Player Statics")]
 	[SerializeField] float _sensitivity;
 	[SerializeField] float _maxSpeed;
+	[SerializeField] float _drag;
 	[SerializeField] float _maxLookHeight;
 	[SerializeField] float _meleeCooldown;
 	[SerializeField] float _projectileCooldown;
@@ -258,17 +259,14 @@ public class PlayerControl : Character
 		newForce += _moveSpeed * inputPos.y * RightTransform();
 		newForce += _moveSpeed * inputPos.x * ForwardTransform();
 
-		if (inputPos.x == 0f && inputPos.y == 0f)
-		{
-			_rb.linearVelocity = Vector3.zero;
-		}
-		else
-		{
-			_rb.AddForce(newForce);
-		}
+		_rb.AddForce(newForce);
 
 		// Clamp the velocity
 		Vector3 currVel = _rb.linearVelocity;
+		if (currVel.y > 0f)
+		{
+			currVel.y = 0f;
+		}
 		currVel.x = Mathf.Clamp(currVel.x, -_maxSpeed, _maxSpeed);
 		currVel.z = Mathf.Clamp(currVel.z, -_maxSpeed, _maxSpeed);
 		_rb.linearVelocity = currVel;
@@ -366,6 +364,11 @@ public class PlayerControl : Character
 		_uiBuff.AddBuff(dice);
 
 		_anim.ChangeDie();
+	}
+
+	public void TakeDamage(float amount)
+	{
+		_health.TakeDamage(amount);
 	}
 
 	public void AddAmmo(Dice dice)

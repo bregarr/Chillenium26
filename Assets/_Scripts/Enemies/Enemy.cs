@@ -13,6 +13,12 @@ public class Enemy : Character
 	[SerializeField] float _attackDistance;
 	[SerializeField] bool _isSwimmer = false;
 
+	[Header("Projectile Settings")]
+	[SerializeField] float _shootSpeed;
+	[SerializeField] float _projectileTTL;
+	[SerializeField] float _projectileSpread;
+	[SerializeField] float _projectileDamage;
+
 	[Header("Enemy Options")]
 	[SerializeField] eBuffType _dropType = eBuffType.None;
 	[SerializeField] bool _canDropDice = true;
@@ -41,6 +47,7 @@ public class Enemy : Character
 		if (_isSwimmer)
 		{
 			_anim.SetSwimming(true);
+			_agent.baseOffset += EnemyAuthority.Ref.GetHeightVariance();
 		}
 	}
 
@@ -69,6 +76,14 @@ public class Enemy : Character
 			if (_lastAttackTime + _attackSpeed <= Time.time)
 			{
 				// Can attack
+				if (_isSwimmer)
+				{
+					ProjectileAttack();
+				}
+				else
+				{
+					MeleeAttack();
+				}
 
 				_lastAttackTime = Time.time + _attackSpeed;
 				return;
@@ -97,7 +112,8 @@ public class Enemy : Character
 
 	bool AgentInRange()
 	{
-		return (_agent.destination - transform.position).magnitude <= _attackDistance;
+		float _tolerance = 0.1f * _attackDistance;
+		return Mathf.Floor((_agent.destination - transform.position).magnitude - _tolerance) <= _attackDistance;
 	}
 
 	void OnTriggerEnter(Collider col)
@@ -121,4 +137,22 @@ public class Enemy : Character
 		_canDropDice = true;
 		_diceDropChance = chance;
 	}
+
+	void ProjectileAttack()
+	{
+		GameObject projectilePrefab = Instantiate<GameObject>(EnemyAuthority.Ref.GetRandomProjectile(), transform.position, transform.rotation);
+		EnemyProjectile projectile = projectilePrefab.GetComponent<EnemyProjectile>();
+		Debug.Log(projectile);
+		projectile.InitializeProjectile(_shootSpeed, _projectileTTL, gameObject);
+		projectile.Shoot();
+	}
+
+	void MeleeAttack()
+	{
+		WaveAuthority.PlayerRef.TakeDamage(_damageAmount);
+	}
+
+	public float GetSpread() { return _projectileSpread; }
+
+	public float GetProjectileDamage() { return _projectileDamage; }
 }
