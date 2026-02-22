@@ -111,6 +111,10 @@ public class Enemy : Character
 		_bloodHitEffect.Play();
 	}
 
+	float _u = 0.0f;
+	Vector3 _startScale = Vector3.zero;
+	Transform _rigTrans;
+
 	public override void DeathEvent()
 	{
 		_isDead = true;
@@ -122,19 +126,38 @@ public class Enemy : Character
 			dropDiceGO.GetComponent<Dice>().InitializeDice(true);
 			dropDiceGO.transform.position = transform.position;
 		}
-    // If swimmer, have an extra double chance to drop an ammo die
-    else if (_canDropDice && _isSwimmer && (Random.Range(0, 1) <= _diceDropChance || Random.Range(0, 1) <= _diceDropChance))
-    {
-      GameObject dropDicePrefab = DiceAuthority.Ref.GetDiceByBuff(eBuffType.Ammo);
+		// If swimmer, have an extra double chance to drop an ammo die
+		else if (_canDropDice && _isSwimmer && (Random.Range(0, 1) <= _diceDropChance || Random.Range(0, 1) <= _diceDropChance))
+		{
+			GameObject dropDicePrefab = DiceAuthority.Ref.GetDiceByBuff(eBuffType.Ammo);
 			GameObject dropDiceGO = Instantiate<GameObject>(dropDicePrefab, transform.position, transform.rotation);
 			dropDiceGO.GetComponent<Dice>().InitializeDice(true);
 			dropDiceGO.transform.position = transform.position;
-    }
-		_smokeEffect.Play();
-		_deadFishEffect1.Play();
-		_deadFishEffect2.Play();
+		}
 
-		Destroy(this.gameObject, 0.5f);
+		_rigTrans = GetComponentInChildren<Animator>().gameObject.transform;
+		_startScale = _rigTrans.localScale;
+		_u = 0.0f;
+		PlayDeathEffects();
+	}
+
+	void PlayDeathEffects()
+	{
+		Vector3 newScale = Vector3.Lerp(_startScale, Vector3.zero, _u * _u);
+		_rigTrans.localScale = newScale;
+
+		_u += 0.1f;
+		if (_u * _u >= 1f)
+		{
+			Destroy(gameObject, 1f);
+			_smokeEffect.Play();
+			_deadFishEffect1.Play();
+			_deadFishEffect2.Play();
+		}
+		else
+		{
+			Invoke(nameof(PlayDeathEffects), 0.01f);
+		}
 	}
 
 	bool AgentInRange()
