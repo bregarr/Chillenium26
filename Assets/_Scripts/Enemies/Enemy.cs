@@ -64,6 +64,7 @@ public class Enemy : Character
 	{
 		if (_isDead)
 		{
+			_agent.destination = transform.position;
 			return;
 		}
 		_agent.destination = WaveAuthority.PlayerRef.gameObject.transform.position;
@@ -147,12 +148,14 @@ public class Enemy : Character
 
 	void PlayDeathEffects()
 	{
+		Destroy(GetComponent<Collider>());
 		Vector3 newScale = Vector3.Lerp(_startScale, Vector3.zero, _u * _u);
 		_rigTrans.localScale = newScale;
 
 		_u += 0.1f;
 		if (_u * _u >= 1f)
 		{
+			Destroy(_rigTrans.gameObject);
 			Destroy(gameObject, 1f);
 			_smokeEffect.Play();
 			_deadFishEffect1.Play();

@@ -11,9 +11,11 @@ public class Health : MonoBehaviour
 	[SerializeField] float _maxHealth;
 	[SerializeField] Material _hitMat;
 	[SerializeField] float _hitFlashTime;
+	[SerializeField] float _damageCooldown;
 
 	Character _owner;
 	float _currHealth;
+	float _lastTookDamage;
 	List<SkinnedMeshRenderer> _renderers = new();
 	List<Material> _defaultMats = new();
 
@@ -21,6 +23,7 @@ public class Health : MonoBehaviour
 	{
 		_owner = GetComponent<Character>();
 		_currHealth = _maxHealth;
+		_lastTookDamage = Time.time;
 
 		// Quick way of getting the material to all health components
 		if (!HitMat && _hitMat)
@@ -41,6 +44,10 @@ public class Health : MonoBehaviour
 
 	public void TakeDamage(float amount)
 	{
+		if (_damageCooldown != 0.0f && _lastTookDamage + _damageCooldown > Time.time)
+		{
+			return;
+		}
 		if (_owner.gameObject.GetComponent<PlayerControl>())
 		{
 			_currHealth -= amount / _owner.gameObject.GetComponent<PlayerControl>().GetDefense();
@@ -81,7 +88,10 @@ public class Health : MonoBehaviour
 		for (int i = 0; i < _renderers.Count; i++)
 		{
 			SkinnedMeshRenderer childRenderer = _renderers[i];
-			childRenderer.material = _defaultMats[i];
+			if (childRenderer)
+			{
+				childRenderer.material = _defaultMats[i];
+			}
 		}
 	}
 

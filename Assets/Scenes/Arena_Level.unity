@@ -4929,6 +4929,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1156036080503240730, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
+      propertyPath: _damageCooldown
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4173168356484315561, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
       propertyPath: _projectileHolder
       value: 
