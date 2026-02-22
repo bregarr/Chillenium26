@@ -173,7 +173,7 @@ public class PlayerControl : Character
 				AudioManager.MusicRef.damageMusic(true);
 				break;
 			case eBuffType.Speed:
-				_moveSpeed *= 1 + dice.sideNum * _moveSpeedScaling;
+				_maxSpeed *= 1 + dice.sideNum * _moveSpeedScaling;
 				AudioManager.MusicRef.speedMusic(true);
 				break;
 			case eBuffType.Defense:
@@ -216,10 +216,10 @@ public class PlayerControl : Character
 				}
 				break;
 			case eBuffType.Speed:
-				_moveSpeed /= 1 + dice.sideNum * _moveSpeedScaling;
-				if (Mathf.Abs(_moveSpeed - _baseMoveSpeed) < 0.05)
+				_maxSpeed /= 1 + dice.sideNum * _moveSpeedScaling;
+				if (Mathf.Abs(_maxSpeed - _baseMoveSpeed) < 0.05)
 				{
-					_moveSpeed = _baseMoveSpeed;
+					_maxSpeed = _baseMoveSpeed;
 					AudioManager.MusicRef.speedMusic(false);
 				}
 				break;
