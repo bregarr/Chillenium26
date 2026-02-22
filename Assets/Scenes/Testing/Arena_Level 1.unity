@@ -4082,6 +4082,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 19785330513782887, guid: 2fb51892328b29b4098942f5a5e8ab11, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1533453851670261560, guid: 2fb51892328b29b4098942f5a5e8ab11, type: 3}
       propertyPath: m_Name
       value: HudCanvas
