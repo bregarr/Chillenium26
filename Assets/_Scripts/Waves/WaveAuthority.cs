@@ -112,7 +112,7 @@ public class WaveAuthority : MonoBehaviour
 		{
 			GameObject newEnemy = Instantiate(enemies[i], locations[i], transform.rotation, _enemyHolder.transform);
 			newEnemy.GetComponent<Enemy>().UpdateDrop(DiceAuthority.Ref.GetRandomDiceType());
-			yield return new WaitForSeconds(cooldown);
+			yield return new WaitForSeconds(cooldown * DifficultyAuthority.Ref.GetSpawnRateBuff());
 		}
 	}
 
@@ -161,5 +161,11 @@ public class WaveAuthority : MonoBehaviour
 	}
 
 	public bool IsInCutscene() { return _isInCutscene; }
+
+	public void ClearEnemies()
+	{
+		Destroy(_enemyHolder);
+		Destroy(this);
+	}
 
 }
