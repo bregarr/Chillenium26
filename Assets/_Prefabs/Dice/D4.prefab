@@ -10,11 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7535100256509685726}
   - component: {fileID: 6394897789333346949}
-  - component: {fileID: -6533386688105583719}
-  - component: {fileID: 4543039010130865054}
-  - component: {fileID: -1824896954005288177}
-  - component: {fileID: -5890703204617023234}
-  - component: {fileID: 6452122555925917194}
+  - component: {fileID: 4523419430084082760}
   m_Layer: 0
   m_Name: D4
   m_TagString: Untagged
@@ -31,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1877804080180693680}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.11111449, y: 1.2083334, z: -1.9073954}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -52,76 +48,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Dice
   _sideCount: 4
   _buffType: 4
---- !u!114 &-6533386688105583719
-MonoBehaviour:
+  _floating: 0
+--- !u!135 &4523419430084082760
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1877804080180693680}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
   m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b6bd567ec2d95a4f88c64a514ef86e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Dice
-  _sideCount: 0
-  _buffType: 0
---- !u!114 &4543039010130865054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877804080180693680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b6bd567ec2d95a4f88c64a514ef86e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Dice
-  _sideCount: 0
-  _buffType: 0
---- !u!114 &-1824896954005288177
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877804080180693680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b6bd567ec2d95a4f88c64a514ef86e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Dice
-  _sideCount: 0
-  _buffType: 0
---- !u!114 &-5890703204617023234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877804080180693680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b6bd567ec2d95a4f88c64a514ef86e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Dice
-  _sideCount: 0
-  _buffType: 0
---- !u!114 &6452122555925917194
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1877804080180693680}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b6bd567ec2d95a4f88c64a514ef86e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Dice
-  _sideCount: 0
-  _buffType: 0
+  serializedVersion: 3
+  m_Radius: 0.25
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2757864603247719249
 PrefabInstance:
   m_ObjectHideFlags: 0

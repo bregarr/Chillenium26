@@ -89,7 +89,7 @@ public class Enemy : Character
 		{
 			GameObject dropDicePrefab = DiceAuthority.Ref.GetDiceByBuff(_dropType);
 			GameObject dropDiceGO = Instantiate<GameObject>(dropDicePrefab, transform.position, transform.rotation);
-			dropDiceGO.AddComponent<Dice>().InitializeDice();
+			dropDiceGO.AddComponent<Dice>().InitializeDice(true);
 			dropDiceGO.transform.position = transform.position;
 		}
 		Destroy(this.gameObject);
@@ -114,5 +114,4 @@ public class Enemy : Character
 		_health.TakeDamage(takeDamage);
 
 	}
-
 }
