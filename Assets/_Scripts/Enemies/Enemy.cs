@@ -131,6 +131,7 @@ public class Enemy : Character
 		{
 			return;
 		}
+    AudioManager.Ref.playSFX("EnemyDeath");
 		_isDead = true;
 		// Kill the enemy
 		if (_canDropDice && Random.Range(0, 1) <= _diceDropChance)

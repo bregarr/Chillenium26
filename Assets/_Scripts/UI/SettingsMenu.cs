@@ -226,6 +226,7 @@ public class SettingsMenu : MonoBehaviour
 
 	public void SetInvertX()
 	{
+    AudioManager.Ref.playSFX("ClickSFX");
 		if (_xInvertToggle.isOn)
 		{
 			PlayerPrefs.SetInt("xInvert", -1);
@@ -238,6 +239,7 @@ public class SettingsMenu : MonoBehaviour
 
 	public void SetInvertY()
 	{
+    AudioManager.Ref.playSFX("ClickSFX");
 		if (_yInvertToggle.isOn)
 		{
 			PlayerPrefs.SetInt("yInvert", -1);
@@ -250,6 +252,7 @@ public class SettingsMenu : MonoBehaviour
 
 	public void SensitivitySliderChange()
 	{
+    AudioManager.Ref.playSFX("ClickSFX");
 		float newSens = _sensitivitySlider.value * _maxSensitivity + _minSensitivity;
 		_sensitivityLabel.text = newSens.ToString("00");
 		PlayerPrefs.SetFloat("sensitivity", newSens);
@@ -257,6 +260,7 @@ public class SettingsMenu : MonoBehaviour
 
 	public void MusicSliderChange()
 	{
+    AudioManager.Ref.playSFX("ClickSFX");
 		float newVol = _musicSlider.value * 200;
 		_musicLabel.text = newVol.ToString("00");
 		PlayerPrefs.SetFloat("musicVolume", newVol);
@@ -268,6 +272,7 @@ public class SettingsMenu : MonoBehaviour
 
 	public void SfxSliderChange()
 	{
+    AudioManager.Ref.playSFX("ClickSFX");
 		float newVol = _sfxSlider.value * 200;
 		_sfxLabel.text = newVol.ToString("00");
 		PlayerPrefs.SetFloat("sfxVolume", newVol);
