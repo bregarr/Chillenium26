@@ -60,20 +60,20 @@ public class SettingsMenu : MonoBehaviour
 		// Default Music Value
 		if (!PlayerPrefs.HasKey("musicVolume"))
 		{
-			PlayerPrefs.SetFloat("musicVolume", 100f);
+			PlayerPrefs.SetFloat("musicVolume", 50f);
 		}
 		float musicVolume = PlayerPrefs.GetFloat("musicVolume");
 		_musicLabel.text = musicVolume.ToString("00%");
-		_musicSlider.value = musicVolume / 200f;
+		_musicSlider.value = musicVolume / 100f;
 
 		// Default SFX Value
 		if (!PlayerPrefs.HasKey("sfxVolume"))
 		{
-			PlayerPrefs.SetFloat("sfxVolume", 100f);
+			PlayerPrefs.SetFloat("sfxVolume", 50f);
 		}
 		float sfxVolume = PlayerPrefs.GetFloat("sfxVolume");
 		_sfxLabel.text = sensitivity.ToString("00%");
-		_sfxSlider.value = sfxVolume / 200f;
+		_sfxSlider.value = sfxVolume / 100f;
 
 		if (!PlayerPrefs.HasKey("diceCheat"))
 		{
@@ -275,7 +275,7 @@ public class SettingsMenu : MonoBehaviour
 	public void MusicSliderChange()
 	{
 		AudioManager.Ref.playSFX("ClickSFX");
-		float newVol = _musicSlider.value * 200;
+		float newVol = _musicSlider.value * 100;
 		_musicLabel.text = newVol.ToString("00");
 		PlayerPrefs.SetFloat("musicVolume", newVol);
 		if (AudioManager.Ref)
@@ -287,7 +287,7 @@ public class SettingsMenu : MonoBehaviour
 	public void SfxSliderChange()
 	{
 		AudioManager.Ref.playSFX("ClickSFX");
-		float newVol = _sfxSlider.value * 200;
+		float newVol = _sfxSlider.value * 100;
 		_sfxLabel.text = newVol.ToString("00");
 		PlayerPrefs.SetFloat("sfxVolume", newVol);
 		if (AudioManager.Ref)
