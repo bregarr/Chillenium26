@@ -28,6 +28,8 @@ public class WaveSO : ScriptableObject
         WaveAuthority.Ref.PassSpawnEnemies(spawnLocations, _spawnableEnemies, _timeBetweenSpawns);
     }
 
-
+    public List<Vector3> GetSpawns() { return _spawnLocations; }
+    public List<GameObject> GetEnemies() { return _spawnableEnemies; }
+    public float GetCooldown() { return _timeBetweenSpawns; }
 
 }

@@ -78,10 +78,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
   _moveSpeed: 2.5
   _damageAmount: 3
-  _attackSpeed: 0.5
+  _attackSpeed: 1.2
   _attackDistance: 7
   _isSwimmer: 1
-  _shootSpeed: 15
+  _shootSpeed: 25
   _projectileTTL: 5
   _projectileSpread: 0.5
   _projectileDamage: 2.5

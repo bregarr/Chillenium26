@@ -155,3 +155,11 @@ HoudiniEngineAssetCache
 Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
 Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset.meta
 fmod_editor.log
+
+#Dice
+MAT_D4.mat
+MAT_D6.mat
+MAT_D8.mat
+MAT_D12.mat
+MAT_D20.mat
+

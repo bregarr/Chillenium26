@@ -279,8 +279,8 @@ MonoBehaviour:
   _baseMoveSpeed: 16
   _moveSpeed: 16
   _moveSpeedScaling: 0.25
-  _baseMeleeDamage: 1
-  _meleeDamage: 1
+  _baseMeleeDamage: 1.5
+  _meleeDamage: 1.5
   _meleeDamageScaling: 0.5
   _baseProjectileDamage: 2
   _projectileDamage: 2
@@ -309,7 +309,7 @@ MonoBehaviour:
   _maxHealth: 10
   _hitMat: {fileID: 0}
   _hitFlashTime: 0
-  _damageCooldown: 0
+  _damageCooldown: 1
 --- !u!114 &6254833926112614888
 MonoBehaviour:
   m_ObjectHideFlags: 0

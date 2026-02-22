@@ -52,6 +52,7 @@ public class PlayerControl : Character
 	[SerializeField] GameObject _camera;
 	[SerializeField] GameObject _sword;
 	[SerializeField] GameObject _hand;
+	[SerializeField] Camera _deadCamera;
 
 	Queue<Dice> _dice;
 	Queue<int> _ammo;
@@ -126,21 +127,29 @@ public class PlayerControl : Character
 
 	void Update()
 	{
-		if (!PauseUI.Ref.GetIsPaused())
+		bool isInCutscene = WaveAuthority.Ref.IsInCutscene();
+		if (!PauseUI.Ref.GetIsPaused() && !isInCutscene)
 		{
 			Look();
 		}
 
-		if (!TutorialManager.Ref || !TutorialManager.Ref.IsInTutorial())
+		if ((!TutorialManager.Ref || !TutorialManager.Ref.IsInTutorial()) && !isInCutscene)
 		{
 			Move();
 		}
 
 		if (_hitAction.WasCompletedThisFrame())
 		{
-			Melee();
+			if (isInCutscene)
+			{
+				WaveAuthority.Ref.Click();
+			}
+			else
+			{
+				Melee();
+			}
 		}
-		else if (_shootAction.WasCompletedThisFrame())
+		else if (_shootAction.WasCompletedThisFrame() && !isInCutscene)
 		{
 			Throw();
 		}
@@ -327,7 +336,15 @@ public class PlayerControl : Character
 	public override void DeathEvent()
 	{
 		// Kill this guy
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		_deadCamera.enabled = true;
+		HudUI.Ref.HideCanvas();
+		_camera.GetComponent<Camera>().enabled = false;
+		Invoke(nameof(GoToMenu), 1f);
+	}
+
+	void GoToMenu()
+	{
+		SceneManager.LoadScene("Scenes/MainMenu");
 	}
 
 	void Melee()
@@ -383,11 +400,11 @@ public class PlayerControl : Character
 		if (_dice.Count > _maxDice)
 		{
 			oldDice = (Dice)_dice.Dequeue();
-      RemoveBuff(oldDice);
+			RemoveBuff(oldDice);
 			// Add oldDice to Dice Bag
 			AddAmmo(oldDice);
 		}
-    AddBuff(dice);
+		AddBuff(dice);
 		_uiBuff.AddBuff(dice);
 
 		_anim.ChangeDie();
@@ -483,5 +500,7 @@ public class PlayerControl : Character
 		_invertX = PlayerPrefs.GetFloat("xInvert");
 		_invertY = PlayerPrefs.GetFloat("yInvert");
 	}
+
+	public Camera GetCamera() { return _camera.GetComponent<Camera>(); }
 
 }
