@@ -13,6 +13,8 @@ public class DiceProjectile : MonoBehaviour
 	void Start()
 	{
 		alreadyHit = false;
+		GetComponent<Collider>().isTrigger = false;
+		gameObject.layer = LayerMask.NameToLayer("Projectile");
 	}
 
 	// Update is called once per frame

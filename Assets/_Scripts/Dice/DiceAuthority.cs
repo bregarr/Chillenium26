@@ -43,4 +43,9 @@ public class DiceAuthority : MonoBehaviour
         return null;
     }
 
+    public eBuffType GetRandomDiceType()
+    {
+        return _diceList[Random.Range(0, _diceList.Count)].GetComponent<Dice>().GetBuffType();
+    }
+
 }
