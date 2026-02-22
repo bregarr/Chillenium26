@@ -5333,6 +5333,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TutorialManager
   _tutorialEnemy: {fileID: 14037440}
   _tutorialPrompt: {fileID: 1182870430}
+  _tutorialSprites:
+  - {fileID: 21300000, guid: 6bbc40bda6e6b6549881044cb95a10fb, type: 3}
+  - {fileID: 21300000, guid: af74c0a2dd133724fa9d7d5de628d8ec, type: 3}
 --- !u!4 &1250232691
 Transform:
   m_ObjectHideFlags: 0
@@ -6440,6 +6443,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PauseCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6116850424960785778, guid: 948752fa80fcc9a45bd36483e9e6970f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665104339661508212, guid: 948752fa80fcc9a45bd36483e9e6970f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7676063681759313283, guid: 948752fa80fcc9a45bd36483e9e6970f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8281318869665954554, guid: 948752fa80fcc9a45bd36483e9e6970f, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -6542,6 +6557,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9142435047374627909, guid: 948752fa80fcc9a45bd36483e9e6970f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9175076440152302415, guid: 948752fa80fcc9a45bd36483e9e6970f, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

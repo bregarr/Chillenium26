@@ -55,6 +55,7 @@ public class SettingsMenu : MonoBehaviour
 		}
 		float sensitivity = PlayerPrefs.GetFloat("sensitivity");
 		_sensitivityLabel.text = sensitivity.ToString();
+
 		_sensitivitySlider.value = (sensitivity - _minSensitivity) / _maxSensitivity;
 
 		// Default Music Value
