@@ -85,6 +85,10 @@ MonoBehaviour:
   _projectileTTL: 5
   _projectileSpread: 0.1
   _projectileDamage: 1
+  _smokeEffect: {fileID: 3131581969930672646}
+  _deadFishEffect1: {fileID: 7472694029164056424}
+  _deadFishEffect2: {fileID: 4016734460288099621}
+  _bloodHitEffect: {fileID: 3044886017233607755}
   _dropType: 0
   _canDropDice: 1
   _diceDropChance: 0.5
@@ -165,7 +169,7 @@ Transform:
   m_GameObject: {fileID: 3444190367995749492}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.27838573, y: -0.025110245, z: 0.4153366}
+  m_LocalPosition: {x: 0.007999986, y: 0.22300005, z: 0.048999786}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -180,8 +184,8 @@ VisualEffect:
   m_GameObject: {fileID: 3444190367995749492}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: be842a45914ce524eb6670936743deca, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1
@@ -283,7 +287,7 @@ Transform:
   m_GameObject: {fileID: 4465535282327452955}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.27838573, y: -0.025110245, z: 0.4153366}
+  m_LocalPosition: {x: 0.007999986, y: 0.22300005, z: 0.048999786}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -298,8 +302,8 @@ VisualEffect:
   m_GameObject: {fileID: 4465535282327452955}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 3ffa9ecd4412bdf4a8e14c9095304205, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1
@@ -401,7 +405,7 @@ Transform:
   m_GameObject: {fileID: 6202635339618648223}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.27838573, y: -0.025110245, z: 0.4153366}
+  m_LocalPosition: {x: 0.007999986, y: 0.22300005, z: 0.048999786}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -416,8 +420,8 @@ VisualEffect:
   m_GameObject: {fileID: 6202635339618648223}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: ea9135808b0220043ad286c8faa40a6e, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1
@@ -519,7 +523,7 @@ Transform:
   m_GameObject: {fileID: 8734260925687062107}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.27838573, y: -0.025110245, z: 0.4153366}
+  m_LocalPosition: {x: 0.008, y: 0.223, z: 0.049}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -534,8 +538,8 @@ VisualEffect:
   m_GameObject: {fileID: 8734260925687062107}
   m_Enabled: 1
   m_Asset: {fileID: 8926484042661614526, guid: 29cb1466c1ab7e841bbf08892c157769, type: 3}
-  m_InitialEventName: OnPlay
-  m_InitialEventNameOverriden: 0
+  m_InitialEventName: 
+  m_InitialEventNameOverriden: 1
   m_StartSeed: 0
   m_ResetSeedOnPlay: 1
   m_AllowInstancing: 1

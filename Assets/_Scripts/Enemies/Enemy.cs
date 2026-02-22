@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Health))]
@@ -19,12 +20,19 @@ public class Enemy : Character
 	[SerializeField] float _projectileSpread;
 	[SerializeField] float _projectileDamage;
 
+	[Header("VFX")]
+	[SerializeField] VisualEffect _smokeEffect;
+	[SerializeField] VisualEffect _deadFishEffect1;
+	[SerializeField] VisualEffect _deadFishEffect2;
+	[SerializeField] VisualEffect _bloodHitEffect;
+
 	[Header("Enemy Options")]
 	[SerializeField] eBuffType _dropType = eBuffType.None;
 	[SerializeField] bool _canDropDice = true;
 	[SerializeField] float _diceDropChance = .5f;
 
 	EnemyAnimator _anim;
+	bool _isDead;
 
 	protected NavMeshAgent _agent;
 	float _lastAttackTime;
@@ -32,6 +40,7 @@ public class Enemy : Character
 
 	void Start()
 	{
+		_isDead = false;
 		_agent = GetComponent<NavMeshAgent>();
 		_agent.speed = _moveSpeed;
 		_agent.stoppingDistance = _attackDistance;
@@ -53,6 +62,10 @@ public class Enemy : Character
 
 	protected virtual void FixedUpdate()
 	{
+		if (_isDead)
+		{
+			return;
+		}
 		_agent.destination = WaveAuthority.PlayerRef.gameObject.transform.position;
 
 		if (_agent.velocity.magnitude > 0.0001f)
@@ -95,10 +108,12 @@ public class Enemy : Character
 	public void GetHit()
 	{
 		_anim.Hit();
+		_bloodHitEffect.Play();
 	}
 
 	public override void DeathEvent()
 	{
+		_isDead = true;
 		// Kill the enemy
 		if (_canDropDice && Random.Range(0, 1) <= _diceDropChance)
 		{
@@ -107,7 +122,11 @@ public class Enemy : Character
 			dropDiceGO.GetComponent<Dice>().InitializeDice(true);
 			dropDiceGO.transform.position = transform.position;
 		}
-		Destroy(this.gameObject);
+		_smokeEffect.Play();
+		_deadFishEffect1.Play();
+		_deadFishEffect2.Play();
+
+		Destroy(this.gameObject, 0.5f);
 	}
 
 	bool AgentInRange()
