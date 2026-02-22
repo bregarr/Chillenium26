@@ -235,7 +235,7 @@ MonoBehaviour:
   _bodyAnim: {fileID: 5394933872442376886}
   _swordAnim: {fileID: 679755288326847188}
   _currentWalkState: 0
-  _swordCollider: {fileID: 0}
+  _swordCollider: {fileID: 7028573613907847177}
 --- !u!1 &6588035297082658569
 GameObject:
   m_ObjectHideFlags: 0

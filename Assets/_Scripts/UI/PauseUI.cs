@@ -75,6 +75,7 @@ public class PauseUI : MonoBehaviour
 		GetComponent<Canvas>().enabled = false;
 		Time.timeScale = 1f;
 		CursorLock.Ref.LockCursor();
+		WaveAuthority.PlayerRef.UpdateInverts();
 	}
 
 	void MoveToRest(GameObject go)
