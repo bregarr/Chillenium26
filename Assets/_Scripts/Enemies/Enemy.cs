@@ -67,6 +67,10 @@ public class Enemy : Character
 		{
 			AudioManager.Ref.playSFX("SharkSpawn");
 		}
+    if (Random.Range(0f, 1f) <= 0.033f)
+    {
+      AudioManager.Ref.playSFX("EnemyVoice");
+    }
 	}
 
 	protected virtual void FixedUpdate()
@@ -131,6 +135,10 @@ public class Enemy : Character
 		{
 			return;
 		}
+    if (Random.Range(0f, 1f) <= 0.033f)
+    {
+      AudioManager.Ref.playSFX("PlayerVoice");
+    }
     AudioManager.Ref.playSFX("EnemyDeath");
 		_isDead = true;
 		// Kill the enemy
