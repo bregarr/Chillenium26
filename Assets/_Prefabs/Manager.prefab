@@ -77,9 +77,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30f42378826cf3d4bb559b8de1186b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WaveAuthority
-  _waves: []
-  _timeBetweenWaves: 1
-  _initialWaveDelay: 2
+  _waves:
+  - {fileID: 11400000, guid: 16d97a1cc30fd4646994aab6d9b0ff13, type: 2}
+  - {fileID: 11400000, guid: 6254fb868b6ab014fa366e1ba69a022d, type: 2}
+  - {fileID: 11400000, guid: d233800080497864ab07b6a184ad1c57, type: 2}
+  - {fileID: 11400000, guid: afbdc12ca0fa63c4fa33d5bfe704bfbe, type: 2}
+  - {fileID: 11400000, guid: 307f73c9aa2d18246a521b94ce80e037, type: 2}
+  - {fileID: 11400000, guid: 937ebc81636e8e74fb9a91dcfc4a76bd, type: 2}
+  - {fileID: 11400000, guid: 374f203f6b1a02b468f38316a0308749, type: 2}
+  - {fileID: 11400000, guid: a28200fe20940c4488e0febc58b383c4, type: 2}
+  - {fileID: 11400000, guid: a8e72f42ff474d04db49331dda1b71e4, type: 2}
+  - {fileID: 11400000, guid: b7c1933488b16244da30907182412682, type: 2}
+  - {fileID: 11400000, guid: 0496d33f3498f1c468be472c2ea41e6b, type: 2}
+  - {fileID: 11400000, guid: 217ba00225ed9f04393d6b2a25043d04, type: 2}
+  _timeBetweenWaves: 18
+  _initialWaveDelay: 8
 --- !u!114 &7479472030699831732
 MonoBehaviour:
   m_ObjectHideFlags: 0
