@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Wave1
   m_EditorClassIdentifier: Assembly-CSharp::WaveSO
   _spawnLocations:
-  - {x: 7, y: 2, z: 0}
+  - {x: 8, y: 2, z: 0}
   _spawnableEnemies:
   - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
-  _numEnemies: 2
+  _numEnemies: 4
   _timeBetweenSpawns: 1
