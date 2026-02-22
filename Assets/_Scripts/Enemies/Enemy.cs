@@ -69,7 +69,7 @@ public class Enemy : Character
 		}
     if (Random.Range(0f, 1f) <= 0.033f)
     {
-      AudioManager.Ref.playSFX("EnemyVoice");
+      AudioManager.Ref.playSFX("enemyVoice");
     }
 	}
 
@@ -137,7 +137,7 @@ public class Enemy : Character
 		}
     if (Random.Range(0f, 1f) <= 0.033f)
     {
-      AudioManager.Ref.playSFX("PlayerVoice");
+      AudioManager.Ref.playSFX("playerVoice");
     }
     AudioManager.Ref.playSFX("EnemyDeath");
 		_isDead = true;

@@ -233,7 +233,7 @@ public class PlayerControl : Character
 	// Handle Current Buffs
 	void AddBuff(Dice dice)
 	{
-		AudioManager.Ref.playSFX("PowerUP", 0.75f);
+		AudioManager.Ref.playSFX("PowerUp", 0.2f, Random.Range(1f, 2f));
 		switch (dice.GetBuffType())
 		{
 			case eBuffType.Health:
