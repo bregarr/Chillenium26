@@ -1228,6 +1228,38 @@ MonoBehaviour:
   _waveFrequency: 0
   _boss: {fileID: 6927210279525462018, guid: 7bd1cfe2dde02c24f8ddaa18b18f8735, type: 3}
   _bossSpawnLocation: {x: 0, y: 1, z: -33.55412}
+--- !u!114 &258998774
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 258998767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57b2b03c0ef5f364b8412110ebce348d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DifficultyAuthority
+  _healthBuff:
+  - 2
+  - 1.5
+  - 1
+  _damageBuff:
+  - 1.8
+  - 1.4
+  - 1
+  _defenseBuff:
+  - 1.5
+  - 1.2
+  - 1
+  _attackSpeedBuff:
+  - 3
+  - 1.8
+  - 1
+  _enemySpawnRates:
+  - 2
+  - 1.5
+  - 1
 --- !u!1 &264411281
 GameObject:
   m_ObjectHideFlags: 0
@@ -8623,6 +8655,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3155814735142670870, guid: f91715ef4428b504995867ad37785def, type: 3}
       insertIndex: -1
       addedObject: {fileID: 258998773}
+    - targetCorrespondingSourceObject: {fileID: 3155814735142670870, guid: f91715ef4428b504995867ad37785def, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 258998774}
   m_SourcePrefab: {fileID: 100100000, guid: f91715ef4428b504995867ad37785def, type: 3}
 --- !u!1 &1995373986
 GameObject:

@@ -105,4 +105,9 @@ public class Health : MonoBehaviour
 		return _currHealth;
 	}
 
+	public void SetMaxHealth(float amount)
+	{
+		_maxHealth = amount;
+	}
+
 }
