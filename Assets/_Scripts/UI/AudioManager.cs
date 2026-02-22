@@ -42,6 +42,11 @@ public class AudioManager : MonoBehaviour
     GameObject audioPlayer = Instantiate(audioPrefab, WaveAuthority.PlayerRef.transform);
     AudioSource audioSource = audioPlayer.GetComponent<AudioSource>();
     AudioClip audioClip = null;
+    if (name == "impact")
+    {
+      string[] impacts = {"impact1", "impact2", "impact3", "impact4", "impact5"};
+      name = impacts[(int)Random.Range(0f, 5f)];
+    }
     for (int i = 0; i < audioClips.Length; i++)
     {
       if (audioClips[i].name == name)
