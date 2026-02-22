@@ -61,6 +61,11 @@ public class WaveAuthority : MonoBehaviour
 		{
 			CutsceneEnd();
 		}
+
+		if (_waveIndex >= _waves.Count && _enemyHolder.GetComponentsInChildren<Enemy>().Count() == 0 && !BossAuthority.Ref.GetStartedBoss())
+		{
+			BossAuthority.Ref.StartBossFight();
+		}
 	}
 
 	public void Click()
@@ -79,7 +84,7 @@ public class WaveAuthority : MonoBehaviour
 	void SpawnWave()
 	{
 		AudioManager.Ref.playSFX("WaveStart");
-		Debug.Log(_waveIndex);
+		Debug.Log($"Wave: {_waveIndex} / {_waves.Count}");
 		if (_waves.Count > 0 && _waveIndex < _waves.Count)
 		{
 			_waves[_waveIndex].SpawnWave();
@@ -87,20 +92,12 @@ public class WaveAuthority : MonoBehaviour
 
 		_waveIndex++;
 
-		if (_waveIndex < _waves.Count)
+		if (_waveIndex <= _waves.Count)
 		{
 			Invoke(nameof(SpawnWave), _timeBetweenWaves);
-			return;
-		}
-		if (_waveIndex == _waves.Count - 1)
-		{
-
+			// return;
 		}
 
-		if (_enemyHolder.GetComponentsInChildren<Transform>().Count() < 2 && !BossAuthority.Ref.GetStartedBoss())
-		{
-			BossAuthority.Ref.StartBossFight();
-		}
 		// The final wave was defeated
 
 	}
@@ -159,6 +156,7 @@ public class WaveAuthority : MonoBehaviour
 	{
 		if (_waveIndex == 0)
 		{
+			_waveIndex = 10;
 			Debug.Log("Spawning first wave!");
 			SpawnWave();
 		}

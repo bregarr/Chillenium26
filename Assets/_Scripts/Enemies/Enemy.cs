@@ -21,10 +21,10 @@ public class Enemy : Character
 	[SerializeField] float _projectileDamage;
 
 	[Header("VFX")]
-	[SerializeField] VisualEffect _smokeEffect;
-	[SerializeField] VisualEffect _deadFishEffect1;
-	[SerializeField] VisualEffect _deadFishEffect2;
-	[SerializeField] VisualEffect _bloodHitEffect;
+	[SerializeField] protected VisualEffect _smokeEffect;
+	[SerializeField] protected VisualEffect _deadFishEffect1;
+	[SerializeField] protected VisualEffect _deadFishEffect2;
+	[SerializeField] protected VisualEffect _bloodHitEffect;
 
 	[Header("Enemy Options")]
 	[SerializeField] eBuffType _dropType = eBuffType.None;
@@ -59,14 +59,14 @@ public class Enemy : Character
 			_agent.baseOffset += EnemyAuthority.Ref.GetHeightVariance();
 		}
 
-    if (_damageAmount == 1)
-    {
-      AudioManager.Ref.playSFX("BassSpawn");
-    }
-    if (_damageAmount == 2)
-    {
-      AudioManager.Ref.playSFX("SharkSpawn");
-    }
+		if (_damageAmount == 1)
+		{
+			// AudioManager.Ref.playSFX("BassSpawn");
+		}
+		if (_damageAmount == 2)
+		{
+			AudioManager.Ref.playSFX("SharkSpawn");
+		}
 	}
 
 	protected virtual void FixedUpdate()
