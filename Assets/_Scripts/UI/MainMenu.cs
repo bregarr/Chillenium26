@@ -7,6 +7,7 @@ public class MainMenu : MonoBehaviour
     [Header("Menus")]
     [SerializeField] GameObject _mainMenu;
     [SerializeField] SettingsMenu _settingsMenu;
+    [SerializeField] GameObject _startMenu;
 
     void Start()
     {
@@ -19,6 +20,11 @@ public class MainMenu : MonoBehaviour
         AudioManager.Ref.playSFX("ClickSFX");
         // This uses the second scene in the build order which should be the main scene
         SceneManager.LoadScene("Scenes/Arena_Level");
+    }
+
+    public void ExtendStartMenu()
+    {
+        _startMenu.SetActive(true);
     }
 
     public void OpenSettingsMenu()
@@ -45,6 +51,25 @@ public class MainMenu : MonoBehaviour
     {
         _mainMenu.SetActive(false);
         _settingsMenu.DisableMenu();
+        _startMenu.SetActive(false);
+    }
+
+    public void StartHardGame()
+    {
+        DifficultyAuthority.Ref.UpdateDifficulty(eDifficulty.Hard);
+        StartGame();
+    }
+
+    public void StartExtremeGame()
+    {
+        DifficultyAuthority.Ref.UpdateDifficulty(eDifficulty.Extreme);
+        StartGame();
+    }
+
+    public void StartImpossibleGame()
+    {
+        DifficultyAuthority.Ref.UpdateDifficulty(eDifficulty.Impossible);
+        StartGame();
     }
 
 }

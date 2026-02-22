@@ -64,6 +64,7 @@ public class Boss : Enemy
 	public override void DeathEvent()
 	{
 		// Kill the boss
+		WaveAuthority.Ref.ClearEnemies();
 
 		_bossAnim.Defeat();
 

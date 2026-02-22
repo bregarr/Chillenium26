@@ -14,6 +14,11 @@ public enum eWeapon
 public class PlayerControl : Character
 {
 
+	float _diffHealthBuff;
+	float _diffDamageBuff;
+	float _diffDefenseBuff;
+	float _diffSpeedBuff;
+
 	[Header("Player Statics")]
 	[SerializeField] float _sensitivity;
 	[SerializeField] float _maxSpeed;
@@ -91,6 +96,12 @@ public class PlayerControl : Character
 		_hitAction = InputSystem.actions.FindAction("Melee", true);
 		_shootAction = InputSystem.actions.FindAction("Shoot", true);
 
+		DifficultyAuthority auth = DifficultyAuthority.Ref;
+		_diffHealthBuff = auth.GetHealthBuff();
+		_diffDamageBuff = auth.GetDamageBuff();
+		_diffDefenseBuff = auth.GetDefenseBuff();
+		_diffSpeedBuff = auth.GetSpeedBuff();
+
 		_dice = new Queue<Dice>();
 		_ammo = new Queue<int>();
 		// _buffs = new Queue<Dice>();
@@ -99,6 +110,8 @@ public class PlayerControl : Character
 		_anim = GetComponent<PlayerAnimator>();
 		_health = GetComponent<Health>();
 		WaveAuthority.SetPlayerRef(this);
+
+		SetMaxHealth(_health.GetMaxHealth() * _diffHealthBuff);
 
 		_lastAttackTime = Time.time;
 
@@ -360,7 +373,7 @@ public class PlayerControl : Character
 
 	void Melee()
 	{
-		if (_lastAttackTime + _meleeCooldown > Time.time)
+		if (_lastAttackTime + _meleeCooldown / _diffSpeedBuff > Time.time)
 		{
 			// Melee is still on cooldown
 			return;
@@ -381,7 +394,7 @@ public class PlayerControl : Character
 
 	void Throw()
 	{
-		if (_lastAttackTime + _projectileCooldown > Time.time)
+		if (_lastAttackTime + _projectileCooldown / _diffSpeedBuff > Time.time)
 		{
 			// Projectile is still on cooldown
 			return;
@@ -454,9 +467,14 @@ public class PlayerControl : Character
 		return _ammo.Count;
 	}
 
+	public void SetMaxHealth(float amount)
+	{
+		_health.SetMaxHealth(amount);
+	}
+
 	public float GetMeleeDamage()
 	{
-		return _meleeDamage;
+		return _meleeDamage * _diffDamageBuff;
 	}
 
 	public void SetMeleeDamage(float damage)
@@ -466,7 +484,7 @@ public class PlayerControl : Character
 
 	public float GetProjectileDamage()
 	{
-		return _projectileDamage;
+		return _projectileDamage * _diffDamageBuff;
 	}
 
 	public void SetProjectileDamage(float damage)
@@ -486,7 +504,7 @@ public class PlayerControl : Character
 
 	public float GetDefense()
 	{
-		return _defense;
+		return _defense * _diffDefenseBuff;
 	}
 
 	public void SetDefense(float defense)
