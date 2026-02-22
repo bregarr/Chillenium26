@@ -74,7 +74,6 @@ public class PlayerControl : Character
 	InputAction _lookAction;
 	InputAction _hitAction;
 	InputAction _shootAction;
-	InputAction _pauseAction;
 
 	void Start()
 	{
@@ -82,7 +81,6 @@ public class PlayerControl : Character
 		_lookAction = InputSystem.actions.FindAction("Look", true);
 		_hitAction = InputSystem.actions.FindAction("Melee", true);
 		_shootAction = InputSystem.actions.FindAction("Shoot", true);
-		_pauseAction = InputSystem.actions.FindAction("Pause", true);
 
 		_dice = new Queue<Dice>();
 		_ammo = new Queue<int>();
@@ -105,7 +103,11 @@ public class PlayerControl : Character
 
 	void Update()
 	{
-		Look();
+		if (!PauseUI.Ref.GetIsPaused())
+		{
+			Look();
+		}
+
 		Move();
 
 		if (_hitAction.WasCompletedThisFrame())
