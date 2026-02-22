@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Video;
 
@@ -22,14 +23,22 @@ public class WaveAuthority : MonoBehaviour
 	[SerializeField] VideoPlayer _vp;
 	[SerializeField] VideoClip[] _videos;
 	[SerializeField] Canvas _tvCanvas;
+	[SerializeField] TMP_Text _subtitleText;
+	[SerializeField] List<string> _subtitles;
+	[SerializeField] List<float> _subtitleDelays;
 
 	bool _isInCutscene = false;
 	int _waveIndex = 0;
 	int _clickCount;
 	GameObject _tv;
+	int _subtitleIndex;
+	float _subtitleTimer;
+	bool _activeSubtitle;
 
 	void Start()
 	{
+		_subtitleIndex = 0;
+		_subtitleTimer = 0f;
 		_waveIndex = 0;
 		_isInCutscene = false;
 		_cutsceneIndex = 0;
@@ -66,6 +75,28 @@ public class WaveAuthority : MonoBehaviour
 			BossAuthority.Ref.StartBossFight();
 		}
 	}
+
+	// void Update()
+	// {
+	// 	if (IsInCutscene())
+	// 	{
+	// 		_subtitleTimer += Time.deltaTime;
+
+	// 		if (_subtitleDelays[_subtitleIndex / 2 + 1] < _subtitleTimer)
+	// 		{
+	// 			_subtitleIndex++;
+	// 		}
+
+	// 		if (_activeSubtitle)
+	// 		{
+	// 			_subtitleText.text = _subtitles[_subtitleIndex];
+	// 		}
+	// 		else
+	// 		{
+	// 			_subtitleText.text = "";
+	// 		}
+	// 	}
+	// }
 
 	public void Click()
 	{
@@ -118,6 +149,7 @@ public class WaveAuthority : MonoBehaviour
 
 	public void ActivateCutscene()
 	{
+		_subtitleTimer = 0f;
 		_tvCanvas.enabled = false;
 		_tv.SetActive(true);
 		_clickCount = 0;

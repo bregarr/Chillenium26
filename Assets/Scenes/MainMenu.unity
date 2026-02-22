@@ -2470,7 +2470,8 @@ MonoBehaviour:
   _mainMenu: {fileID: 2117669599}
   _settingsMenu: {fileID: 1053106069}
   _startMenu: {fileID: 826053462}
-  blackBox: {fileID: 622458741}
+  _left: {fileID: 622458742}
+  _right: {fileID: 1488725275}
 --- !u!114 &1788650204
 MonoBehaviour:
   m_ObjectHideFlags: 0

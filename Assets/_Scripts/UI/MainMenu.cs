@@ -4,15 +4,27 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
+    static bool hasBeenMenu = false;
+
     [Header("Menus")]
     [SerializeField] GameObject _mainMenu;
     [SerializeField] SettingsMenu _settingsMenu;
     [SerializeField] GameObject _startMenu;
-    
+
+    [Header("Animation")]
+    [SerializeField] Animator _left;
+    [SerializeField] Animator _right;
+
     void Start()
     {
         CursorLock.Ref.UnlockCursor();
         AudioManager.Ref.playSFX("SharkSpawn");
+        if (hasBeenMenu)
+        {
+            _left.gameObject.SetActive(false);
+            _right.gameObject.SetActive(false);
+        }
+        hasBeenMenu = true;
     }
 
     // Starts the game into the main scene
