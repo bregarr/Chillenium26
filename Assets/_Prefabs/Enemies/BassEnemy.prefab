@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7459813144373861396}
   - component: {fileID: 3603432315366810881}
   - component: {fileID: 7942099116637070222}
+  - component: {fileID: 5564185754107726699}
   m_Layer: 9
   m_Name: BassEnemy
   m_TagString: Untagged
@@ -143,6 +144,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAnimator
   _anim: {fileID: 8090504164521576662}
+--- !u!114 &5564185754107726699
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95695004340714281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf6ee3a25ac39194bafaf3c7f4e69dc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  _bassRig: {fileID: 450919013795324939}
 --- !u!1 &3444190367995749492
 GameObject:
   m_ObjectHideFlags: 0
