@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
@@ -7,6 +8,7 @@ public class TutorialManager : MonoBehaviour
 
     [Header("Elements")]
     [SerializeField] GameObject _tutorialEnemy;
+    [SerializeField] GameObject _tutorialPrompt;
 
     bool _isInTutorial;
 
@@ -24,6 +26,11 @@ public class TutorialManager : MonoBehaviour
         if (!_tutorialEnemy)
         {
             _isInTutorial = false;
+            if (_tutorialPrompt)
+            {
+                Destroy(_tutorialPrompt, 1.0f);
+                _tutorialPrompt.GetComponentInChildren<TMP_Text>().text = "Good work!";
+            }
         }
         else
         {

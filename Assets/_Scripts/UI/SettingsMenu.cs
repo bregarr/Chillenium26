@@ -161,12 +161,34 @@ public class SettingsMenu : MonoBehaviour
 
 	public void TryLowerBackground()
 	{
-		StartCoroutine(nameof(LowerBackground));
+		if (_isActive)
+		{
+			_isLowering = false;
+			_isRaising = true;
+			StartCoroutine(nameof(RaiseBackground));
+		}
+		else
+		{
+			_isLowering = true;
+			_isRaising = false;
+			StartCoroutine(nameof(LowerBackground));
+		}
 	}
 
 	public void TryRaiseBackground()
 	{
-		StartCoroutine(nameof(RaiseBackground));
+		if (!_isActive)
+		{
+			_isLowering = true;
+			_isRaising = false;
+			StartCoroutine(nameof(LowerBackground));
+		}
+		else
+		{
+			_isLowering = false;
+			_isRaising = true;
+			StartCoroutine(nameof(RaiseBackground));
+		}
 	}
 
 	IEnumerator LowerBackground()

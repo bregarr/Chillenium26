@@ -21,18 +21,39 @@ public class TutorialMenu : MonoBehaviour
 
 	public void TryRaiseBackground()
 	{
-		_isRaising = true;
-		_isLowering = false;
-		StartCoroutine(nameof(RaiseBackground));
+		if (!_isActive)
+		{
+			_isLowering = true;
+			_isRaising = false;
+			_background.SetActive(true);
+			StartCoroutine(nameof(LowerBackground));
+		}
+		else
+		{
+			_isLowering = false;
+			_isRaising = true;
+			StartCoroutine(nameof(RaiseBackground));
+		}
 	}
 
 	public void TryLowerBackground()
 	{
-		_isRaising = false;
-		_isLowering = true;
-		_background.SetActive(true);
-		StartCoroutine(nameof(LowerBackground));
+		if (_isActive)
+		{
+			_isLowering = false;
+			_isRaising = true;
+			StartCoroutine(nameof(RaiseBackground));
+		}
+		else
+		{
+			_isLowering = true;
+			_isRaising = false;
+			_background.SetActive(true);
+			StartCoroutine(nameof(LowerBackground));
+		}
 	}
+
+
 
 	IEnumerator LowerBackground()
 	{
