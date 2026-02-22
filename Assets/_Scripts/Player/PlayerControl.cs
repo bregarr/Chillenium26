@@ -582,7 +582,6 @@ public class PlayerControl : Character
 	{
 		HudUI.Ref.HideCanvas();
 		_winDecal.SetActive(true);
-		Debug.Log(_camera.GetComponent<Camera>());
 		_camera.GetComponent<Camera>().enabled = false;
 		_deadCamera.enabled = true;
 		Invoke(nameof(GoToMenu), 2.5f);

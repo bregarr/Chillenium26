@@ -86,7 +86,7 @@ public class SettingsMenu : MonoBehaviour
 		{
 			PlayerPrefs.SetFloat("speedCheat", 1f);
 		}
-		_diceToggle.isOn = PlayerPrefs.GetFloat("speedCheat") == 10f;
+		_speedToggle.isOn = PlayerPrefs.GetFloat("speedCheat") == 10f;
 	}
 
 	public void EnableMenu()
@@ -308,18 +308,28 @@ public class SettingsMenu : MonoBehaviour
 		{
 			PlayerPrefs.SetFloat("speedCheat", 1f);
 		}
+
+		if (WaveAuthority.PlayerRef)
+		{
+			WaveAuthority.PlayerRef.UpdateInverts();
+		}
 	}
 
 	public void DiceToggleChange()
 	{
 		AudioManager.Ref.playSFX("ClickSFX");
-		if (_speedToggle.isOn)
+		if (_diceToggle.isOn)
 		{
 			PlayerPrefs.SetInt("diceCheat", 1);
 		}
 		else
 		{
 			PlayerPrefs.SetInt("diceCheat", 0);
+		}
+
+		if (WaveAuthority.PlayerRef)
+		{
+			WaveAuthority.PlayerRef.UpdateInverts();
 		}
 	}
 
