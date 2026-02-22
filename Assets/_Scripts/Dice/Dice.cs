@@ -27,9 +27,6 @@ public class Dice : MonoBehaviour
 			_buffType = (eBuffType)_sideCount;
 		}
     RollDice();
-    Debug.Log(_sideCount);
-    Debug.Log(_buffType);
-    Debug.Log(sideNum);
 	}
 
 	public Dice InitializeDice(eBuffType buffType)
@@ -66,6 +63,10 @@ public class Dice : MonoBehaviour
 
 	public void RollDice()
 	{
+    if (!_floating)
+    {
+      AudioManager.Ref.playSFX("DieRoll");
+    }
 		sideNum = (int)Mathf.Round(Random.Range(1, (int)_buffType));
 	}
 
