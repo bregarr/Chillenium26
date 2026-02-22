@@ -4165,6 +4165,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2fb51892328b29b4098942f5a5e8ab11, type: 3}
+--- !u!1 &1182870430 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6555892502166290971, guid: 2fb51892328b29b4098942f5a5e8ab11, type: 3}
+  m_PrefabInstance: {fileID: 1182870429}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1223005330
 GameObject:
   m_ObjectHideFlags: 0
@@ -4531,6 +4536,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialManager
   _tutorialEnemy: {fileID: 14037440}
+  _tutorialPrompt: {fileID: 1182870430}
 --- !u!4 &1250232691
 Transform:
   m_ObjectHideFlags: 0
@@ -4559,12 +4565,20 @@ PrefabInstance:
       value: BassEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 1498264004728966653, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
+      propertyPath: _dropType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498264004728966653, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
       propertyPath: _attackSpeed
       value: Infinity
       objectReference: {fileID: 0}
     - target: {fileID: 1498264004728966653, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
       propertyPath: _attackDistance
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498264004728966653, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
+      propertyPath: _diceDropChance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1682560978748001316, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4923,6 +4937,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 6445972967362992916, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
+      propertyPath: _uiBuff
+      value: 
+      objectReference: {fileID: 1754918727}
     - target: {fileID: 6828195505883092693, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.1409998
@@ -6130,6 +6148,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1691858064}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1754918727 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5439774331216235204, guid: 2fb51892328b29b4098942f5a5e8ab11, type: 3}
+  m_PrefabInstance: {fileID: 1182870429}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c83cc8179b6c2a43b2176c1ef7e9699, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIBuffs
 --- !u!1 &1759404325
 GameObject:
   m_ObjectHideFlags: 0
