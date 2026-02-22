@@ -49,6 +49,9 @@ MonoBehaviour:
   audioPrefab: {fileID: 8016784040097081031, guid: d45c6d561663d6b4abda563516f83562, type: 3}
   audioClips:
   - {fileID: 8300000, guid: 22156a84a4ea4c74db65e29c85782726, type: 3}
+  - {fileID: 8300000, guid: c7bd67432fee84d4a913be471be9a628, type: 3}
+  - {fileID: 8300000, guid: 833b03279c49c714fbfefce0d3272f73, type: 3}
+  - {fileID: 8300000, guid: e23100e6ac22361499892e8cfcd4aaf2, type: 3}
 --- !u!1001 &4385335849883871248
 PrefabInstance:
   m_ObjectHideFlags: 0
