@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c393c2797004bed43b48fc2b8db174e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Enemy
-  _moveSpeed: 3
+  _moveSpeed: 2.5
   _damageAmount: 3
   _attackSpeed: 0.5
   _attackDistance: 7
@@ -107,6 +107,7 @@ MonoBehaviour:
   _maxHealth: 8
   _hitMat: {fileID: 2100000, guid: 5a12755d7474720478f59a4a14d31722, type: 2}
   _hitFlashTime: 0.25
+  _damageCooldown: 0
 --- !u!195 &2681068627349530814
 NavMeshAgent:
   m_ObjectHideFlags: 0
