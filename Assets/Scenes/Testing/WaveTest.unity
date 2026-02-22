@@ -923,10 +923,6 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6445972967362992916, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
-      propertyPath: _drag
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6445972967362992916, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
       propertyPath: _uiBuff
       value: 
       objectReference: {fileID: 1495512845}

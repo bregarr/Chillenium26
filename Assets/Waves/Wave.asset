@@ -10,12 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 67c0567b35f1e1b49983121531c4e4fc, type: 3}
-  m_Name: Wave1
+  m_Name: Wave
   m_EditorClassIdentifier: Assembly-CSharp::WaveSO
   _spawnLocations:
-  - {x: 8, y: 2, z: 0}
+  - {x: -17, y: 1, z: -5}
+  - {x: -19, y: 1, z: -17}
+  - {x: 19, y: 1, z: -17}
+  - {x: 17, y: 1, z: -5}
+  - {x: 0, y: 1, z: 20}
   _spawnableEnemies:
   - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
-  diceToDrop: 0400000004000000
-  _numEnemies: 4
-  _timeBetweenSpawns: 1
+  - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
+  - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
+  - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
+  - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
+  _timeBetweenSpawns: 2

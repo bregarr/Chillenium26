@@ -22,7 +22,8 @@ public class Projectile : MonoBehaviour
 		lifeSpan -= Time.deltaTime;
 		if (lifeSpan <= 0)
 		{
-			Destroy(gameObject);
+			Invoke(nameof(ShrinkProjectile), .1f);
+			lifeSpan = int.MaxValue;
 		}
 	}
 
@@ -39,6 +40,32 @@ public class Projectile : MonoBehaviour
 
 	protected virtual void OnCollisionEnter(Collision other)
 	{
+
+	}
+
+	float _u = 0f;
+	Vector3 _startScale = Vector3.zero;
+
+	void ShrinkProjectile()
+	{
+		if (_startScale == Vector3.zero)
+		{
+			_startScale = transform.localScale;
+		}
+
+		Vector3 currScale = Vector3.zero;
+		currScale = Vector3.Lerp(_startScale, Vector3.zero, _u * _u);
+		transform.localScale = currScale;
+
+		if (_u * _u == 1.0f)
+		{
+			Destroy(gameObject);
+		}
+		else
+		{
+			_u += .1f;
+			Invoke(nameof(ShrinkProjectile), .05f);
+		}
 
 	}
 }

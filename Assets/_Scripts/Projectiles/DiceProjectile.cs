@@ -8,23 +8,33 @@ public class DiceProjectile : Projectile
 	protected override void Start()
 	{
 		base.Start();
+		foreach (Transform child in GetComponentsInChildren<Transform>())
+		{
+			child.gameObject.layer = LayerMask.NameToLayer("Projectile");
+		}
 		gameObject.layer = LayerMask.NameToLayer("Projectile");
 	}
 
 	public override void Shoot()
 	{
+		Vector3 randomRot = Vector3.one;
+		randomRot.x = UnityEngine.Random.Range(0f, 360f);
+		randomRot.y = UnityEngine.Random.Range(0f, 360f);
+		randomRot.z = UnityEngine.Random.Range(0f, 360f);
+		transform.localEulerAngles = randomRot;
 		Rigidbody rb = GetComponent<Rigidbody>();
 		Vector3 forceDirection = WaveAuthority.PlayerRef.RightTransform();
 		Transform player = WaveAuthority.PlayerRef.transform;
 
-		RaycastHit hit;
-		if (Physics.Raycast(player.position + new Vector3(0f, .75f, 0f), transform.forward, out hit, 500f))
-		{
-			if (Vector3.Distance(hit.point, transform.position) > 0.5)
-			{
-				forceDirection = (hit.point - transform.position).normalized;
-			}
-		}
+		// RaycastHit hit;
+		// if (Physics.Raycast(player.position + new Vector3(0f, .75f, 0f), transform.forward, out hit, 500f))
+		// {
+		// 	if (Vector3.Distance(hit.point, transform.position) > 0.5)
+		// 	{
+		// 		Debug.Log("Youre doing the thing");
+		// 		forceDirection = (hit.point - transform.position).normalized;
+		// 	}
+		// }
 
 		float pitch = -player.GetComponent<PlayerControl>().GetPitch();
 

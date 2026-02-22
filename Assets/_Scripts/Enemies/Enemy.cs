@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.VFX;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Health))]
@@ -19,12 +20,19 @@ public class Enemy : Character
 	[SerializeField] float _projectileSpread;
 	[SerializeField] float _projectileDamage;
 
+	[Header("VFX")]
+	[SerializeField] VisualEffect _smokeEffect;
+	[SerializeField] VisualEffect _deadFishEffect1;
+	[SerializeField] VisualEffect _deadFishEffect2;
+	[SerializeField] VisualEffect _bloodHitEffect;
+
 	[Header("Enemy Options")]
 	[SerializeField] eBuffType _dropType = eBuffType.None;
 	[SerializeField] bool _canDropDice = true;
 	[SerializeField] float _diceDropChance = .5f;
 
 	EnemyAnimator _anim;
+	bool _isDead;
 
 	protected NavMeshAgent _agent;
 	float _lastAttackTime;
@@ -32,6 +40,7 @@ public class Enemy : Character
 
 	void Start()
 	{
+		_isDead = false;
 		_agent = GetComponent<NavMeshAgent>();
 		_agent.speed = _moveSpeed;
 		_agent.stoppingDistance = _attackDistance;
@@ -53,6 +62,10 @@ public class Enemy : Character
 
 	protected virtual void FixedUpdate()
 	{
+		if (_isDead)
+		{
+			return;
+		}
 		_agent.destination = WaveAuthority.PlayerRef.gameObject.transform.position;
 
 		if (_agent.velocity.magnitude > 0.0001f)
@@ -95,10 +108,20 @@ public class Enemy : Character
 	public void GetHit()
 	{
 		_anim.Hit();
+		_bloodHitEffect.Play();
 	}
+
+	float _u = 0.0f;
+	Vector3 _startScale = Vector3.zero;
+	Transform _rigTrans;
 
 	public override void DeathEvent()
 	{
+		if (_isDead)
+		{
+			return;
+		}
+		_isDead = true;
 		// Kill the enemy
 		if (_canDropDice && Random.Range(0, 1) <= _diceDropChance)
 		{
@@ -107,7 +130,38 @@ public class Enemy : Character
 			dropDiceGO.GetComponent<Dice>().InitializeDice(true);
 			dropDiceGO.transform.position = transform.position;
 		}
-		Destroy(this.gameObject);
+		// If swimmer, have an extra double chance to drop an ammo die
+		else if (_canDropDice && _isSwimmer && (Random.Range(0, 1) <= _diceDropChance || Random.Range(0, 1) <= _diceDropChance))
+		{
+			GameObject dropDicePrefab = DiceAuthority.Ref.GetDiceByBuff(eBuffType.Ammo);
+			GameObject dropDiceGO = Instantiate<GameObject>(dropDicePrefab, transform.position, transform.rotation);
+			dropDiceGO.GetComponent<Dice>().InitializeDice(true);
+			dropDiceGO.transform.position = transform.position;
+		}
+
+		_rigTrans = GetComponentInChildren<Animator>().gameObject.transform;
+		_startScale = _rigTrans.localScale;
+		_u = 0.0f;
+		PlayDeathEffects();
+	}
+
+	void PlayDeathEffects()
+	{
+		Vector3 newScale = Vector3.Lerp(_startScale, Vector3.zero, _u * _u);
+		_rigTrans.localScale = newScale;
+
+		_u += 0.1f;
+		if (_u * _u >= 1f)
+		{
+			Destroy(gameObject, 1f);
+			_smokeEffect.Play();
+			_deadFishEffect1.Play();
+			_deadFishEffect2.Play();
+		}
+		else
+		{
+			Invoke(nameof(PlayDeathEffects), 0.01f);
+		}
 	}
 
 	bool AgentInRange()
@@ -142,7 +196,6 @@ public class Enemy : Character
 	{
 		GameObject projectilePrefab = Instantiate<GameObject>(EnemyAuthority.Ref.GetRandomProjectile(), transform.position, transform.rotation);
 		EnemyProjectile projectile = projectilePrefab.GetComponent<EnemyProjectile>();
-		Debug.Log(projectile);
 		projectile.InitializeProjectile(_shootSpeed, _projectileTTL, gameObject);
 		projectile.Shoot();
 	}
