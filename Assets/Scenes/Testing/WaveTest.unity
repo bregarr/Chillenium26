@@ -1448,6 +1448,10 @@ PrefabInstance:
       propertyPath: _uiBuff
       value: 
       objectReference: {fileID: 1495512845}
+    - target: {fileID: 6445972967362992916, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
+      propertyPath: _maxSpeed
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6468426136681343842, guid: 72ad7953ca88f6f499e94df03f135f91, type: 3}
       propertyPath: m_Layer
       value: 6

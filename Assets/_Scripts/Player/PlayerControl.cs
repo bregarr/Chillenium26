@@ -258,7 +258,14 @@ public class PlayerControl : Character
 		newForce += _moveSpeed * inputPos.y * RightTransform();
 		newForce += _moveSpeed * inputPos.x * ForwardTransform();
 
-		_rb.AddForce(newForce);
+		if (inputPos.x == 0f && inputPos.y == 0f)
+		{
+			_rb.linearVelocity = Vector3.zero;
+		}
+		else
+		{
+			_rb.AddForce(newForce);
+		}
 
 		// Clamp the velocity
 		Vector3 currVel = _rb.linearVelocity;

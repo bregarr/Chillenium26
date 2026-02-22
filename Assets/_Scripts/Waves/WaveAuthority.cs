@@ -34,7 +34,10 @@ public class WaveAuthority : MonoBehaviour
 
 	void SpawnWave()
 	{
-		_waves[_waveIndex].SpawnWave();
+		if (_waves.Count > 0)
+		{
+			_waves[_waveIndex].SpawnWave();
+		}
 
 		_waveIndex++;
 
