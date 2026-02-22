@@ -287,7 +287,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
   _sensitivity: 50
   _maxSpeed: 6
-  _drag: 2
+  _drag: 999
   _maxLookHeight: 75
   _meleeCooldown: 0.5
   _projectileCooldown: 0.2
@@ -295,6 +295,7 @@ MonoBehaviour:
   _runThreshold: 5
   _projectileSpeed: 15
   _projectileTTL: 5
+  _isInArena: 0
   _uiBuff: {fileID: 0}
   _baseMoveSpeed: 16
   _moveSpeed: 16
@@ -329,6 +330,7 @@ MonoBehaviour:
   _maxHealth: 10
   _hitMat: {fileID: 0}
   _hitFlashTime: 0
+  _damageCooldown: 0
 --- !u!114 &6254833926112614888
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -26,6 +26,7 @@ public class PlayerControl : Character
 	[SerializeField] float _runThreshold;
 	[SerializeField] float _projectileSpeed;
 	[SerializeField] float _projectileTTL;
+	[SerializeField] bool _isInArena = false;
 
 	[Header("References")]
 	[SerializeField] UIBuffs _uiBuff;
@@ -115,8 +116,12 @@ public class PlayerControl : Character
 		}
 		_invertY = PlayerPrefs.GetFloat("yInvert");
 
-		// _yaw += _startingYaw;
-		//Debug.Log(_yaw);
+		if (_isInArena)
+		{
+			_camera.transform.localEulerAngles = new Vector3(-11.5f, -88.5f, 0f);
+			_yaw = 272.93f;
+			_pitch = -7f;
+		}
 	}
 
 	void Update()
