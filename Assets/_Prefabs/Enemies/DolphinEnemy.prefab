@@ -328,6 +328,7 @@ MonoBehaviour:
   _dropType: 0
   _canDropDice: 0
   _diceDropChance: 0.5
+  _waveIntervals: 25
 --- !u!114 &8789401430333260795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -340,9 +341,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189fa3765f91b1243b77b1d4026a0178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  _maxHealth: 3
+  _maxHealth: 4
   _hitMat: {fileID: 2100000, guid: 5a12755d7474720478f59a4a14d31722, type: 2}
   _hitFlashTime: 0.25
+  _damageCooldown: 0
 --- !u!195 &7711975063153352091
 NavMeshAgent:
   m_ObjectHideFlags: 0

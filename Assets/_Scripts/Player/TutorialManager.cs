@@ -30,6 +30,7 @@ public class TutorialManager : MonoBehaviour
             {
                 Destroy(_tutorialPrompt, 1.0f);
                 _tutorialPrompt.GetComponentInChildren<TMP_Text>().text = "Good work!";
+                WaveAuthority.Ref.StartFirstWave();
             }
         }
         else
