@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         CursorLock.Ref.UnlockCursor();
+        AudioManager.Ref.playSFX("slash2");
+        AudioManager.Ref.playSFX("slash3");
     }
 
     // Starts the game into the main scene
