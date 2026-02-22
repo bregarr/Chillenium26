@@ -16,5 +16,6 @@ MonoBehaviour:
   - {x: 8, y: 2, z: 0}
   _spawnableEnemies:
   - {fileID: 95695004340714281, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
+  diceToDrop: 0400000004000000
   _numEnemies: 4
   _timeBetweenSpawns: 1

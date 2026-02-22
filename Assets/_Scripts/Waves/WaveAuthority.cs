@@ -57,7 +57,8 @@ public class WaveAuthority : MonoBehaviour
 	{
 		for (int i = 0; i < locations.Count; i++)
 		{
-			Instantiate(enemies[i], locations[i], transform.rotation);
+			GameObject newEnemy = Instantiate(enemies[i], locations[i], transform.rotation);
+			newEnemy.GetComponent<Enemy>().UpdateDrop(DiceAuthority.Ref.GetRandomDiceType());
 			yield return new WaitForSeconds(cooldown);
 		}
 	}

@@ -114,4 +114,11 @@ public class Enemy : Character
 		_health.TakeDamage(takeDamage);
 
 	}
+
+	public void UpdateDrop(eBuffType type, float chance = .5f)
+	{
+		_dropType = type;
+		_canDropDice = true;
+		_diceDropChance = chance;
+	}
 }
