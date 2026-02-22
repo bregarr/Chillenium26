@@ -13,10 +13,11 @@ public class Dice : MonoBehaviour
 	[SerializeField] bool _floating;
 	float _lifespan;
 	public int sideNum { get; private set; }
+  Vector3 middle;
 
 	public Dice(eBuffType type)
 	{
-		InitializeDice(type);
+		//InitializeDice(type);
 	}
 
 	void OnEnable()
@@ -25,6 +26,10 @@ public class Dice : MonoBehaviour
 		{
 			_buffType = (eBuffType)_sideCount;
 		}
+    RollDice();
+    Debug.Log(_sideCount);
+    Debug.Log(_buffType);
+    Debug.Log(sideNum);
 	}
 
 	public Dice InitializeDice(eBuffType buffType)
@@ -33,14 +38,12 @@ public class Dice : MonoBehaviour
 		if (_buffType == eBuffType.None)
 		{
 			buffType = (eBuffType)_sideCount;
-			Debug.Log(_sideCount);
 		}
 
 		GameObject newDice = DiceAuthority.Ref.GetDiceByBuff(buffType);
 		GetComponent<MeshFilter>().mesh = newDice.GetComponent<MeshFilter>().mesh;
 		GetComponent<MeshRenderer>().material = newDice.GetComponent<MeshRenderer>().material;
 
-		RollDice();
 		return this;
 	}
 
@@ -50,15 +53,14 @@ public class Dice : MonoBehaviour
 		{
 			_lifespan = 10f;
 			_floating = floating;
-			transform.position += new Vector3(0f, 1f, 0f);
+      middle = transform.position - new Vector3(0f, 0.4f, 0f);
 		}
-		RollDice();
+		
 		return this;
 	}
 
 	public Dice InitializeDice()
 	{
-		RollDice();
 		return this;
 	}
 
@@ -81,7 +83,7 @@ public class Dice : MonoBehaviour
 	{
 		if (_floating)
 		{
-			transform.position = new Vector3(transform.position.x, transform.position.y * 0.1f * Mathf.Sin(Time.time * 0.2f), transform.position.z);
+			transform.position = new Vector3(transform.position.x, middle.y + 0.15f * Mathf.Sin(Time.time * 2f), transform.position.z);
 			transform.Rotate(new Vector3(0f, 0.5f, 0f));
 
 			_lifespan -= Time.deltaTime;
