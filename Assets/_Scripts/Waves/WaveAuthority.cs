@@ -34,6 +34,7 @@ public class WaveAuthority : MonoBehaviour
 
 	void SpawnWave()
 	{
+    AudioManager.Ref.playSFX("WaveStart");
 		if (_waves.Count > 0)
 		{
 			_waves[_waveIndex].SpawnWave();
