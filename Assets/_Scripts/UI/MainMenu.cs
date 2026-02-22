@@ -8,12 +8,11 @@ public class MainMenu : MonoBehaviour
     [SerializeField] GameObject _mainMenu;
     [SerializeField] SettingsMenu _settingsMenu;
     [SerializeField] GameObject _startMenu;
-
+    
     void Start()
     {
         CursorLock.Ref.UnlockCursor();
-        AudioManager.Ref.playSFX("slash2");
-        AudioManager.Ref.playSFX("slash3");
+        AudioManager.Ref.playSFX("SharkSpawn");
     }
 
     // Starts the game into the main scene
