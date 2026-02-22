@@ -444,12 +444,12 @@ MonoBehaviour:
   _deadFishEffect1: {fileID: 946276286012000424}
   _deadFishEffect2: {fileID: 1686497067244679920}
   _bloodHitEffect: {fileID: 5886029575226018445}
-  _BubbleEffect: {fileID: 4555378107358496083}
   _dropType: 0
   _canDropDice: 0
   _diceDropChance: 0.5
   _waveIntervals: 25
   _tunaCan: {fileID: 2212716218473225934, guid: 4ab81f20de5e5714ead14f35ba8704b0, type: 3}
+  _BubbleEffect: {fileID: 4555378107358496083}
 --- !u!114 &8789401430333260795
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189fa3765f91b1243b77b1d4026a0178, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Health
-  _maxHealth: 30
+  _maxHealth: 50
   _hitMat: {fileID: 2100000, guid: 5a12755d7474720478f59a4a14d31722, type: 2}
   _hitFlashTime: 0.25
   _damageCooldown: 0
