@@ -48,6 +48,7 @@ public class Health : MonoBehaviour
 		else
 		{
 			_currHealth -= amount;
+			_owner.GetComponent<Enemy>().GetHit();
 		}
 
 		foreach (SkinnedMeshRenderer childRenderer in _renderers)
@@ -84,14 +85,14 @@ public class Health : MonoBehaviour
 		}
 	}
 
-  public float GetMaxHealth()
-  {
-    return _maxHealth;
-  }
-  
-  public float GetHealth()
-  {
-    return _currHealth;
-  }
+	public float GetMaxHealth()
+	{
+		return _maxHealth;
+	}
+
+	public float GetHealth()
+	{
+		return _currHealth;
+	}
 
 }

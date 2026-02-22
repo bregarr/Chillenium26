@@ -4,7 +4,7 @@ public class EnemyAnimator : MonoBehaviour
 {
 
 	[Header("Animators")]
-	[SerializeField] Animator _anim;
+	[SerializeField] protected Animator _anim;
 
 	public void Hit()
 	{

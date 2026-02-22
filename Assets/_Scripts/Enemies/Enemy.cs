@@ -20,7 +20,7 @@ public class Enemy : Character
 
 	EnemyAnimator _anim;
 
-	NavMeshAgent _agent;
+	protected NavMeshAgent _agent;
 	float _lastAttackTime;
 	Health _health;
 
@@ -44,7 +44,7 @@ public class Enemy : Character
 		}
 	}
 
-	void FixedUpdate()
+	protected virtual void FixedUpdate()
 	{
 		_agent.destination = WaveAuthority.PlayerRef.gameObject.transform.position;
 
@@ -69,13 +69,17 @@ public class Enemy : Character
 			if (_lastAttackTime + _attackSpeed <= Time.time)
 			{
 				// Can attack
-				_anim.Hit();
 
 				_lastAttackTime = Time.time + _attackSpeed;
 				return;
 			}
 			// This is where the enemy is within range but is on cooldown
 		}
+	}
+
+	public void GetHit()
+	{
+		_anim.Hit();
 	}
 
 	public override void DeathEvent()
