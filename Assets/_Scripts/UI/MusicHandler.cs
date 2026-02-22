@@ -258,7 +258,7 @@ public class MusicHandler : MonoBehaviour
     {
       gun.volume -= amount * fadeOutSpeed;
     }
-    Debug.Log(_musicVolume);
+    //Debug.Log(_musicVolume);
   }
 
   public void UpdateMusicVolume(float newVol)

@@ -46,6 +46,10 @@ public class WaveAuthority : MonoBehaviour
 			Invoke(nameof(SpawnWave), _timeBetweenWaves);
 			return;
 		}
+    if (_waveIndex == _waves.Count - 1)
+    {
+      
+    }
 
 		// The final wave was defeated
 
