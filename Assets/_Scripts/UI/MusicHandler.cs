@@ -13,11 +13,13 @@ public class MusicHandler : MonoBehaviour
   [SerializeField] AudioSource drums;
   [SerializeField] AudioSource crash;
   [SerializeField] AudioSource gun;
-  
+
   [Header("Music Stats")]
   [SerializeField] float fadeInSpeed;
   [SerializeField] float fadeOutSpeed;
-  
+
+  float _musicVolume;
+
   bool pluckOn;
   bool smoothPluckOn;
   bool bassOn;
@@ -104,7 +106,7 @@ public class MusicHandler : MonoBehaviour
     crashOn = false;
     gunOn = false;
   }
-  
+
   void Start()
   {
     pluck.Play();
@@ -127,94 +129,141 @@ public class MusicHandler : MonoBehaviour
 
   void adjustVolumes(float amount)
   {
-    if (pluckOn && pluck.volume < 1f)
+    if (pluckOn && pluck.volume < _musicVolume)
     {
       pluck.volume += amount * fadeInSpeed;
+    }
+    else if (pluckOn && pluck.volume > _musicVolume)
+    {
+      pluck.volume -= amount * fadeOutSpeed;
     }
     if (!pluckOn && pluck.volume > 0f)
     {
       pluck.volume -= amount * fadeOutSpeed;
     }
 
-    if (smoothPluckOn && smoothPluck.volume < 1f)
+    if (smoothPluckOn && smoothPluck.volume < _musicVolume)
     {
       smoothPluck.volume += amount * fadeInSpeed;
+    }
+    else if (smoothPluckOn && smoothPluck.volume > _musicVolume)
+    {
+      smoothPluck.volume -= amount * fadeOutSpeed;
     }
     if (!smoothPluckOn && smoothPluck.volume > 0f)
     {
       smoothPluck.volume -= amount * fadeOutSpeed;
     }
-    
-    if (bassOn && bass.volume < 1f)
+
+    if (bassOn && bass.volume < _musicVolume)
     {
       bass.volume += amount * fadeInSpeed;
+    }
+    else if (bassOn && bass.volume > _musicVolume)
+    {
+      bass.volume -= amount * fadeOutSpeed;
     }
     if (!bassOn && bass.volume > 0f)
     {
       bass.volume -= amount * fadeOutSpeed;
     }
-    
-    if (leadOn && lead.volume < 1f)
+
+    if (leadOn && lead.volume < _musicVolume)
     {
       lead.volume += amount * fadeInSpeed;
+    }
+    else if (leadOn && lead.volume > _musicVolume)
+    {
+      lead.volume -= amount * fadeOutSpeed;
     }
     if (!leadOn && lead.volume > 0f)
     {
       lead.volume -= amount * fadeOutSpeed;
     }
-    
-    if (hornsOn && horns.volume < 1f)
+
+    if (hornsOn && horns.volume < _musicVolume)
     {
       horns.volume += amount * fadeInSpeed;
+    }
+    else if (hornsOn && horns.volume > _musicVolume)
+    {
+      horns.volume -= amount * fadeOutSpeed;
     }
     if (!hornsOn && horns.volume > 0f)
     {
       horns.volume -= amount * fadeOutSpeed;
     }
-    
-    if (trumpetOn && trumpet.volume < 1f)
+
+    if (trumpetOn && trumpet.volume < _musicVolume)
     {
       trumpet.volume += amount * fadeInSpeed;
+    }
+    else if (trumpetOn && trumpet.volume > _musicVolume)
+    {
+      trumpet.volume -= amount * fadeOutSpeed;
     }
     if (!trumpetOn && trumpet.volume > 0f)
     {
       trumpet.volume -= amount * fadeOutSpeed;
     }
-    
-    if (bassGuitarOn && bassGuitar.volume < 1f)
+
+    if (bassGuitarOn && bassGuitar.volume < _musicVolume)
     {
       bassGuitar.volume += amount * fadeInSpeed;
+    }
+    else if (bassGuitarOn && bassGuitar.volume > _musicVolume)
+    {
+      bassGuitar.volume -= amount * fadeOutSpeed;
     }
     if (!bassGuitarOn && bassGuitar.volume > 0f)
     {
       bassGuitar.volume -= amount * fadeOutSpeed;
     }
-    
-    if (drumsOn && drums.volume < 1f)
+
+    if (drumsOn && drums.volume < _musicVolume)
     {
       drums.volume += amount * fadeInSpeed;
+    }
+    else if (drumsOn && drums.volume > _musicVolume)
+    {
+      drums.volume -= amount * fadeOutSpeed;
     }
     if (!drumsOn && drums.volume > 0f)
     {
       drums.volume -= amount * fadeOutSpeed;
     }
-    
-    if (crashOn && crash.volume < 1f)
+
+    if (crashOn && crash.volume < _musicVolume)
     {
       crash.volume += amount * fadeInSpeed;
+    }
+    else if (crashOn && crash.volume > _musicVolume)
+    {
+      crash.volume -= amount * fadeOutSpeed;
     }
     if (!crashOn && crash.volume > 0f)
     {
       crash.volume -= amount * fadeOutSpeed;
     }
-    
-    if (gunOn && gun.volume < 1f)
+
+    if (gunOn && gun.volume < _musicVolume)
     {
       gun.volume += amount * fadeInSpeed;
+    }
+    else if (gunOn && gun.volume > _musicVolume)
+    {
+      gun.volume -= amount * fadeOutSpeed;
     }
     if (!gunOn && gun.volume > 0f)
     {
       gun.volume -= amount * fadeOutSpeed;
     }
+    Debug.Log(_musicVolume);
   }
+
+  public void UpdateMusicVolume(float newVol)
+  {
+    _musicVolume = newVol;
+  }
+
 }

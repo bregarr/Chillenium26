@@ -17,6 +17,10 @@ public class SettingsMenu : MonoBehaviour
 	[SerializeField] Toggle _yInvertToggle;
 	[SerializeField] Slider _sensitivitySlider;
 	[SerializeField] TMP_Text _sensitivityLabel;
+	[SerializeField] Slider _musicSlider;
+	[SerializeField] TMP_Text _musicLabel;
+	[SerializeField] Slider _sfxSlider;
+	[SerializeField] TMP_Text _sfxLabel;
 
 	[Header("Settings")]
 	[SerializeField] float _targetOpacity;
@@ -51,6 +55,24 @@ public class SettingsMenu : MonoBehaviour
 		float sensitivity = PlayerPrefs.GetFloat("sensitivity");
 		_sensitivityLabel.text = sensitivity.ToString();
 		_sensitivitySlider.value = (sensitivity - _minSensitivity) / _maxSensitivity;
+
+		// Default Music Value
+		if (!PlayerPrefs.HasKey("musicVolume"))
+		{
+			PlayerPrefs.SetFloat("musicVolume", 100f);
+		}
+		float musicVolume = PlayerPrefs.GetFloat("musicVolume");
+		_musicLabel.text = musicVolume.ToString("00%");
+		_musicSlider.value = musicVolume / 200f;
+
+		// Default SFX Value
+		if (!PlayerPrefs.HasKey("sfxVolume"))
+		{
+			PlayerPrefs.SetFloat("sfxVolume", 100f);
+		}
+		float sfxVolume = PlayerPrefs.GetFloat("sfxVolume");
+		_sfxLabel.text = sensitivity.ToString("00%");
+		_sfxSlider.value = sfxVolume / 200f;
 	}
 
 	public void EnableMenu()
@@ -210,6 +232,28 @@ public class SettingsMenu : MonoBehaviour
 		float newSens = _sensitivitySlider.value * _maxSensitivity + _minSensitivity;
 		_sensitivityLabel.text = newSens.ToString("00");
 		PlayerPrefs.SetFloat("sensitivity", newSens);
+	}
+
+	public void MusicSliderChange()
+	{
+		float newVol = _musicSlider.value * 200;
+		_musicLabel.text = newVol.ToString("00");
+		PlayerPrefs.SetFloat("musicVolume", newVol);
+		if (AudioManager.Ref)
+		{
+			AudioManager.Ref.UpdateVolume();
+		}
+	}
+
+	public void SfxSliderChange()
+	{
+		float newVol = _sfxSlider.value * 200;
+		_sfxLabel.text = newVol.ToString("00");
+		PlayerPrefs.SetFloat("sfxVolume", newVol);
+		if (AudioManager.Ref)
+		{
+			AudioManager.Ref.UpdateVolume();
+		}
 	}
 
 	public void SetHold(float newY)

@@ -5,6 +5,9 @@ public class AudioManager : MonoBehaviour
   public static AudioManager Ref { get; private set; }
   public static MusicHandler MusicRef { get; private set; }
 
+  static float GlobalSfxVolume;
+  static float GlobalMusicVolume;
+
   [SerializeField] GameObject musicHandler;
   [SerializeField] GameObject audioPrefab;
   [SerializeField] AudioClip[] audioClips;
@@ -12,12 +15,26 @@ public class AudioManager : MonoBehaviour
   void Start()
   {
     if (Ref)
-		{
-			Debug.LogWarning("There are two wave authorities in the scene!");
-		}
-		Ref = this;
+    {
+      Debug.LogWarning("There are two wave authorities in the scene!");
+    }
+    Ref = this;
 
     MusicRef = musicHandler.GetComponent<MusicHandler>();
+
+
+    if (!PlayerPrefs.HasKey("musicVolume"))
+    {
+      PlayerPrefs.SetFloat("musicVolume", 100f);
+    }
+    GlobalMusicVolume = PlayerPrefs.GetFloat("musicVolume") / 100f;
+    if (!PlayerPrefs.HasKey("sfxVolume"))
+    {
+      PlayerPrefs.SetFloat("sfxVolume", 100f);
+    }
+    GlobalSfxVolume = PlayerPrefs.GetFloat("sfxVolume") / 100f;
+
+    MusicRef.UpdateMusicVolume(GlobalMusicVolume);
   }
 
   public void playSFX(string name, float volume = 1f, float pitch = 1f)
@@ -35,7 +52,7 @@ public class AudioManager : MonoBehaviour
     if (audioClip)
     {
       audioSource.clip = audioClip;
-      audioSource.volume = volume;
+      audioSource.volume = volume * GlobalSfxVolume;
       audioSource.pitch = pitch;
     }
     else
@@ -43,4 +60,12 @@ public class AudioManager : MonoBehaviour
       Debug.Log("An audio clip named " + name + " does not exist.");
     }
   }
+
+  public void UpdateVolume()
+  {
+    GlobalSfxVolume = PlayerPrefs.GetFloat("sfxVolume") / 100f;
+    GlobalMusicVolume = PlayerPrefs.GetFloat("musicVolume") / 100f;
+    MusicRef.UpdateMusicVolume(GlobalMusicVolume);
+  }
+
 }
