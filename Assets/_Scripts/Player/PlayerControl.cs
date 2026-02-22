@@ -159,16 +159,20 @@ public class PlayerControl : Character
 		{
 			case eBuffType.Health:
 				_healthRegen += dice.sideNum * _healthRegenScaling;
+        AudioManager.MusicRef.healthMusic(true);
 				break;
 			case eBuffType.Damage:
 				_meleeDamage *= 1 + dice.sideNum * _meleeDamageScaling;
 				_projectileDamage *= 1 + dice.sideNum * _projectileDamageScaling;
+        AudioManager.MusicRef.damageMusic(true);
 				break;
 			case eBuffType.Speed:
 				_moveSpeed *= 1 + dice.sideNum * _moveSpeedScaling;
+        AudioManager.MusicRef.speedMusic(true);
 				break;
 			case eBuffType.Defense:
 				_defense *= 1 + dice.sideNum * _defenseScaling;
+        AudioManager.MusicRef.defenseMusic(true);
 				break;
 			case eBuffType.Ammo:
 				int[] diceTypes = { 4, 6, 8, 12, 20 };
@@ -176,6 +180,7 @@ public class PlayerControl : Character
 				{
 					_ammo.Enqueue(diceTypes[(int)Random.Range(0f, diceTypes.Length)]);
 				}
+        AudioManager.MusicRef.ammoMusic(true);
 				break;
 		}
 	}
@@ -188,6 +193,7 @@ public class PlayerControl : Character
 				if (Mathf.Abs(_healthRegen - _baseHealthRegen) < 0.05)
 				{
 					_healthRegen = _baseHealthRegen;
+          AudioManager.MusicRef.healthMusic(false);
 				}
 				break;
 			case eBuffType.Damage:
@@ -195,6 +201,7 @@ public class PlayerControl : Character
 				if (Mathf.Abs(_meleeDamage - _baseMeleeDamage) < 0.05)
 				{
 					_meleeDamage = _baseMeleeDamage;
+          AudioManager.MusicRef.damageMusic(false);
 				}
 				_projectileDamage /= 1 + dice.sideNum * _projectileDamageScaling;
 				if (Mathf.Abs(_projectileDamage - _baseProjectileDamage) < 0.05)
@@ -207,6 +214,7 @@ public class PlayerControl : Character
 				if (Mathf.Abs(_moveSpeed - _baseMoveSpeed) < 0.05)
 				{
 					_moveSpeed = _baseMoveSpeed;
+          AudioManager.MusicRef.speedMusic(false);
 				}
 				break;
 			case eBuffType.Defense:
@@ -214,10 +222,12 @@ public class PlayerControl : Character
 				if (Mathf.Abs(_defense - _baseDefense) < 0.05)
 				{
 					_defense = _baseDefense;
+          AudioManager.MusicRef.defenseMusic(false);
 				}
 				break;
 			case eBuffType.Ammo:
 				// Do nothing
+        AudioManager.MusicRef.ammoMusic(false);
 				break;
 		}
 	}

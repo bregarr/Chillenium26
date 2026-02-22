@@ -45,9 +45,9 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: eea20ee348f44734e968e7cb5959a43a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -174,9 +174,9 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 40aa4c4972884ce429e86957c4381f55, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -303,9 +303,9 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 5e549d5b11ce3044f841b1184ebd2676, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -441,16 +441,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1abf7157212098e4ea2b41f609f9be56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MusicHandler
-  pluck: {fileID: 0}
-  smoothPluck: {fileID: 0}
-  bass: {fileID: 0}
-  lead: {fileID: 0}
-  horns: {fileID: 0}
-  trumpet: {fileID: 0}
-  bassGuitar: {fileID: 0}
-  drums: {fileID: 0}
-  crash: {fileID: 0}
-  gun: {fileID: 0}
+  pluck: {fileID: 6894846201124916072}
+  smoothPluck: {fileID: 7754525134671828743}
+  bass: {fileID: 4988278277096707330}
+  lead: {fileID: 3780726916324316768}
+  horns: {fileID: 8303342154064207390}
+  trumpet: {fileID: 319235782985685811}
+  bassGuitar: {fileID: 379013299110368443}
+  drums: {fileID: 8031988946183862076}
+  crash: {fileID: 4518469484476420741}
+  gun: {fileID: 8204706016481519390}
+  fadeInSpeed: 0.5
+  fadeOutSpeed: 0.25
 --- !u!1 &2760294744251194854
 GameObject:
   m_ObjectHideFlags: 0
@@ -496,9 +498,9 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 479411e92bba2a2408bf130cd719cf6d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -625,9 +627,9 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 0654f6d4e2fa6ec41a89ce09fd4a1a62, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -754,9 +756,9 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 66f397c3146531e41a82fe9b13ef1c83, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -883,9 +885,9 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 405737fa27ab88b4e9157c8d34bd3483, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1012,9 +1014,9 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 16fbd4577f163f2459c4c65ce2b5c812, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1141,9 +1143,9 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: c2e7359c07ae4d248b42cb710c24762a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -1270,9 +1272,9 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: bc57a0a8e039ecc4a8578f8b84b3ba95, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0

@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3ee1712415ed9349a3a42e76b83df9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  musicHandler: {fileID: 2468067224815647664}
   audioPrefab: {fileID: 8016784040097081031, guid: d45c6d561663d6b4abda563516f83562, type: 3}
   audioClips:
   - {fileID: 8300000, guid: 22156a84a4ea4c74db65e29c85782726, type: 3}
@@ -105,6 +106,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7baed44ccf318184c9cd6b4de3bcb6c8, type: 3}
+--- !u!1 &2468067224815647664 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2205499001518068640, guid: 7baed44ccf318184c9cd6b4de3bcb6c8, type: 3}
+  m_PrefabInstance: {fileID: 4385335849883871248}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4986315889156728576 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8784592514948501264, guid: 7baed44ccf318184c9cd6b4de3bcb6c8, type: 3}

@@ -3,8 +3,9 @@ using UnityEngine;
 public class AudioManager : MonoBehaviour
 {
   public static AudioManager Ref { get; private set; }
+  public static MusicHandler MusicRef { get; private set; }
 
-  [Header("SFXs")]
+  [SerializeField] GameObject musicHandler;
   [SerializeField] GameObject audioPrefab;
   [SerializeField] AudioClip[] audioClips;
 
@@ -15,9 +16,11 @@ public class AudioManager : MonoBehaviour
 			Debug.LogWarning("There are two wave authorities in the scene!");
 		}
 		Ref = this;
+
+    MusicRef = musicHandler.GetComponent<MusicHandler>();
   }
 
-  public void playSFX(string name)
+  public void playSFX(string name, float volume = 1f, float pitch = 1f)
   {
     GameObject audioPlayer = Instantiate(audioPrefab, WaveAuthority.PlayerRef.transform);
     AudioSource audioSource = audioPlayer.GetComponent<AudioSource>();
@@ -32,6 +35,8 @@ public class AudioManager : MonoBehaviour
     if (audioClip)
     {
       audioSource.clip = audioClip;
+      audioSource.volume = volume;
+      audioSource.pitch = pitch;
     }
     else
     {

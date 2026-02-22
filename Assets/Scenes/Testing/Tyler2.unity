@@ -994,7 +994,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1498264004728966653, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
       propertyPath: _dropType
-      value: 12
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 1498264004728966653, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
       propertyPath: _diceDropChance
