@@ -57,9 +57,10 @@ public class DiceProjectile : Projectile
 
 		if (enemy.GetComponent<Enemy>() && !alreadyHit)
 		{
-			alreadyHit = true;
 			enemy.GetComponent<Health>().TakeDamage(WaveAuthority.PlayerRef.GetProjectileDamage());
 			GetComponent<Rigidbody>().linearVelocity /= 4;
 		}
+    lifeSpan = 0f;
+    alreadyHit = true;
 	}
 }

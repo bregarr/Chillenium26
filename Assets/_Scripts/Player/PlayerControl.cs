@@ -242,14 +242,6 @@ public class PlayerControl : Character
 				break;
 		}
 	}
-	void HandleBuffs(Dice newDice, Dice oldDice)
-	{
-		if (oldDice != null)
-		{
-			RemoveBuff(oldDice);
-		}
-		AddBuff(newDice);
-	}
 
 	// Movement stuff
 
@@ -380,14 +372,14 @@ public class PlayerControl : Character
 	{
 		_dice.Enqueue(dice);
 		Dice oldDice = null;
-		if (!(_dice.Count >= _maxDice))
+		if (_dice.Count > _maxDice)
 		{
 			oldDice = (Dice)_dice.Dequeue();
-
+      RemoveBuff(oldDice);
 			// Add oldDice to Dice Bag
 			AddAmmo(oldDice);
 		}
-		HandleBuffs(dice, oldDice);
+    AddBuff(dice);
 		_uiBuff.AddBuff(dice);
 
 		_anim.ChangeDie();

@@ -4521,12 +4521,20 @@ PrefabInstance:
       value: BassEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 1498264004728966653, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
+      propertyPath: _dropType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498264004728966653, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
       propertyPath: _attackSpeed
       value: Infinity
       objectReference: {fileID: 0}
     - target: {fileID: 1498264004728966653, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
       propertyPath: _attackDistance
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1498264004728966653, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
+      propertyPath: _diceDropChance
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1682560978748001316, guid: e5681bf8886d39540a8bdc4bbdef35ba, type: 3}
       propertyPath: m_LocalPosition.x

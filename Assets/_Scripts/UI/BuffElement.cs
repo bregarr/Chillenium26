@@ -32,10 +32,50 @@ public class BuffElement : MonoBehaviour
   // Speed Up = 0x00670F
   // Defense Up = 0x323232
   // More Ammo = 0xB16A00
+
+  public Dice dice;
   
   public void InitializeBuff(Dice buff, Vector3 travelToPosition)
   {
+    dice = buff;
     _endPosition = travelToPosition;
+    switch (buff.GetBuffType())
+    {
+      case eBuffType.Health:
+        _text.text = "Health Regen";
+        _text.color = new Color(0xD9, 0x67, 0x67);
+        _icon.material = _d4;
+        _icon.material.SetFloat("_SelectNumber", (float)buff.sideNum);
+        break;
+      case eBuffType.Damage:
+        _text.text = "Damage Up";
+        _text.color = new Color(0x77, 0x00, 0x00);
+        _icon.material = _d6;
+        _icon.material.SetFloat("_SelectNumber", (float)buff.sideNum);
+        break;
+      case eBuffType.Speed:
+        _text.text = "Speed Up";
+        _text.color = new Color(0x00, 0x67, 0x0F);
+        _icon.material = _d8;
+        _icon.material.SetFloat("_SelectNumber", (float)buff.sideNum);
+        break;
+      case eBuffType.Defense:
+        _text.text = "Defense Up";
+        _text.color = new Color(0x32, 0x32, 0x32);
+        _icon.material = _d12;
+        _icon.material.SetFloat("_SelectNumber", (float)buff.sideNum);
+        break;
+      case eBuffType.Ammo:
+        _text.text = "More Ammo";
+        _text.color = new Color(0xB1, 0x6A, 0x00);
+        _icon.material = _d20;
+        _icon.material.SetFloat("_SelectNumber", (float)buff.sideNum);
+        break;
+    }
+  }
+
+  public void ReplaceBuff(Dice buff)
+  {
     switch (buff.GetBuffType())
     {
       case eBuffType.Health:
