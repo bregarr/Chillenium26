@@ -34,6 +34,7 @@ public class SettingsMenu : MonoBehaviour
 	bool _isDecrementing = false;
 	bool _isLowering = false;
 	bool _isRaising = false;
+	bool _useButtons = false;
 
 	float _backgroundHoldY;
 
@@ -65,7 +66,7 @@ public class SettingsMenu : MonoBehaviour
 
 		IncrementOpacity();
 		TryLowerBackground();
-		_buttons.SetActive(true);
+		_useButtons = true;
 
 	}
 
@@ -159,6 +160,10 @@ public class SettingsMenu : MonoBehaviour
 			yield return new WaitForSecondsRealtime(_backgroundStepTime);
 		}
 		_isLowering = false;
+		if (_useButtons)
+		{
+			_buttons.SetActive(true);
+		}
 	}
 
 	IEnumerator RaiseBackground()

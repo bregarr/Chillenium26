@@ -258,20 +258,20 @@ public class PlayerControl : Character
 
 		newForce += _moveSpeed * inputPos.y * RightTransform();
 		newForce += _moveSpeed * inputPos.x * ForwardTransform();
+		Vector3 currVel = _rb.linearVelocity;
 
-		_rb.AddForce(newForce);
+		if (!(currVel.magnitude >= _maxSpeed))
+		{
+			_rb.AddForce(newForce);
+		}
 
 		// Clamp the velocity
-		Vector3 currVel = _rb.linearVelocity;
 		if (currVel.y > 0f)
 		{
 			currVel.y = 0f;
 		}
-		currVel.x = Mathf.Clamp(currVel.x, -_maxSpeed, _maxSpeed);
-		currVel.z = Mathf.Clamp(currVel.z, -_maxSpeed, _maxSpeed);
-		_rb.linearVelocity = currVel;
 
-		Debug.Log(currVel);
+		_rb.linearVelocity = currVel;
 
 		if (Mathf.Abs(currVel.magnitude) >= _runThreshold)
 		{

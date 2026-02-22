@@ -159,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
   _sensitivity: 50
   _maxSpeed: 6
-  _drag: 0.5
+  _drag: 2
   _maxLookHeight: 75
   _meleeCooldown: 0.5
   _projectileCooldown: 0.2

@@ -1209,23 +1209,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2504459217792260844, guid: 2c746f1fa317820498a77b4e80a30c95, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3441497045683101537, guid: 2c746f1fa317820498a77b4e80a30c95, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1788650203}
+    - target: {fileID: 5606286450385049425, guid: 2c746f1fa317820498a77b4e80a30c95, type: 3}
+      propertyPath: _backgroundStepSize
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5737186007241169675, guid: 2c746f1fa317820498a77b4e80a30c95, type: 3}
       propertyPath: m_Name
       value: SettingsMenu
       objectReference: {fileID: 0}
     - target: {fileID: 5737186007241169675, guid: 2c746f1fa317820498a77b4e80a30c95, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8863828032466659558, guid: 2c746f1fa317820498a77b4e80a30c95, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
