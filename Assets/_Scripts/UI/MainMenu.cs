@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         // This uses the second scene in the build order which should be the main scene
-        SceneManager.LoadScene("Scenes/Testing/CoreTest");
+        SceneManager.LoadScene("Scenes/Arena_Level");
     }
 
     public void OpenSettingsMenu()

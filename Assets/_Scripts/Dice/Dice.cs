@@ -27,6 +27,10 @@ public class Dice : MonoBehaviour
 			_buffType = (eBuffType)_sideCount;
 		}
 		RollDice();
+		if (_lifespan <= 0f)
+		{
+			_lifespan = 10f;
+		}
 	}
 
 	public Dice InitializeDice(eBuffType buffType)
@@ -87,11 +91,12 @@ public class Dice : MonoBehaviour
 			transform.position = new Vector3(transform.position.x, middle.y + 0.15f * Mathf.Sin(Time.time * 2f), transform.position.z);
 			transform.Rotate(new Vector3(0f, 0.5f, 0f));
 
-			_lifespan -= Time.deltaTime;
-			if (_lifespan <= 0)
-			{
-				Destroy(gameObject);
-			}
+
+		}
+		_lifespan -= Time.deltaTime;
+		if (_lifespan <= 0)
+		{
+			Destroy(gameObject);
 		}
 	}
 

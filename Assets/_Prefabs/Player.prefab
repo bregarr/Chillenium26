@@ -138,12 +138,12 @@ GameObject:
   - component: {fileID: 7889743191184120527}
   - component: {fileID: 8399882240762644625}
   - component: {fileID: 4163411554340982058}
-  - component: {fileID: 1852813183314858465}
   - component: {fileID: 586737453511063465}
   - component: {fileID: 6445972967362992916}
   - component: {fileID: 1156036080503240730}
   - component: {fileID: 6254833926112614888}
   - component: {fileID: 37314780540307561}
+  - component: {fileID: 542622340358022010}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -225,27 +225,6 @@ MeshRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1852813183314858465
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6240480184452523529}
-  m_Material: {fileID: 13400000, guid: c8ff14370a04d9a40a47d837f21daef0, type: 2}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1.2, z: 1}
-  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!54 &586737453511063465
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -272,7 +251,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &6445972967362992916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerControl
   _sensitivity: 50
   _maxSpeed: 6
-  _drag: 2
+  _drag: 999
   _maxLookHeight: 75
   _meleeCooldown: 0.5
   _projectileCooldown: 0.2
@@ -295,7 +274,7 @@ MonoBehaviour:
   _runThreshold: 5
   _projectileSpeed: 15
   _projectileTTL: 5
-  _startingYaw: 0
+  _isInArena: 0
   _uiBuff: {fileID: 0}
   _baseMoveSpeed: 16
   _moveSpeed: 16
@@ -330,6 +309,7 @@ MonoBehaviour:
   _maxHealth: 10
   _hitMat: {fileID: 0}
   _hitFlashTime: 0
+  _damageCooldown: 0
 --- !u!114 &6254833926112614888
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -366,6 +346,29 @@ MonoBehaviour:
   _swordAnim: {fileID: 679755288326847188}
   _currentWalkState: 0
   _swordCollider: {fileID: 7028573613907847177}
+--- !u!136 &542622340358022010
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6240480184452523529}
+  m_Material: {fileID: 13400000, guid: c8ff14370a04d9a40a47d837f21daef0, type: 2}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.35
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &6588035297082658569
 GameObject:
   m_ObjectHideFlags: 0
@@ -3983,5 +3986,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 0
   serializedVersion: 3
-  m_Size: {x: 0.5143735, y: 0.559888, z: 1.3501542}
-  m_Center: {x: 0.5962935, y: 0.60439134, z: 0.43954375}
+  m_Size: {x: 0.818356, y: 1.0266416, z: 2.0704799}
+  m_Center: {x: 0.584258, y: 0.3710007, z: 0.7997052}
