@@ -186,7 +186,7 @@ public class PlayerControl : Character
 				AudioManager.MusicRef.damageMusic(true);
 				break;
 			case eBuffType.Speed:
-				_moveSpeed *= 1 + dice.sideNum * _moveSpeedScaling;
+				_maxSpeed *= 1 + dice.sideNum * _moveSpeedScaling;
 				AudioManager.MusicRef.speedMusic(true);
 				break;
 			case eBuffType.Defense:
@@ -229,10 +229,10 @@ public class PlayerControl : Character
 				}
 				break;
 			case eBuffType.Speed:
-				_moveSpeed /= 1 + dice.sideNum * _moveSpeedScaling;
-				if (Mathf.Abs(_moveSpeed - _baseMoveSpeed) < 0.05)
+				_maxSpeed /= 1 + dice.sideNum * _moveSpeedScaling;
+				if (Mathf.Abs(_maxSpeed - _baseMoveSpeed) < 0.05)
 				{
-					_moveSpeed = _baseMoveSpeed;
+					_maxSpeed = _baseMoveSpeed;
 					AudioManager.MusicRef.speedMusic(false);
 				}
 				break;
@@ -249,14 +249,6 @@ public class PlayerControl : Character
 				AudioManager.MusicRef.ammoMusic(false);
 				break;
 		}
-	}
-	void HandleBuffs(Dice newDice, Dice oldDice)
-	{
-		if (oldDice != null)
-		{
-			RemoveBuff(oldDice);
-		}
-		AddBuff(newDice);
 	}
 
 	// Movement stuff
@@ -388,14 +380,14 @@ public class PlayerControl : Character
 	{
 		_dice.Enqueue(dice);
 		Dice oldDice = null;
-		if (!(_dice.Count >= _maxDice))
+		if (_dice.Count > _maxDice)
 		{
 			oldDice = (Dice)_dice.Dequeue();
-
+      RemoveBuff(oldDice);
 			// Add oldDice to Dice Bag
 			AddAmmo(oldDice);
 		}
-		HandleBuffs(dice, oldDice);
+    AddBuff(dice);
 		_uiBuff.AddBuff(dice);
 
 		_anim.ChangeDie();

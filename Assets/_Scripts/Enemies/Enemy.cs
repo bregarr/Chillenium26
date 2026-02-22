@@ -58,6 +58,15 @@ public class Enemy : Character
 			_anim.SetSwimming(true);
 			_agent.baseOffset += EnemyAuthority.Ref.GetHeightVariance();
 		}
+
+    if (_damageAmount == 1)
+    {
+      AudioManager.Ref.playSFX("BassSpawn");
+    }
+    if (_damageAmount == 2)
+    {
+      AudioManager.Ref.playSFX("SharkSpawn");
+    }
 	}
 
 	protected virtual void FixedUpdate()
