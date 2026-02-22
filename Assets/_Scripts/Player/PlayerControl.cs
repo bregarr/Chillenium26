@@ -155,6 +155,14 @@ public class PlayerControl : Character
 			Throw();
 		}
 
+    // Slow down faster
+    Vector2 inputPos = _moveAction.ReadValue<Vector2>();
+    if (inputPos.magnitude < 0.1)
+    {
+      _rb.linearVelocity /= 4;
+    }
+
+    // Health Regen
 		if (_healthRegen > 0)
 		{
 			if (_healthRegenTimer < 0)

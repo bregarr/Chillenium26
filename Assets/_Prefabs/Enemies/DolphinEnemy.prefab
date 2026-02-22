@@ -312,7 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98932477e0596534296ce4b16299aac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Boss
-  _moveSpeed: 3
+  _moveSpeed: 2.5
   _damageAmount: 2.5
   _attackSpeed: 3
   _attackDistance: 2

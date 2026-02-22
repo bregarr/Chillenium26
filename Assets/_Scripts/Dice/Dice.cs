@@ -54,7 +54,7 @@ public class Dice : MonoBehaviour
 		{
 			_lifespan = 10f;
 			_floating = floating;
-			middle = transform.position - new Vector3(0f, 0.4f, 0f);
+			middle = new Vector3(transform.position.x, 0.4f, transform.position.z);
 		}
 
 		return this;
