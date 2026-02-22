@@ -92,7 +92,7 @@ MonoBehaviour:
   _bloodHitEffect: {fileID: 4146364028328154821}
   _dropType: 0
   _canDropDice: 1
-  _diceDropChance: 0.7
+  _diceDropChance: 0.4
 --- !u!114 &4441790961007554149
 MonoBehaviour:
   m_ObjectHideFlags: 0
