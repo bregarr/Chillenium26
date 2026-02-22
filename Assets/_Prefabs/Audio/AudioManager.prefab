@@ -65,6 +65,12 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 86dbdd4fab0bc304084a418060d625c7, type: 3}
   - {fileID: 8300000, guid: 77f9bad8c042af04599a29e55f6cb7bc, type: 3}
   - {fileID: 8300000, guid: edba0cefab2adaf41acf22c8362a172b, type: 3}
+  - {fileID: 8300000, guid: 94baad4af933f5b4496ba3dfc0bed812, type: 3}
+  - {fileID: 8300000, guid: df305a96ece532e40991b38dc0ff9dae, type: 3}
+  - {fileID: 8300000, guid: 5f0bf452cac86c84cb94a35bbf3b40c1, type: 3}
+  - {fileID: 8300000, guid: 3032da398fa339c42afca4c98d755a94, type: 3}
+  - {fileID: 8300000, guid: 73f8c65a392595e43b964918d61e1b71, type: 3}
+  - {fileID: 8300000, guid: a9272987645695149b6194982c337f87, type: 3}
   - {fileID: 8300000, guid: 430ad24107da94240a4a73a11a421d92, type: 3}
 --- !u!1001 &4385335849883871248
 PrefabInstance:

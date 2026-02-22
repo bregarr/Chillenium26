@@ -43,16 +43,29 @@ public class AudioManager : MonoBehaviour
     GameObject audioPlayer = Instantiate(audioPrefab, MainCam.transform);
     AudioSource audioSource = audioPlayer.GetComponent<AudioSource>();
     AudioClip audioClip = null;
+    // Random groups
     if (name == "impact")
     {
-      string[] impacts = {"impact1", "impact2", "impact3", "impact4", "impact5"};
-      name = impacts[(int)Random.Range(0f, 5f)];
+      string[] sounds = {"impact1", "impact2", "impact3", "impact4", "impact5"};
+      name = sounds[(int)Random.Range(0f, sounds.Length)];
     }
     if (name == "slash")
     {
-      string[] impacts = {"slash1", "slash2", "slash3", "slash4"};
-      name = impacts[(int)Random.Range(0f, 4f)];
+      string[] sounds = {"slash1", "slash2", "slash3", "slash4"};
+      name = sounds[(int)Random.Range(0f, sounds.Length)];
     }
+    if (name == "enemyVoice")
+    {
+      string[] sounds = {"enemyVoice1", "enemyVoice2", "enemyVoice3"};
+      name = sounds[(int)Random.Range(0f, sounds.Length)];
+    }
+    if (name == "playerVoice")
+    {
+      string[] sounds = {"playerVoice1", "playerVoice2", "playerVoice3"};
+      name = sounds[(int)Random.Range(0f, sounds.Length)];
+    }
+
+    // Regular sounds
     for (int i = 0; i < audioClips.Length; i++)
     {
       if (audioClips[i].name == name)
