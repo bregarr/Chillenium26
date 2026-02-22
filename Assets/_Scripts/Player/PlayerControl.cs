@@ -30,14 +30,19 @@ public class PlayerControl : Character
 	[SerializeField] UIBuffs _uiBuff;
 
 	[Header("Buffable Statics")]
+  [SerializeField] float _baseMoveSpeed;
 	[SerializeField] float _moveSpeed;
 	[SerializeField] float _moveSpeedScaling;
+  [SerializeField] float _baseMeleeDamage;
 	[SerializeField] float _meleeDamage;
 	[SerializeField] float _meleeDamageScaling;
+  [SerializeField] float _baseProjectileDamage;
 	[SerializeField] float _projectileDamage;
 	[SerializeField] float _projectileDamageScaling;
+  [SerializeField] float _baseDefense;
 	[SerializeField] float _defense;
 	[SerializeField] float _defenseScaling;
+  [SerializeField] float _baseHealthRegen;
 	[SerializeField] float _healthRegen;
 	[SerializeField] float _healthRegenScaling;
 
@@ -57,6 +62,8 @@ public class PlayerControl : Character
 
 	Rigidbody _rb;
 	PlayerAnimator _anim;
+
+  float _healthRegenTimer;
 
 	// Camera stuff
 	float _pitch;
@@ -111,6 +118,23 @@ public class PlayerControl : Character
 		{
 			Throw();
 		}
+
+    if (_healthRegen > 0)
+    {
+      if (_healthRegenTimer < 0)
+      {
+        _healthRegenTimer = 1f;
+        if (_health.GetHealth() + _healthRegen > _health.GetMaxHealth())
+        {
+          _health.AddHealth(_health.GetMaxHealth() - _health.GetHealth());
+        }
+        else
+        {
+          _health.AddHealth(_healthRegen);
+        }
+      }
+      _healthRegenTimer -= Time.deltaTime;
+    }
 	}
 
 	// Handle Current Buffs
@@ -123,6 +147,7 @@ public class PlayerControl : Character
 				break;
 			case eBuffType.Damage:
 				_meleeDamage *= 1 + dice.sideNum * _meleeDamageScaling;
+        _projectileDamage *= 1 + dice.sideNum * _projectileDamageScaling;
 				break;
 			case eBuffType.Speed:
 				_moveSpeed *= 1 + dice.sideNum * _moveSpeedScaling;
@@ -145,15 +170,36 @@ public class PlayerControl : Character
 		{
 			case eBuffType.Health:
 				_healthRegen -= dice.sideNum * _healthRegenScaling;
+        if (Mathf.Abs(_healthRegen - _baseHealthRegen) < 0.05)
+        {
+          _healthRegen = _baseHealthRegen;
+        }
 				break;
 			case eBuffType.Damage:
 				_meleeDamage /= 1 + dice.sideNum * _meleeDamageScaling;
+        if (Mathf.Abs(_meleeDamage - _baseMeleeDamage) < 0.05)
+        {
+          _meleeDamage = _baseMeleeDamage;
+        }
+				_projectileDamage /= 1 + dice.sideNum * _projectileDamageScaling;
+        if (Mathf.Abs(_projectileDamage - _baseProjectileDamage) < 0.05)
+        {
+          _projectileDamage = _baseProjectileDamage;
+        }
 				break;
 			case eBuffType.Speed:
 				_moveSpeed /= 1 + dice.sideNum * _moveSpeedScaling;
+        if (Mathf.Abs(_moveSpeed - _baseMoveSpeed) < 0.05)
+        {
+          _moveSpeed = _baseMoveSpeed;
+        }
 				break;
 			case eBuffType.Defense:
 				_defense /= 1 + dice.sideNum * _defenseScaling;
+        if (Mathf.Abs(_defense - _baseDefense) < 0.05)
+        {
+          _defense = _baseDefense;
+        }
 				break;
 			case eBuffType.Ammo:
 				// Do nothing

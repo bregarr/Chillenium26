@@ -16,14 +16,23 @@ public class PlayerAnimator : MonoBehaviour
 
     void Update()
     {
-        string currentStateName = _swordAnim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
-        if (currentStateName == "FPS_Sword_Slash_1" || currentStateName == "FPS_Sword_Slash_2" || currentStateName == "FPS_Sword_Slash_3")
+        try
         {
-            _swordCollider.enabled = true;
+            string currentStateName = _swordAnim.GetCurrentAnimatorClipInfo(0)[0].clip.name;
+            if (currentStateName == "FPS_Sword_Slash_1" || currentStateName == "FPS_Sword_Slash_2" || currentStateName == "FPS_Sword_Slash_3")
+            {
+                _swordCollider.enabled = true;
+            }
+            else
+            {
+                _swordCollider.enabled = false;
+            }
         }
-        else
+        catch (System.IndexOutOfRangeException ex)
         {
-            _swordCollider.enabled = false;
+            void silence(System.IndexOutOfRangeException e) { e = ex; }
+            silence(ex);
+            return;
         }
     }
 

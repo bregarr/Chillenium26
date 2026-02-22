@@ -7,11 +7,11 @@ public enum eBuffType
 
 public class Dice : MonoBehaviour
 {
-
 	[Header("(Optional)")]
 	[SerializeField] int _sideCount;
 	[SerializeField] eBuffType _buffType;
-
+  [SerializeField] bool _floating;
+  float _lifespan;
 	public int sideNum { get; private set; }
 
 	public Dice(eBuffType type)
@@ -44,6 +44,18 @@ public class Dice : MonoBehaviour
 		return this;
 	}
 
+  public Dice InitializeDice(bool floating)
+	{
+    if (floating)
+    {
+      _lifespan = 10f;
+      _floating = floating;
+      transform.position += new Vector3(0f, 1f, 0f);
+    }
+		RollDice();
+		return this;
+	}
+
 	public Dice InitializeDice()
 	{
 		RollDice();
@@ -65,4 +77,34 @@ public class Dice : MonoBehaviour
 		return _buffType;
 	}
 
+  void Update()
+  {
+    if (_floating)
+    {
+      transform.position = new Vector3(transform.position.x, transform.position.y * 0.1f * Mathf.Sin(Time.time * 0.2f), transform.position.z);
+      transform.Rotate(new Vector3(0f, 0.5f, 0f));
+
+      _lifespan -= Time.deltaTime;
+      if (_lifespan <= 0)
+      {
+        Destroy(gameObject);
+      }
+    }
+  }
+
+  void OnTriggerEnter(Collider other)
+	{
+    if (!_floating)
+    {
+      return;
+    }
+
+		GameObject player = other.gameObject;
+
+		if (player.GetComponent<PlayerControl>())
+		{
+			player.GetComponent<PlayerControl>().AddDice(this);
+      Destroy(gameObject);
+		}
+	}
 }
