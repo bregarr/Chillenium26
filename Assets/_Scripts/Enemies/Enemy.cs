@@ -28,7 +28,7 @@ public class Enemy : Character
 
 	protected NavMeshAgent _agent;
 	float _lastAttackTime;
-	Health _health;
+	protected Health _health;
 
 	void Start()
 	{
@@ -67,7 +67,7 @@ public class Enemy : Character
 		CheckForAttack();
 	}
 
-	void CheckForAttack()
+	protected void CheckForAttack()
 	{
 		// If the enemy is within attacking range of the player
 		if (AgentInRange())
@@ -149,10 +149,18 @@ public class Enemy : Character
 
 	void MeleeAttack()
 	{
+		Debug.Log("Attacking!");
 		WaveAuthority.PlayerRef.TakeDamage(_damageAmount);
 	}
 
 	public float GetSpread() { return _projectileSpread; }
 
 	public float GetProjectileDamage() { return _projectileDamage; }
+
+	protected void SetSwimming()
+	{
+		_isSwimmer = true;
+		_anim.SetSwimming(true);
+		_agent.baseOffset = 2.5f + EnemyAuthority.Ref.GetHeightVariance();
+	}
 }

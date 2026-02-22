@@ -76,10 +76,12 @@ MonoBehaviour:
   _attackSpeed: 3
   _attackDistance: 2
   _isSwimmer: 0
-  _shootSpeed: 0
-  _projectileTTL: 0
+  _shootSpeed: 18
+  _projectileTTL: 5
+  _projectileSpread: 0.3
+  _projectileDamage: 1.5
   _dropType: 0
-  _canDropDice: 1
+  _canDropDice: 0
   _diceDropChance: 0.5
 --- !u!114 &8789401430333260795
 MonoBehaviour:
