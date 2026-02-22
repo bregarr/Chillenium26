@@ -20,6 +20,8 @@ public class SettingsMenu : MonoBehaviour
 	[SerializeField] TMP_Text _musicLabel;
 	[SerializeField] Slider _sfxSlider;
 	[SerializeField] TMP_Text _sfxLabel;
+	[SerializeField] Toggle _speedToggle;
+	[SerializeField] Toggle _diceToggle;
 
 	[Header("Settings")]
 	[SerializeField] float _targetOpacity;
@@ -72,6 +74,18 @@ public class SettingsMenu : MonoBehaviour
 		float sfxVolume = PlayerPrefs.GetFloat("sfxVolume");
 		_sfxLabel.text = sensitivity.ToString("00%");
 		_sfxSlider.value = sfxVolume / 200f;
+
+		if (!PlayerPrefs.HasKey("diceCheat"))
+		{
+			PlayerPrefs.SetInt("diceCheat", 1);
+		}
+		_diceToggle.isOn = PlayerPrefs.GetInt("diceCheat") == 1;
+
+		if (!PlayerPrefs.HasKey("speedCheat"))
+		{
+			PlayerPrefs.SetFloat("speedCheat", 1f);
+		}
+		_diceToggle.isOn = PlayerPrefs.GetFloat("speedCheat") == 10f;
 	}
 
 	public void EnableMenu()
@@ -226,7 +240,7 @@ public class SettingsMenu : MonoBehaviour
 
 	public void SetInvertX()
 	{
-    AudioManager.Ref.playSFX("ClickSFX");
+		AudioManager.Ref.playSFX("ClickSFX");
 		if (_xInvertToggle.isOn)
 		{
 			PlayerPrefs.SetInt("xInvert", -1);
@@ -239,7 +253,7 @@ public class SettingsMenu : MonoBehaviour
 
 	public void SetInvertY()
 	{
-    AudioManager.Ref.playSFX("ClickSFX");
+		AudioManager.Ref.playSFX("ClickSFX");
 		if (_yInvertToggle.isOn)
 		{
 			PlayerPrefs.SetInt("yInvert", -1);
@@ -252,7 +266,7 @@ public class SettingsMenu : MonoBehaviour
 
 	public void SensitivitySliderChange()
 	{
-    AudioManager.Ref.playSFX("ClickSFX");
+		AudioManager.Ref.playSFX("ClickSFX");
 		float newSens = _sensitivitySlider.value * _maxSensitivity + _minSensitivity;
 		_sensitivityLabel.text = newSens.ToString("00");
 		PlayerPrefs.SetFloat("sensitivity", newSens);
@@ -260,7 +274,7 @@ public class SettingsMenu : MonoBehaviour
 
 	public void MusicSliderChange()
 	{
-    AudioManager.Ref.playSFX("ClickSFX");
+		AudioManager.Ref.playSFX("ClickSFX");
 		float newVol = _musicSlider.value * 200;
 		_musicLabel.text = newVol.ToString("00");
 		PlayerPrefs.SetFloat("musicVolume", newVol);
@@ -272,13 +286,39 @@ public class SettingsMenu : MonoBehaviour
 
 	public void SfxSliderChange()
 	{
-    AudioManager.Ref.playSFX("ClickSFX");
+		AudioManager.Ref.playSFX("ClickSFX");
 		float newVol = _sfxSlider.value * 200;
 		_sfxLabel.text = newVol.ToString("00");
 		PlayerPrefs.SetFloat("sfxVolume", newVol);
 		if (AudioManager.Ref)
 		{
 			AudioManager.Ref.UpdateVolume();
+		}
+	}
+
+	public void SpeedToggleChange()
+	{
+		AudioManager.Ref.playSFX("ClickSFX");
+		if (_speedToggle.isOn)
+		{
+			PlayerPrefs.SetFloat("speedCheat", 10f);
+		}
+		else
+		{
+			PlayerPrefs.SetFloat("speedCheat", 1f);
+		}
+	}
+
+	public void DiceToggleChange()
+	{
+		AudioManager.Ref.playSFX("ClickSFX");
+		if (_speedToggle.isOn)
+		{
+			PlayerPrefs.SetInt("diceCheat", 1);
+		}
+		else
+		{
+			PlayerPrefs.SetInt("diceCheat", 0);
 		}
 	}
 

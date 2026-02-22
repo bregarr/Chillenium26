@@ -6343,10 +6343,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1707038634635104286, guid: 948752fa80fcc9a45bd36483e9e6970f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2801711829803958991, guid: 948752fa80fcc9a45bd36483e9e6970f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2806163521090140110, guid: 948752fa80fcc9a45bd36483e9e6970f, type: 3}
       propertyPath: _hudMenu
       value: 
       objectReference: {fileID: 91905501}
+    - target: {fileID: 5653031667224142356, guid: 948752fa80fcc9a45bd36483e9e6970f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5711465963200998302, guid: 948752fa80fcc9a45bd36483e9e6970f, type: 3}
       propertyPath: m_Name
       value: PauseCanvas
@@ -6366,6 +6378,14 @@ PrefabInstance:
     - target: {fileID: 8525430988458840563, guid: 948752fa80fcc9a45bd36483e9e6970f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: PauseUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669886358374651538, guid: 948752fa80fcc9a45bd36483e9e6970f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8758741336297834550, guid: 948752fa80fcc9a45bd36483e9e6970f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9142435047374627909, guid: 948752fa80fcc9a45bd36483e9e6970f, type: 3}
       propertyPath: m_Pivot.x

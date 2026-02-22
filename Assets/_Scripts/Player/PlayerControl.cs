@@ -80,6 +80,10 @@ public class PlayerControl : Character
 	float _pitch;
 	float _yaw;
 
+	// Cheats
+	bool _diceCheat;
+	float _throwCheat;
+
 	bool _isDead = false;
 
 	// Inputs
@@ -139,10 +143,40 @@ public class PlayerControl : Character
 			_yaw = 272.93f;
 			_pitch = -7f;
 		}
+
+		if (PlayerPrefs.HasKey("diceCheat"))
+		{
+			_diceCheat = PlayerPrefs.GetInt("diceCheat") == 1;
+		}
+		else
+		{
+			_diceCheat = false;
+		}
+
+		if (PlayerPrefs.HasKey("speedCheat"))
+		{
+			_throwCheat = PlayerPrefs.GetFloat("speedCheat");
+		}
+		else
+		{
+			_throwCheat = 1f;
+		}
+
+		if (_throwCheat < 1f)
+		{
+			PlayerPrefs.SetFloat("speedCheat", 1f);
+			_throwCheat = 1f;
+		}
 	}
 
 	void Update()
 	{
+		if (_throwCheat != 1.0f && _throwCheat != 10.0f)
+		{
+			PlayerPrefs.SetFloat("speedCheat", 1f);
+			_throwCheat = 1.0f;
+		}
+
 		bool isInCutscene = WaveAuthority.Ref.IsInCutscene();
 		if (!PauseUI.Ref.GetIsPaused() && !isInCutscene)
 		{
@@ -199,7 +233,7 @@ public class PlayerControl : Character
 	// Handle Current Buffs
 	void AddBuff(Dice dice)
 	{
-    AudioManager.Ref.playSFX("PowerUP", 0.75f);
+		AudioManager.Ref.playSFX("PowerUP", 0.75f);
 		switch (dice.GetBuffType())
 		{
 			case eBuffType.Health:
@@ -260,7 +294,7 @@ public class PlayerControl : Character
 				{
 					_maxSpeed = _baseMoveSpeed;
 				}
-        AudioManager.MusicRef.speedMusic(false);
+				AudioManager.MusicRef.speedMusic(false);
 				break;
 			case eBuffType.Defense:
 				_defense /= 1 + dice.sideNum * _defenseScaling;
@@ -373,7 +407,7 @@ public class PlayerControl : Character
 
 	void Melee()
 	{
-		if (_lastAttackTime + _meleeCooldown / _diffSpeedBuff > Time.time)
+		if (_lastAttackTime + _meleeCooldown / _diffSpeedBuff / _throwCheat > Time.time)
 		{
 			// Melee is still on cooldown
 			return;
@@ -386,7 +420,7 @@ public class PlayerControl : Character
 		}
 
 		// Attack
-    AudioManager.Ref.playSFX("slash");
+		AudioManager.Ref.playSFX("slash");
 		_anim.Slash();
 
 		_lastAttackTime = Time.time;
@@ -394,7 +428,7 @@ public class PlayerControl : Character
 
 	void Throw()
 	{
-		if (_lastAttackTime + _projectileCooldown / _diffSpeedBuff > Time.time)
+		if (_lastAttackTime + _projectileCooldown / _diffSpeedBuff / _throwCheat > Time.time)
 		{
 			// Projectile is still on cooldown
 			return;
@@ -407,7 +441,7 @@ public class PlayerControl : Character
 		}
 
 		// If there isnt available ammo, don't shoot
-		if (GetAmmoCount() <= 0)
+		if (GetAmmoCount() <= 0 && !_diceCheat)
 		{
 			return;
 		}
@@ -453,12 +487,12 @@ public class PlayerControl : Character
 	public int GetAmmo()
 	{
 		// Make sure we have ammo
-		// if (_ammo.Count == 0)
-		// {
-		// 	// For testing
-		// 	_ammo.Enqueue(6);
-		// 	//return 0;
-		// }
+		if (_ammo.Count == 0 && _diceCheat)
+		{
+			// For testing
+			_ammo.Enqueue(6);
+			//return 0;
+		}
 
 		return _ammo.Dequeue();
 	}
@@ -533,6 +567,8 @@ public class PlayerControl : Character
 	{
 		_invertX = PlayerPrefs.GetFloat("xInvert");
 		_invertY = PlayerPrefs.GetFloat("yInvert");
+		_diceCheat = PlayerPrefs.GetInt("diceCheat") == 1;
+		_throwCheat = PlayerPrefs.GetFloat("speedCheat");
 	}
 
 	public Camera GetCamera() { return _camera.GetComponent<Camera>(); }
